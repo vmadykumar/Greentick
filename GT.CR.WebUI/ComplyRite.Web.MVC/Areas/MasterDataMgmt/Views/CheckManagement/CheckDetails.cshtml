@@ -1,0 +1,175 @@
+﻿@model ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.CheckMgmt.CheckModel_New
+
+<!-- STYLE -->
+<link href="~/Areas/MasterDataMgmt/Content/CSS/CheckManagement.css" rel="stylesheet" />
+
+<h5>CHECK DETAILS</h5>
+<hr />
+<input type="hidden" id="ViewBag_Feedback" value="@(ViewBag.Feedback)" />
+<input type="hidden" id="ViewBag_Color" value="@(ViewBag.Color)" />
+<br />
+<table style="width:auto;" class="table striped responsive-table">
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CheckCode)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CheckCode)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CheckTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CheckTitle)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CheckDescription)
+            </td>
+            <td>
+                @if (Model.CheckDescription == null)
+                {
+                    <div class="not-available"></div>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.CheckDescription)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CheckImageFile)
+            </td>
+            <td>
+                @if (Model.CheckImage == null)
+                {
+                    <div class="not-available"></div>
+                }
+                else
+                {
+                    <img id="myImg" src="@String.Concat(ViewBag.ImageUrl, "Audit/DownloadImage?filename=", Model.CheckImage, "&ImageType=check")" height="100" style="border-radius:10px;" />
+                    <!-- The Modal -->
+                    <div id="myModal" class="my-modal">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="img01">
+                        @*<div id="caption"></div>*@
+                    </div>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CheckType)
+            </td>
+            <td>
+                @if (Model.CheckType == null)
+                {
+                    <div class="not-available"></div>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.CheckType)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Score)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Score)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CheckAnswer)
+            </td>
+            <td>
+                @if (Model.CheckAnswer == null)
+                {
+                    <div class="not-available"></div>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.CheckAnswer)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Status)
+            </td>
+            <td>
+                @if (Model.Status == null)
+                {
+                    <div class="not-available"></div>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.Status)
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    @Html.ActionLink("Edit", "EditCheck", new { Model.CheckCode }, new { @class = "btn btn-default action-button", @style = "margin-right:10px;" })
+    @Html.ActionLink("Back to List", "ViewChecks", null, new { @class = "btn btn-default" })
+</p>
+
+<!-- SCRIPTS -->
+<script>
+    $(function () {
+        // FEEDBACK TOAST:
+        var feedback = $('#ViewBag_Feedback').val();
+        var color = $('#ViewBag_Color').val();
+
+        var toastConfig = {
+            classes: 'rounded ' + ((color == "green") ? "toast-success" : "toast-error"),
+            inDuration: '500',
+            displayLength: '5000',
+            html: feedback
+        };
+
+        if (feedback.length) {
+            M.toast(toastConfig);
+        }
+    });
+</script>
+<script>
+    Header = {
+        'UserName':'@ViewBag.UserName',
+        'UUID':'@ViewBag.UUID',
+        'UserId': '@ViewBag.UserId',
+        'LOBCode': '@ViewBag.LOBCode',
+        'ModuleCode':'@ViewBag.ModuleCode'
+    };
+</script>
+<script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById('myImg');
+    var modalImg = document.getElementById("img01");
+    //var captionText = document.getElementById("caption");
+    img.onclick = function () {
+        modal.style.display = "block";
+        modal.style.zIndex = "999";
+        modalImg.src = this.src;
+        //captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+</script>

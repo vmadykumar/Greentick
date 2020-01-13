@@ -1,0 +1,125 @@
+﻿@model ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.ChecklistMgmt.ChecklistModel
+<script src="~/Areas/MasterDataMgmt/Scripts/CheckMgmtController.js"></script>
+<link href="~/Areas/MasterDataMgmt/Content/CSS/Common.css" rel="stylesheet" />
+
+<div class="panel panel-primary" style="margin-top:2%">
+    <div class="panel panel-heading">
+        CREATE NEW CHECKLIST
+    </div>
+    <div class="panel-body padding-top-0">
+        <div class="col-lg-12">
+            <div class="col-lg-3" id="CheckImgDivId">
+                <input id="ChecklistImgId" class="FileInputClass" type="image" src="~/Areas/MasterDataMgmt/Content/Images/BlankImage.png" width="140" height="130" style="margin-left:15%;margin-top:6%;cursor:pointer" />
+                <input type="file" id="Img_file" style="display: none;" onchange="readURL(this,'ChecklistImgId');" accept="image/*" />
+                <p style="width:105%">Click here to upload checklist Image</p>
+            </div>
+            <div class="col-lg-9">
+                <form id="CreateNewChecklistForm">
+                    <div class="field col-lg-12">
+                        @Html.TextBoxFor(e => e.Title, new { @class = "text-uppercase", @id = "title", @placeholder = "Title" })
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="field col-lg-12">
+                        @Html.TextBoxFor(e => e.Description, new { @class = "text-uppercase", @id = "desc", @placeholder = "Description" })
+                        <label for="desc">Description</label>
+                    </div>
+                    @*<div class="clearfix"></div>
+                    <div class="field col-lg-4">
+                        @Html.TextBoxFor(e => e.Score, new { @type = "number", @class = "text-uppercase", @id = "score", @placeholder = "Score" })
+                        <label for="score">Score</label>
+                    </div>
+                    <div class="field col-lg-4">
+                        <select class="text-uppercase" id="sel1" placehloder="Category">
+                            <option>Select Category</option>
+                            <option>Cleaning</option>                           
+                        </select>
+                        <label for="sel1">Category </label>
+                    </div>
+                    <div class="field col-lg-4">
+                        <select class="text-uppercase" id="checkTypeId" placehloder="Check Type">
+                            <option>Select Check Type</option>
+                            <option>Voluntary</option>
+                            <option>Mandatory</option>
+                        </select>
+                        <label for="checkTypeId">Check Type</label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="field col-lg-4">
+                        <select class="text-uppercase" id="correctResponseId" placehloder="Check Type">
+                            <option>Select Correct Response</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                        <label for="correctResponseId">Correct Response</label>
+                    </div>*@
+                </form>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div><h3>&nbsp; Tutorial</h3></div>
+        @*<hr />*@
+        <div class="field col-lg-9">
+            @Html.TextBoxFor(e => e.TutorialDesc, new { @class = "text-uppercase", @id = "tutorialdesc", @placeholder = "Description" })
+            <label for="description">Description</label>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-4" id="ImgDivIdForCheck">
+            <input id="ImgIdForCheck" class="FileInputClass" type="image" src="~/Areas/MasterDataMgmt/Content/Images/BlankImage.png" width="100" height="100" style="margin-left:8%;cursor:pointer" />
+            <input type="file" id="Img_file" style="display: none;" onchange="readURL(this,'ImgIdForCheck');" accept="image/*" />
+            <p>Click here to upload Image</p>
+        </div>
+        <div class="col-lg-4" id="VideoDivIdForCheck">
+            <input id="VideoIdForCheck" class="FileInputClass" type="image" src="~/Areas/MasterDataMgmt/Content/Images/VideoImg.png" width="100" height="100" style="margin-left:8%;cursor:pointer" />
+            <input type="file" id="Video_file" style="display: none;" onchange="readURL(this,'VideoIdForCheck');" />
+            <p>Click here to upload Video</p>
+        </div>
+        <div class="col-lg-4" id="AudioDivIdForCheck">
+            <input id="AudioIdForCheck" class="FileInputClass" type="image" src="~/Areas/MasterDataMgmt/Content/Images/AudioImg.png" width="100" height="100" style="margin-left:8%;cursor:pointer" />
+            <input type="file" id="Audio_file" style="display: none;" onchange="readURL(this,'AudioIdForCheck');" />
+            <p>Click here to upload Audio</p>
+        </div>
+
+        <div class="col-lg-12" style="margin-top:15%">           
+            <button class="open-previewTemplate btn btn-success btn-css pull-right" data-toggle="modal" data-target="#checklistPreviewModal">
+                <span style="color:white">Preview</span>
+            </button>
+           
+            <button class="btn btn-primary btn-css pull-right" onclick="location.href='@Html.Raw(Url.Action("GetDraftedChecklists", "ChecklistManagement", new { id="4" }))'">
+                <span style="color:white">Save To Draft</span>
+            </button>
+          
+            <button class="btn btn-danger btn-css pull-right" onclick="location.href='@Url.Action("GetListOfChecklists", "ChecklistManagement", new { status = "Active" })'">
+                <span style="color:white">Cancel</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ChecklistManagement" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:80% !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Preview</h4>
+            </div>
+            <div class="modal-body" id="PreviewModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("GetCheckPreview", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)">
+                    <button class="btn btn-success btn-css pull-right">
+                        <span class="whiteColor">Publish</span>
+                    </button>
+                </a>
+                <a href="@Url.Action("SaveCheckToDraft", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                    <button class="btn btn-primary btn-css pull-right">
+                        <span class="whiteColor">Save To Draft</span>
+                    </button>
+                </a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,206 @@
+﻿<div class="row center-align white-text" style="background-color: #737373; margin-bottom: 0; font-size: 1.5em; padding:10px;">Schedule Checklist</div>
+<div class="row" style="padding:10px; background-color: #414141;  color: white; font-size:1.5em; position:relative; margin-bottom:30px">
+    <div class="checklist-schedule-date col s12 center-align"></div>
+    <div class="checklist-schedule-day col s12 center-align"></div>
+    <a class="btn-floating waves-effect waves-light red view-schedule-rightview" style="position:absolute; left:15px; bottom: -20px;"><i class="material-icons">schedule</i></a>
+</div>
+
+<div class="row">
+    @*<div class="col s3">
+            Location
+        </div>*@
+    <div class="col s10 offset-s1">
+        Location
+        <select id="ScheduleLocation"  name="ScheduleLocation" class="schedule-location js-states" style="width:100%">
+            <option></option>
+            <option value="BR">Brookfield</option>
+            <option value="WF">Whitefield</option>
+            <option value="MH">Marathahalli</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    @*<div class="col s3">
+            Area
+        </div>*@
+    <div class="col s10 offset-s1">
+        Area
+        <select id="ScheduleArea"  name="ScheduleArea" class="schedule-area js-states" style="width:100%">
+            <option></option>
+            <option value="KT">Kitchen</option>
+            <option value="CF">Cafeteria</option>
+            <option value="DP">Dining Place</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    @*<div class="col s3">
+            Sub Area
+        </div>*@
+    <div class="col s10 offset-s1">
+        Sub Area
+        <select id="ScheduleSubArea" name="ScheduleSubArea" class="schedule-subarea js-states" style="width:100%">
+            <option></option>
+            <option value="WA">Washing Area</option>
+            <option value="BA">Billing Area</option>
+            <option value="PA">Packing Area</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    @*<div class="col s3">
+            Sub Area
+        </div>*@
+    <div class="col s10 offset-s1">
+        Checklist
+        <select id="ScheduleChecklistDropdown" name="ChecklistId" class="schedule-select-checklist js-states" style="width:100%">
+            <option></option>
+            <option value="1000">H/F Cleaning</option>
+            <option value="1001">H/F Personal Hygiene</option>
+            <option value="1002">H/F Responsible Place to Eat</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s10 offset-s1">
+        Supervisor
+        <select id="ScheduleSupervisorDropdown" name="AssignedTo" class="schedule-select-supervisor js-states" style="width:100%">
+            <option></option>
+            <option value="AS">Abhishek Sarkar</option>
+            <option value="SS">Sharda Sharma</option>
+            <option value="AA">Abhishek Anshu</option>
+            <option value="TD">Trisha Dawn</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    @*<div class="col s3">
+            Frequency
+        </div>*@
+
+    <div class="col s10 offset-s1">
+        Frequency
+        <div class="schedule-occurence">
+            <div class="col s6">
+                <label>
+                    <input type="radio" name="checklistFrequency" value="OneTime" class="schedule-occurence-option with-gap" />
+                    <span class="schedule-occurence-text">One Time</span>
+                </label>
+                <span></span>
+            </div>
+            <div class="col s6">
+                <label>
+                    <input type="radio" name="checklistFrequency" value="Repeat" class="schedule-occurence-option with-gap" />
+                    <span class="schedule-occurence-text with-gap">Repeat</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="checklist-repeat-time row" style="display:none">
+    <div class="">
+        <div class="col s10 offset-s1" style="margin-bottom:20px;">
+            <select class="occurence-select" style="width:100%">
+                <option></option>
+                <option>Daily</option>
+                <option>Monthly on 3rd</option>
+                <option>Annualy on Dec. 3rd</option>
+                <option>Mon - Fri</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col s10 offset-s1" style="padding: 0">
+        <div class="col s3">Ends At :</div>
+        <div class="col s9">
+            <input name="OccurenceEndTime" value="" class="schedule-end-time time-box" />
+        </div>
+    </div>
+
+</div>
+
+<div class="time-selection row">
+    <div class="col s10 offset-s1" style="padding: 0">
+        <div class="time-box col s4">
+            Starts at: <input name="ScheduleStartDate" value="" class="start-time " />
+        </div>
+        <div class="time-box col s4">
+            Ends at : <input name="ScheduleEndDate" value="" class="end-time " />
+        </div>
+        <div class="time-box col s4 ">
+            Expires at: <input name="ScheduleExpiryDate" value="" class="expiry-time " />
+        </div>
+    </div>
+</div>
+
+<div class="row right-align">
+    <div class="col s10 offset-s1">
+        <input type="submit" class="btn btn-waves btn-light red" name="name" value="Cancel" />
+        <input type="submit" class="btn btn-waves btn-light orange" name="name" value="Draft" />
+        <input type="submit" class="btn btn-waves btn-light" name="name" value="Publish" />
+    </div>
+</div>
+
+<input type="hidden" name="" value="" id="start_date"/>
+<input type="hidden" name="CreatedDate" value="" id="created_date" />
+
+<script>
+    $(function () {
+        //$(".schedule-location").select2({
+        //    placeholder: "Select a Location",
+        //    allowClear: true
+        //});
+        //$(".schedule-area").select2({
+        //    placeholder: "Select a Area",
+        //    allowClear: true
+        //});
+        //$(".schedule-subarea").select2({
+        //    placeholder: "Select a Sub Area",
+        //    allowClear: true
+        //});
+        //$(".schedule-select-checklist").select2({
+        //    placeholder: "Select a checklist",
+        //    allowClear: true
+        //});
+        //$(".occurence-select").select2({
+        //    placeholder: "Select occurences",
+        //    allowClear: true
+        //});
+        //$(".schedule-select-supervisor").select2({
+        //    placeholder: "Select a Supervisor",
+        //    allowClear: true
+        //});
+        //function formatDateFields() {
+        //    $('.end-time, .expiry-time, .schedule-end-time').flatpickr({
+        //        enableTime: true,
+        //        noCalendar: false,
+        //        altInput: true,
+        //        altFormat: "j M, Y h:i K",
+        //        dateFormat: "Y-m-d h:i K"
+        //    });
+
+        //    //let date = dates.clickedDate;
+        //    //date = date.format('Y-M-D');
+
+        //    $('.start-time').flatpickr({
+        //        enableTime: true,
+        //        noCalendar: false,
+        //        minDate: date,
+        //        maxDate: date,
+        //        dateFormat: "Y-m-d h:i K"
+        //    })
+        //}
+        
+        //formatDateFields();
+        // Setting the values for hidden fields
+        //let date = dates.clickedDate;
+        //date = date.format('MMMM Do YYYY');
+        ////let scheduleDat = date.format('MMMM Do YYYY');
+        //$('#start_date').val(date);
+        //$('#created_date').val(moment().format('D-M-Y'));
+    })
+</script>

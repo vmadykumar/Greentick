@@ -1,0 +1,195 @@
+﻿
+@model IEnumerable<ComplyRite.Web.MVC.Areas.SchedulingMgmt.Models.SchedulingAudit.AuditListModel>
+
+<style>
+    /*.fit-input {
+        width: 100%
+    }*/
+
+
+    .row-control > button {
+        margin-Left: 15px;
+    }
+
+    .filter-default {
+        background-color: white;
+    }
+
+    .filter-selected {
+        background-color: #b2dfdb;
+    }
+
+    /*-----------New Table Design--------------*/
+    .page-heading {
+        /*text-transform: uppercase;*/
+        margin-bottom: 0;
+        font-weight: 500;
+        color: #4a4a4a;
+        font-size: 30px;
+        /*margin-left: 0.2em;*/
+    }
+
+    .table-card-data {
+        font-size: 12px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .table-card-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        font-weight: 500;
+        color: #999;
+    }
+
+    .table-card-title {
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 15px;
+    }
+</style>
+<script>
+   Header = {
+        'UserName':'@ViewBag.UserName',
+        'UUID':'@ViewBag.UUID',
+        'UserId':'@ViewBag.UserId',
+    };
+</script>
+
+<div style="margin-top:1%;">
+
+
+    @*<span class="pull-right">
+            <a href="@Url.Action("AddNewCheck", null, new { area = "MasterDataMgmt", controller = "CheckManagement" }, Request.Url.Scheme)">
+                <button class="btn btn-group" style="padding:3px 16px;color:white;background-color:#77f101">
+                    <span style="color:white">Add</span>
+                </button>
+            </a>
+        </span>*@
+    @*<div class="row ">
+            <div class="page-heading">PUBLISHED AUDITS</div>
+        </div>*@
+    <div class="" style="padding: 10px;">
+        <!-------Header------>
+        <div class="row">
+            <div class="col l10 m10 s9">
+                <div class="page-heading">Published</div>
+            </div>
+            <div class="col s3 m2 l2 right-align">
+                <a href="~/schedulingMgmt/SchedulingManagement/ScheduleAudit" class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="scheduleChecklistBtn" style="color:#4b7ab1; margin-right: 5px">
+                    <i class="material-icons left" style="margin:0px">add</i>
+                </a>
+                @*<a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="filterBtn" style="color:#4b7ab1">
+                    <i class="material-icons left" style="margin:0px">filter_list</i>
+                </a>*@
+            </div>
+        </div>
+
+        <!--------Table View------>
+        <div style="height: calc(100vh - 170px); overflow:auto; padding: 5px">
+            @if (Model != null && Model.Count() > 0)
+            {
+
+                foreach (var item in Model)
+                {
+                    <div class="row card" style="margin:0;padding: 8px 0; margin-bottom: 0.5em; position: relative; border-left: 5px solid dodgerblue;">
+                        <a href="@Url.Action("GetAuditDetailsByAuditId", "Audit" , new RouteValueDictionary(new {AuditID= item.auditInfoID}), Request.Url.Scheme)" style="display: block;color:unset">
+                            <div class="col s12 m12 l4">
+                                <div class="table-card-title">@item.auditName</div>
+                                <div class="table-card-data">
+                                    @item.auditLocation
+                                    @*@if (@item.auditCity != null)
+                                {
+                                    <span>, </span>@item.auditCity
+                                }*@
+                                </div>
+                            </div>
+                            <div class="col s6 l2 ">
+                                <div>
+                                    <div class="table-card-label">Start Date</div>
+                                    <div class="table-card-data">@item.auditStartDate, <span style="font-size:80%">@item.auditStartTime</span></div>
+                                </div>
+
+                            </div>
+                            <div class="col s6 l2">
+                                <div>
+                                    <div class="table-card-label">End Date</div>
+                                    <div class="table-card-data">@item.auditEndDate, <span style="font-size:80%">@item.auditEndTime</span></div>
+                                </div>
+
+                            </div>
+                            <div class="col s6 l2">
+                                <div>
+                                    <div class="table-card-label">Assigned To</div>
+                                    <div class="table-card-data">@item.assignedToUserName</div>
+                                </div>
+
+                            </div>
+                            <div class="col s6 l2">
+                                <div>
+                                    <div class="table-card-label">Created Date</div>
+                                    <div class="table-card-data">@item.createdDate, <span style="font-size:80%">@item.createdTime</span></div>
+                                </div>
+
+                            </div>
+
+                            @*<div class="col s6 l1">
+                            <div class="table-card-label">Status</div>
+                            <div class="table-card-data">@item.auditStatus</div>
+                        </div>*@
+                            @*<div class="divider show-on-small hide-on-large-only"></div>*@
+                            @*<a href="@Url.Action("GetAuditDetailsByAuditId", "Audit" , new RouteValueDictionary(new { }), Request.Url.Scheme)"><i class="material-icons" style="margin-top: 0.5em;">chevron_right</i></a>*@
+
+                            <span><i class="material-icons" style="position:absolute; right: 0.2em; top:1em" @*style="margin-top: 0.3em;"*@>chevron_right</i></span>
+                        </a>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <div class="row card" style="margin:0;padding: 8px 0; margin-bottom: 0.5em; position: relative">
+
+                    <div class="col s12 m12 l12">
+                        <div class="table-card-title">No Published Audits Avaialble</div>
+                        <div class="table-card-data"><span>Kindly click here <a href="~/schedulingMgmt/SchedulingManagement/ScheduleAudit"><i class="material-icons" style="vertical-align: bottom;">add</i></a> to schedule and publish an audit</span></div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        </div>
+
+</div>
+
+<!-- Modal Structure -->
+<div id="deactivateModal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <div class="col s10">
+            <h5>Are you sure you want to de-activate this scheduled checklist?</h5>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn blue">Yes</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn red">No</a>
+            @*<a class="waves-effect waves-light btn-small" style="margin-right: 16px">Yes</a>
+                <a class="waves-effect waves-light btn-small red">No</a>*@
+        </div>
+    </div>
+</div>
+<!-- Modal Structure -->
+<div id="activateModal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <div class="col s10">
+            <h5>Are you sure you want to activate this scheduled checklist?</h5>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn blue">Yes</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn red">No</a>
+            @*<a class="waves-effect waves-light btn-small" style="margin-right: 16px">Yes</a>
+                <a class="waves-effect waves-light btn-small red">No</a>*@
+        </div>
+    </div>
+</div>
+
+<script src="~/Areas/SchedulingMgmt/Scripts/PublishedChecklist.js"></script>

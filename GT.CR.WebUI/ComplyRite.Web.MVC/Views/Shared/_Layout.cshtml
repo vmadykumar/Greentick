@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title ComplyRite</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+
+    @*<link href="~/Content/Site.css" rel="stylesheet" />*@
+    @*<link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />*@
+    @*<link href="~/Areas/SchedulingMgmt/Content/CSS/Common.css" rel="stylesheet" />*@
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/Content/Materialize/materialize.css" rel="stylesheet" />
+
+
+
+    <!-- jQuery UI for the FullCalendar -->
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+
+    @*<link href="~/Content/Theme/Theme.css" rel="stylesheet" />*@
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <link href="~/Areas/SchedulingMgmt/Content/CSS/Layout.css" rel="stylesheet" />
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+    <style>
+
+        /*----for sidenav materialize-------*/
+        .sidenav .collapsible .collapsible-body li {
+            padding-left: 56px;
+        }
+
+        .sidenav .collapsible .collapsible-header {
+            color: rgba(0, 0, 0, 0.87);
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            height: 48px;
+            line-height: 48px;
+            padding: 0 32px;
+        }
+
+            .sidenav .collapsible .collapsible-header > i.material-icons {
+                float: left;
+                height: 48px;
+                line-height: 48px;
+                margin: 0 32px 0 0;
+                width: 24px;
+                color: rgba(0, 0, 0, 0.54);
+            }
+
+        .icon-color {
+            color: #414960 !important;
+        }
+
+        .collapsible {
+            border-right: 0px;
+        }
+        /*----------Header background color*/
+        .bgcolor {
+            background: linear-gradient(to left,#414960 41%,rgba(65, 73, 96, 0.63) 74%,#fff 88%);
+        }
+
+        .themefont {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body, html {
+            margin: 0;
+            /*height: 100%;*/
+            overflow: hidden;
+        }
+
+        .navbar-fixed {
+            position: fixed;
+            top: 0;
+            height: 56px !important;
+        }
+
+        section {
+            padding-bottom: 5px;
+            margin-top: 63px;
+            height: calc(100vh - 55px);
+            overflow: auto;
+            box-sizing: border-box;
+        }
+
+
+        /*-------------------Scroll Bar CSS-----------*/
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FFF;
+            -webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #414960;
+            -webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #414960;
+            }
+
+            ::-webkit-scrollbar-thumb:active {
+                background: #888;
+                -webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+            }
+
+        /*----------------------------------------------------------*/
+
+        /*--To remove default hover color of btn*/
+        .btn {
+            background-color: transparent !important;
+        }
+    </style>
+
+
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- FullCalendar library-->
+    <link href="~/Scripts/ScheduleMgmt/fullcalendar.min.css" rel="stylesheet" />
+    @*<script src="~/Scripts/ScheduleMgmt/jquery.min.js"></script>*@
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/Scripts/ScheduleMgmt/jquery-ui.min.js"></script>
+
+    <!-- MomentJS library-->
+    <script src="~/Scripts/ScheduleMgmt/moment.min.js"></script>
+
+    <script src="~/Scripts/ScheduleMgmt/fullcalendar.min.js"></script>
+    @*<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleUtilities.js"></script>*@
+    <link href="~/Areas/SchedulingMgmt/Content/CSS/ScheduleAudit/ScheduleAudit.css" rel="stylesheet" />
+
+
+    <!-- flatpickr library-->
+    <link href="~/Scripts/Flatpickr/flatpickr.min.css" rel="stylesheet" />
+    <script src="~/Scripts/Flatpickr/flatpickr.min.js"></script>
+
+</head>
+<body class="themefont">
+    <div class="ajax-loader-new"><div class="lds-ellipsis "><div></div><div></div><div></div><div></div></div></div>
+    @* Material Nav bar *@
+    <!--Header-->
+    <header>
+
+        <!--Primary colour : light-blue darken-4 / Mobile: #4b7ab1-->
+        <div class="navbar-fixed " style=" position: fixed;top: 0;">
+            <nav class="bgcolor">
+                <div class="nav-wrapper">
+                    @*<span>
+            <img src="~/Areas/SchedulingMgmt/Content/Images/GT_Icon_White.png" style="width:5rem; margin-top: 10px;" />
+            <a href="#" class="brand-logo">ComplyRite</a>
+        </span>*@
+
+                    <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons" style="color:#414960">menu</i></a>
+                    <span>
+                        <a href="#!" class="brand-logo center">
+                            <img src="~/Areas/SchedulingMgmt/Content/Images/logo-white.png" style="width: 15rem; margin-top: 6px;" />
+                        </a>
+                    @*</span>
+                @Html.Label("ACCOUNT", htmlAttributes: new { @style= "position: absolute; bottom:16px; right: 90px;font-size: 10px; color: LIGHTGREY; " })
+
+                    <select id="selectAccount" class="browser-default" style="position: absolute; width: 130px; top: 30px; right: 8px; height:24px;PADDING:0">
+                        <option value="HFS" selected>Health First</option>
+                        <option value="MCD">Mc Donalds</option>
+                        <option value="HFS">Optum</option>
+                        <option value="MCD">VKL</option>
+                    </select>*@
+
+
+                    @*<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>*@
+
+                </div>
+            </nav>
+        </div>
+        <!--End of header-->
+    </header>
+    <section>
+        <div class="row" style="margin:0">
+            <div class="col s2 m4 l3">
+                <!-- Note that "m4 l3" was added -->
+                <ul id="slide-out" class="sidenav right">
+                    <li>
+                        <div class="user-view">
+                            <div class="background" style="background: linear-gradient(to left,#414960 41%,rgba(65, 73, 96, 0.63) 84%,#fff 103%)">
+
+                            </div>
+                            <a href="#user"><img class="circle" src="~/Areas/SchedulingMgmt/Content/Images/UserProfilePic.png"></a>
+                            <a href="#name"><span class="white-text name">@ViewBag.UserFullName</span></a>
+                            <a href="#email"><span class="white-text email">@ViewBag.UserName</span></a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="~/schedulingMgmt/Dashboard/GetDashboardData"><i class="material-icons icon-color">home</i>Home</a>
+                    </li>
+                    <li><div class="divider"></div></li>
+                    @*<li>
+                            <a href="#"><i class="material-icons">playlist_add</i>Create Audit</a>
+                        </li>*@
+                    @*<li>
+                            <ul class="collapsible">
+                                <li>
+
+                                    <div class="collapsible-header"><i class="material-icons">assignment</i>Audit Management</div>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li><a href="~/schedulingMgmt/SchedulingManagement/AddAudit">Create New</a></li>
+                                            <li><a href="~/schedulingMgmt/Audit/GetAllAudits">View Audits</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                        <li><div class="divider"></div></li>*@
+                    <li>
+                        <ul class="collapsible">
+                            @*<li>
+
+                                    <div class="collapsible-header"><i class="material-icons icon-color">assignment</i>Checklist</div>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li><a href="~/schedulingMgmt/SchedulingManagement/ScheduleChecklist">Schedule New</a></li>
+                                            <li><a href="~/schedulingMgmt/Checklist/GetPublishedChecklist">Published</a></li>
+                                            <li><a href="~/schedulingMgmt/Checklist/GetDraftedChecklist">Draft</a></li>
+                                        </ul>
+                                    </div>
+                                </li>*@
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons icon-color">playlist_add_check</i>Audit</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="~/schedulingMgmt/SchedulingManagement/ScheduleAudit">Schedule</a></li>
+                                        @*<li><a href="~/schedulingMgmt/Audit/GetPublishedAuditScheduleList">Published</a></li>*@
+                                        @*<li><a href="~/schedulingMgmt/Audit/GetDraftedAuditScheduleList">Draft</a></li>*@
+                                    </ul>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </li>
+                    @*<li><div class="divider"></div></li>
+                        <li><a class="subheader">Audit</a></li>*@
+                    <li><div class="divider"></div></li>
+                    <li><a class="waves-effect" href="~/ReportMgmt/Report/AnalyticsHome"><i class="material-icons icon-color">trending_up</i>Reports</a></li>
+                    @*<li><div class="divider"></div></li>
+                        <li><a class="waves-effect" href="#!"><i class="material-icons icon-color">headset_mic</i>Support</a></li>*@
+                    <li><div class="divider"></div></li>
+                    <li><a class="waves-effect" href="~/AppStore/AppUp/GetAppUpdate"><i class="material-icons icon-color">store</i>App Updates</a></li>
+                    <li><div class="divider"></div></li>
+                    <li>
+                        <ul class="collapsible">
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons icon-color">dvr</i>MDM</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="~/MasterDataMgmt/CheckManagement/ViewChecks">Check Management</a></li>
+                                        <li><a href="~/MasterDataMgmt/ChecklistManagement/ViewChecklists">Checklist Management</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    @*<li><a class="waves-effect" href="#!"><i class="material-icons">info</i>About Us</a></li>
+                        <li><div class="divider"></div></li>*@
+                    <li><a class="waves-effect" href="~/Account/SignOut"><i class="material-icons icon-color">power_settings_new</i>Log Out</a></li>
+                    @*<li class="no-padding">
+                            <ul class="collapsible">
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li><a href="#!">First</a></li>
+                                            <li><a href="#!">Second</a></li>
+                                            <li><a href="#!">Third</a></li>
+                                            <li><a href="#!">Fourth</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+                                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+                                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                </li>
+                            </ul>
+                        </li>*@
+
+
+                </ul>
+
+
+            </div>
+            <div class="col s12 m12 l12">
+                <div class="page-content">
+
+                    <div class="col s12 m12 l12 breadcrumb-dashboard" style="padding-left: 0.8em;margin-top: 10px;margin-bottom: 0px;">
+                        @Html.MvcSiteMap().SiteMapPath()
+
+                    </div>
+                    <!-- Note that "m8 l9" was added -->
+                    @RenderBody()
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- page-wrapper -->
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/jquery.ba-throttle-debounce.min.js"></script>
+
+
+
+
+    @*<script src="~/Scripts/Materialize/materialize.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $('.collapsible').collapsible();
+        });
+    </script>
+
+
+
+
+   
+
+    <!-- Compiled and minified JavaScript -->
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>*@
+
+    <!-- multi-select library-->
+    <link href="~/Content/multiSelect/css/multi-select.css" rel="stylesheet" />
+    <script src="~/Content/multiSelect/js/jquery.multi-select.js"></script>
+
+    <!-- Select2 Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
+</body>
+
+</html>

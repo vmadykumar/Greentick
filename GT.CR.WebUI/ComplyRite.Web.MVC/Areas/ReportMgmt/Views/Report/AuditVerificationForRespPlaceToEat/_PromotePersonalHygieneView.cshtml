@@ -1,0 +1,17 @@
+﻿@model ComplyRite.Web.MVC.Areas.ReportMgmt.Models.AuditArea
+@using ComplyRite.Web.MVC.Areas.ReportMgmt.App_LocalResources
+
+@******** Compliance level for Promote Personal Hygiene Graph ******@
+<div class="col-lg-12 row">
+    <div class="col-lg-5 col-lg-offset-4">
+        <canvas id="promotePersonalHygiene-piechart" promotePersonalHygiene-yes-data="@Model.PassedCheckpointPercentage" promotePersonalHygiene-no-data="@Model.FailedCheckpointPercentage" label="@Model.AreaOfAudit" width="400" height="300" class="canvas-custom-css"></canvas>
+        <span><img id="promotePersonalHygiene-piechart-img" class="canvasImg-custom-css" /></span>
+
+    </div>
+</div>
+@******************************************************************@
+
+@******************* Timestamp Table & Attachments*********************@
+    @Html.Partial(@PartialViewsPathInfo.TimestampTableAndAttachments, Model.AuditDetails)
+    @Html.Partial(@PartialViewsPathInfo.AttachmentsSection, Model)
+@**********************************************************************@

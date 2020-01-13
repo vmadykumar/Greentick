@@ -1,0 +1,105 @@
+﻿<link href="~/Areas/SchedulingMgmt/Content/CSS/ScheduleAudit/ScheduleAudit.css" rel="stylesheet" />
+
+<style>
+
+    #ScheduleCalendar tr {
+        border: none;
+    }
+
+    #ScheduleCalendar {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    /* The month title on the Calendar header*/
+    .fc-header-toolbar h2 {
+        font-size: 1.4em;
+        line-height: 1.5;
+    }
+    /* Give the higlight color on the clicked day on the fullcalendar.io plugin */
+    .clicked-day-highlight {
+        background: lightblue;
+    }
+
+    /* Hide all the events rendered on the calendar */
+    .fc-month-view .fc-event-container {
+        display: none;
+    }
+
+    /* Week's List */
+    .fc-list-item-marker, .fc-list-item-time, .fc-list-item-title, .fc-list-item-name {
+        white-space: pre-line;
+        width: 1px;
+    }
+
+    .fc-list-table td {
+        border-width: 1px 0 0;
+        padding: 0px 2px;
+    }
+
+    /* Sets the style of the selected button on the calendar*/
+    .ui-state-active {
+        border: 1px solid #003eff;
+        background: #007fff;
+        font-weight: normal;
+        color: #ffffff;
+    }
+
+    /* Highlight the button in the header toolbar of the calendar*/
+    .active-button {
+        border: 1px solid #003eff !important;
+        background: #007fff !important;
+        font-weight: normal !important;
+        color: #ffffff !important;
+    }
+</style>
+
+<script>
+   Header = {
+        'UserName':'@ViewBag.UserName',
+        'UUID':'@ViewBag.UUID',
+       'UserId': '@ViewBag.UserId',
+       'UserFullName': '@ViewBag.UserFullName'
+    };
+</script>
+
+<div class="row schedule-audit-view" style="padding:20px;">
+    <div class="row">
+        <div class="col l5 s12" style="font-size: 30px;">Audit</div>
+    </div>
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "ScheduleChecklistForm" }))
+    {
+        <div class="col l5 card s12 m5" style="padding:10px;">
+            <div id='ScheduleCalendar'></div>
+        </div>
+
+        <!-- Right Div-->
+        <div class="col l7 s12 m7" id="ScheduleAuditSideDiv" style="height: calc(100vh - 160px);overflow-y: auto;overflow-x: hidden;">
+            <div class="row">
+                
+            </div>
+        </div>
+        <!-- Right Div End-->
+    }
+</div>
+
+<!-- Loading Scren to show the checklist is being scheduled-->
+<div class="ajax-loader">
+    <div class="ajax-load-wait">
+        <div>
+            <img src="~/Areas/SchedulingMgmt/Content/Images/spinner-circle.svg" class="img-responsive" style="width:80px;" alt="loading..." />
+        </div>
+        <div style="font-size: 1.5em; color:white;">
+            Please Wait ...
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleUtilities.js"></script>
+<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleAudit.js?v=0.5"></script>
+@*<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleAuditRefactor.js"></script>*@
+
+<script>
+    $(function () {
+        $(document).tooltip();
+</script>

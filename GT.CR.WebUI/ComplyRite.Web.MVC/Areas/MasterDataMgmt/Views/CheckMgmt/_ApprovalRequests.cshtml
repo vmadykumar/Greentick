@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.CheckMgmt.CheckModel>
+
+<script src="~/Areas/MasterDataMgmt/Scripts/CheckMgmtController.js"></script>
+<div class="panel panel-primary" style="margin-top:2%;height:550px">
+    <div class="panel panel-heading">
+        CHECKS APPROVAL REQUESTS       
+        <span class="pull-right fa fa-filter filterToggleClass"></span>
+    </div>
+    <div class="panel-body">
+        <div id="activeChecks">
+            <table class="table table-hovered @*table-condensed*@ tableCss">
+                <thead>
+                    <tr>
+                        <th class="text-center"><input type="checkbox" name="selectAll" id="SelectAllCheckBox" class="regular-checkbox SelectAllCheckBox" value="@(Model.Count()+2)" /><label for="SelectAllCheckBox" class="SelectAllCheckBoxLabel"></label></th>
+                        <th>Title <span class="fa fa-sort"></span></th>
+                        <th>Category <span class="fa fa-sort"></span></th>
+                        <th>Correct Response <span class="fa fa-sort"></span></th>
+                        <th>Added By <span class="fa fa-sort"></span></th>
+                        <th>Added On <span class="fa fa-sort"></span></th>
+                        <th>Action</th>
+                    </tr>
+                    <tr class="filterRow">
+                        <th></th>
+                        <th class="width-30"><input type="text" class="text-uppercase" id="titleFilter" placeholder="Filter Title" /></th>
+                        <th class="width-15"><input type="text" class="text-uppercase" id="titleFilter" placeholder="Filter Category" /></th>
+                        <th class="width-15"><input type="text" class="text-uppercase" id="titleFilter" placeholder="Filter Correct Response" /></th>
+                        <th class="width-15"><input type="text" class="text-uppercase" id="titleFilter" placeholder="Filter Added By" /></th>
+                        <th class="width-10"><input type="text" class="text-uppercase" id="titleFilter" placeholder="Filter Added On" /></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int count = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td align="center"><input type="checkbox" name="name" class="regular-checkbox individualCheck name" value="@count" id="checkbox-1-@count" /><label for="checkbox-1-@count"></label></td>
+                            <td>@item.Title</td>
+                            <td>@item.Category</td>
+                            <td>@item.CorrectResponse</td>
+                            <td>@item.AddedBy</td>
+                            <td>@item.AddedOn</td>
+                            <td class="HoverAction">...</td>
+                            <td class="table-hover-icons">
+                                <span>
+                                    <a href="@Url.Action("GetCheckEdit", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-pencil icon-round"></span></a>
+                                </span>
+                                <span>
+                                    <a href="@Url.Action("GetCheckView", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-eye icon-round"></span></a>
+                                </span>
+                                <span>
+                                    @*<a href="@Url.Action("ApproveCheck", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-thumbs-up icon-round"></span></a>*@
+                                    <a href="@Url.Action("GetChecksApprovalRequests", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-thumbs-up icon-round"></span></a>
+                                </span>
+                                <span>
+                                    @*<a href="@Url.Action("RejectCheck", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-thumbs-down icon-round"></span></a>*@
+                                    <a href="@Url.Action("GetRejectedChecks", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-thumbs-down icon-round"></span></a>
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                  
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

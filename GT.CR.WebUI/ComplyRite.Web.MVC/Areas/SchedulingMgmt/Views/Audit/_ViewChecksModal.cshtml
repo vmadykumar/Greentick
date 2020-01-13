@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ComplyRite.Web.MVC.Areas.SchedulingMgmt.Models.SchedulingAudit.CheckModel>
+
+<style>
+    .table-card-data {
+        font-size: 12px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .table-card-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        font-weight: 500;
+        color: #999;
+    }
+</style>
+
+        <h4>Checks<a><i class="secondary-content material-icons modal-close waves-effect waves-green" style="font-size: 2rem;top: 6px;">close</i></a></h4>
+        <div>
+            <ul class="collection">
+                @foreach (var check in Model)
+                {
+                    <li class="collection-item avatar">
+                        <div class="row">
+                            <i class="material-icons circle blue darken-2" style="margin-top:1%">question_answer</i>
+                            <div class="col s12 l7"> @check.checkTitle</div>
+                            <div class="col s12 l2 offset-l1" style="padding:0">
+                                @*Score: @check.score*@
+                                <div class="col s7 l12 table-card-label">Score</div>
+                                <div class="col s5 l12 table-card-data">@check.score</div>
+                            </div>
+                            <div class="col s12 l2" style="padding:0">
+                                @*Expected Response: @check.checkAnswer*@
+                                <div class="col s7 l12 table-card-label">Expected Response</div>
+                                <div class="col s5 l12 table-card-data">@check.checkAnswer</div>
+                            </div>
+                         
+                        </div>
+                    </li>
+                }
+               
+            </ul>
+
+        </div>
+
+   

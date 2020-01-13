@@ -1,0 +1,80 @@
+﻿@model List<ComplyRite.Web.MVC.Areas.ReportMgmt.Models.AuditDetails>
+
+@************************* Timestamp Table *************************@
+<div class="col-lg-10 col-md-8 col-xs-12 col-lg-offset-1">
+    <table class="table table-bordered" id="TimestampTableId" style="overflow: scroll;">
+        <thead id="PrerequisiteTheadId">
+            <tr>
+                <th class="inputtdstyle" style="width:19%">Timestamp</th>
+                <th class="inputtdstyle" style="width:25%">Audit CheckPoint</th>
+                <th class="inputtdstyle" style="width:15%">Auditor's Response</th>
+                <th class="inputtdstyle" style="width:23%;">Comments</th>
+            </tr>
+        </thead>     
+        <tbody id="PrerequisiteTableBodyId" style="overflow:auto">
+            @*<tr id="TimestampRowId" class="timestampRowClass">
+                <td><p>@Model.TimeStamp</p></td>
+                <td><p>@Model.AuditCheckpoint</p></td>
+                <td><p>@Model.AuditorsResponse</p></td>
+                <td><p>@Model.Comments</p></td>
+            </tr>*@
+            @foreach (var item in Model)
+                {
+                    <tr id=@("Prerequisite") class="prerequisiteRow">
+                        <td><p>@item.TimeStamp</p></td>
+                        <td><p>@item.AuditCheckpoint</p></td>
+                        <td><p>@item.AuditorsResponse</p></td>
+                        <td style="word-break: break-all;"><p>@item.Comments</p></td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+</div>
+<br />
+@******************************************************************@
+
+
+@*************************** Attachments **************************@
+@*<div class="col-lg-12 row">
+    <i class="fa fa-paperclip" aria-hidden="true"></i>
+    <h3 class="col-lg-8 col-lg-offset-2">Attachments</h3>
+    <div class="col-lg-10 col-lg-offset-2">*@
+        @*@foreach (var imagePath in Model.FirstOrDefault().Attachments)
+        {
+            <div class="col-lg-4">
+                if (imagePath != "")
+                {
+                <img src="@imagePath" alt="Image" width="300px" />
+                }
+                else
+                {
+                <p>No Attachments</p>
+                }
+            </div>
+        }*@
+
+        @*@foreach (var imagePath in Model)
+        {
+            <div class="col-lg-4">
+                if (imagePath != "")
+                {
+                <img src="@imagePath" alt="Image" width="300px" />
+                }
+                else
+                {
+                <p>No Attachments</p>
+                }
+            </div>
+        }*@
+
+
+        @*@for (var i = 0; i <= 4; i++)
+        {
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="/Areas/ReportMgmt/Content/Images/EffectiveComplaintHandling.png" alt="Image" class="responsive" />
+            </div>
+        }*@
+        @*<p>No Attachments</p>
+    </div>
+</div>*@
+@******************************************************************@

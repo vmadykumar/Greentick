@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Greentick</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    @*<link href="~/Content/font-awesome.min.css" rel="stylesheet" />*@
+    <link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/Areas/MasterDataMgmt/Content/CSS/Common.css" rel="stylesheet" />
+    <link href="~/Areas/MasterDataMgmt/Content/CSS/CheckMgmt.css" rel="stylesheet" />
+    @*<script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+        </script>*@
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    @*<li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Messages </a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Help</a></li>*@
+                    <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="wrapper" class="toggled">
+        <div class="container-fluid">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <br>
+                    </li>
+                    <li class="sidebar-brand">
+                        <a href="#" class="navbar-brand">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">@*<span class="glyphicon glyphicon-home" aria-hidden="true"></span>*@ Home</a>
+                    </li>
+                    @*<li>
+                            <a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</a>
+                        </li>*@
+                    @*<li>
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><font color="#337AB7"> STATISTICS</font>
+                        </li>*@
+                    @*<li>
+                            <a href="#"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Checks</a>
+                        </li>*@
+
+                    <li class="has-ul">
+                        <a href="#">Check Mgmt</a>
+                        <ul class="sub-ul">
+                            <li>
+                                @Html.ActionLink("Checks", "GetListOfChecks", "CheckManagement", routeValues: new { status = "Active" }, htmlAttributes: null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Drafted Checks", "GetDraftedChecks", "CheckManagement", null, htmlAttributes: null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Rejected Checks", "GetRejectedChecks", "CheckManagement", null, htmlAttributes: null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Checks Approval Requests", "GetChecksApprovalRequests", "CheckManagement", null, htmlAttributes: null)
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("Checklists", "GetListOfChecklists", "ChecklistManagement", routeValues: new { status = "Active" }, htmlAttributes: null)
+                    </li>
+
+                    @*<li>
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><font color="#337AB7"> ADMINISTRATION</font>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages</a>
+                        </li>*@
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <br>
+                            @*<h1>Your Title</h1>*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 MainLayoutBody" id="MainLayoutBodyId">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        </div>
+    </div>
+    <!-- /#wrapper -->
+    @*<div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>*@
+    <script>
+        $("#wrapper").toggleClass("toggled");
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+            //$('li.has-ul').click(function () {
+            //    $(this).children('.sub-ul').slideToggle(500);
+            //    $(this).toggleClass('active');
+            //    event.preventDefault();
+            //});
+    </script>
+    @*<script type="text/javascript">window.ZohoHCAsap = window.ZohoHCAsap || function (a, b) { ZohoHCAsap[a] = b; }; (function () { var d = document; var s = d.createElement("script"); s.type = "text/javascript"; s.defer = true; s.src = "https://desk.zoho.in/portal/api/web/inapp/2541000000049001?orgId=60000429690"; d.getElementsByTagName("head")[0].appendChild(s); })();</script>*@
+
+
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+﻿
+<style>
+    #ms-my-select {
+        width: 100%;
+        padding-top:10px;
+    }
+    .custom-header{
+        text-align:center;
+        background-color: #dedede;
+    }
+    .ms-container .ms-list {
+        height: 300px !important;
+    }
+</style>
+
+<div class="card" style="width:1200px; margin: 20px auto; padding:1px 20px;">
+
+    <div class="row" style="margin-bottom:0;">
+        <div class="col s12">
+            <h4 class="left-align">ADD AUDIT</h4>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="input-field col s4">
+            <input id="AuditTitle" type="text" class="validate">
+            <label for="AuditTitle">Audit Title</label>
+        </div>
+    </div>
+    <div class="row">
+        @*<div class="input-field col s4">
+                <input id="AuditLocation" type="text" class="validate">
+                <label for="AuditLocation">Location</label>
+            </div>
+            <div class="input-field col s4">
+                <input id="AuditArea" type="text" class="validate">
+                <label for="AuditArea">Area</label>
+            </div>
+            <div class="input-field col s4">
+                <input id="AuditSubArea" type="text" class="validate">
+                <label for="AuditSubArea">Sub Area</label>
+            </div>*@
+        <div class="location-selection">
+
+            @*<div>Location:</div>*@
+            <div class="location-item col s4">
+                <select id="ScheduleLocation" class="schedule-location js-states" style="width:100%">
+                    <option></option>
+                    <option>Brookfield</option>
+                    <option>Whitefield</option>
+                    <option>Marathahalli</option>
+                </select>
+            </div>
+
+            @*<div>Area:</div>*@
+            <div class="location-item col s4">
+                <select id="ScheduleArea" class="schedule-area  js-states" style="width:100%">
+                    <option></option>
+                    <option>Kitchen</option>
+                    <option>Cafeteria</option>
+                </select>
+            </div>
+
+            @*<div>Sub-Area:</div>*@
+            <div class="location-item col s4 ">
+                <select id="ScheduleSubArea" class="schedule-subarea  js-states" style="width:100%">
+                    <option></option>
+                    <option>Baking Area</option>
+                    <option>Storage Area</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    @*<div class="row">
+            <div class="row">
+
+                <div class="col s12">
+                    Checklists
+                </div>
+            </div>
+            <div class="location-item col s8 ">
+                <select id="" class="select-audit-checklist js-states" style="width:100%">
+                    <option></option>
+                    <option>H/F Cleaning</option>
+                    <option>H/F Personal Hygiene</option>
+                </select>
+            </div>
+            <div class="col s4 right-align">
+                <a href="#" class="btn waves-light btn-small">Add Checklist</a>
+            </div>
+        </div>*@
+
+    <div class="row">
+        <div class="col s12">
+            <select multiple="multiple" id="my-select" name="my-select[]" style="">
+                <option value='elem_1'>H/F Cleaning</option>
+                <option value='elem_2'>H/F Personal Hygeine</option>
+                <option value='elem_3'>H/F Cafe Closing</option>
+                <option value='elem_4'>H/F Random Checklist</option>
+                <option value='elem_5'>Some Checklist</option>
+                <option value='elem_6'>Yummy Checklist</option>
+                <option value='elem_7'>Boring Checklist</option>
+                <option value='elem_8'>Random Checklist</option>
+                <option value='elem_9'>Dummy Checklist</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 right-align">
+            <a href="#" class="btn waves-light btn-small">Create Audit</a>
+        </div>
+    </div>
+
+</div>
+    <script>
+        $(function () {
+            $(".schedule-location").select2({
+                placeholder: "Select a Location",
+                allowClear: true
+            });
+            $(".schedule-area").select2({
+                placeholder: "Select a Location",
+                allowClear: true
+            });
+            $(".schedule-subarea").select2({
+                placeholder: "Select a Location",
+                allowClear: true
+            });
+            $(".select-audit-checklist").select2({
+                placeholder: "Select a Checklist",
+                allowClear: true
+            });
+            $(".select-multiple-checklist").select2({
+                placeholder: "Add a Checklist",
+                allowClear: true
+            });
+            $('#my-select').multiSelect({
+                selectableHeader: "<div class='custom-header'>Select Checklists</div>",
+                selectionHeader: "<div class='custom-header'>Selected Checklists</div>"
+            })
+        })
+    </script>

@@ -1,0 +1,133 @@
+﻿@model ComplyRite.Web.MVC.Areas.ReportMgmt.Models.Section
+
+
+@******************|* Compliance level for Hygiene Graphs *|*****************@
+<div class="col-lg-12 row">
+    <div class="col-lg-10 col-lg-offset-1 col-md-8 col-sm-10 col-xs-12">
+        <h3 class="section-header-css">SECTION - AUDIT VERIFICATION FOR HYGIENE RATING</h3>
+    </div>
+    @{
+        var hygieneComplianceYesData = Model.Round(@Model.AuditAreas.Sum(x => x.PassedCheckpointPercentage) / @Model.AuditAreas.Count());
+        var hygieneComplianceNoData = Model.Round(@Model.AuditAreas.Sum(x => x.FailedCheckpointPercentage) / @Model.AuditAreas.Count());
+    }
+    <div class="col-lg-5 col-lg-offset-4 hygieneCompliance-piechart">
+        <canvas id="hygieneCompliance-piechart" hygieneCompliance-yes-data="@hygieneComplianceYesData" hygieneCompliance-no-data="@hygieneComplianceNoData" width="400" height="300" class="canvas-custom-css"></canvas>
+        <span><img id="hygieneCompliance-piechart-img" class="canvasImg-custom-css" /></span>
+    </div>
+</div>
+<br />
+<br />
+<div class="col-lg-12">
+    <div class="col-lg-10 col-md-10 col-xs-11 col-sm-12 col-lg-offset-1">
+        <canvas id="hygieneCompliance-barchart" class="canvas-custom-css"></canvas>
+        <span><img id="hygieneCompliance-barchart-img" class="canvasImg-custom-css" /></span>
+
+    </div>
+</div>
+@***************************************************************************@
+<div class="html2pdf__page-break"></div>
+
+
+@*@for (var i = 0; i < Model.AuditAreas.Count(); i++)
+{
+    <div class="col-lg-12 row" id=@(Model.AuditAreas[i].AreaOfAudit.Replace(" ","")+"ViewId")>
+        <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+            <h3 class="section-sub-header-class">I. @Model.AuditAreas[i].AreaOfAudit.Replace(" ", "").Replace("-", "").ToUpper()</h3>
+        </div>
+        <div class="col-lg-12 row">
+            <div class="col-lg-5 col-lg-offset-4">
+                @{
+                    var areaName = @Model.AuditAreas[i].AreaOfAudit.Replace(" ", "").Replace("-", "").ToLower();
+                }
+                <canvas id=@(areaName+ "-piechart") @(areaName) -yes-data="@Math.Round(Model.AuditAreas[i].PassedCheckpointPercentage,2)" @(areaName) -no-data="@Math.Round(Model.AuditAreas[i].FailedCheckpointPercentage)" width="400" height="300" label="@Model.AuditAreas[i].AreaOfAudit" class="canvas-custom-css"></canvas>
+                <span><img id="prerequisite-piechart-img" class="canvasImg-custom-css" /></span>
+            </div>
+        </div>
+    </div>
+}*@
+
+<div id="hygieneRatingAuditAreas">
+
+    @************************|* PREREQUISITE SECTION *|*************************@
+    <div class="col-lg-12 row" id="prerequisiteViewId">
+        @if (Model.AuditAreas.Count() > 4 && Model.AuditAreas.ElementAt(4) != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-11" id="prerequisite-header-divId">
+                <h3 class="section-sub-header-class">I. @Model.AuditAreas.ElementAt(4).AreaOfAudit.ToUpper()</h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForHygieneRating/_PrerequisiteView.cshtml", Model.AuditAreas.FirstOrDefault())
+        }
+    </div>
+    @***************************************************************************@
+    <div class="html2pdf__page-break"></div>
+
+
+    @********************|* DESIGN & FACILITIES SECTION *|**********************@
+    <div class="col-lg-12 row" id="designAndFacilitiesViewId">
+        @if (Model.AuditAreas.Count() > 1 && Model.AuditAreas.ElementAt(1) != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+                <h3 class="section-sub-header-class">II. @Model.AuditAreas.ElementAt(1).AreaOfAudit.ToUpper() </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForHygieneRating/_DesignAndFacilitiesView.cshtml", Model.AuditAreas.ElementAt(1))
+        }
+    </div>
+    @***************************************************************************@
+    <div class="html2pdf__page-break"></div>
+
+
+    @********************|* CONTROL OF OPERATION SECTION *|*********************@
+    <div class="col-lg-12 row">
+        @if (Model.AuditAreas.Count() > 2 && Model.AuditAreas.FirstOrDefault() != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+                <h3 class="section-sub-header-class">III. @Model.AuditAreas.FirstOrDefault().AreaOfAudit.ToUpper() </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForHygieneRating/_ControlOfOperationsView.cshtml", Model.AuditAreas.ElementAt(2))
+        }
+    </div>
+    @***************************************************************************@
+    <div class="html2pdf__page-break"></div>
+
+
+    @*******************|* MAINTANANCE & SANITATION SECTION *|******************@
+    <div class="col-lg-12 row">
+        @if (Model.AuditAreas.Count() > 3 && Model.AuditAreas.ElementAt(3) != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+                <h3 class="section-sub-header-class">IV. @Model.AuditAreas.ElementAt(3).AreaOfAudit.ToUpper() </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForHygieneRating/_MaintananceAndSanitationView.cshtml", Model.AuditAreas.ElementAt(3))
+        }
+    </div>
+    @***************************************************************************@
+    <div class="html2pdf__page-break"></div>
+
+
+    @***********************|* PERSONAL HYGIENE SECTION *|**********************@
+    <div class="col-lg-12 row">
+        @if (Model.AuditAreas.Count() > 5 && Model.AuditAreas.ElementAt(5) != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+                <h3 class="section-sub-header-class">V. @Model.AuditAreas.ElementAt(5).AreaOfAudit.ToUpper() </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForHygieneRating/_PersonalHygieneView.cshtml", Model.AuditAreas.ElementAt(5))
+        }
+    </div>
+    @***************************************************************************@
+    <div class="html2pdf__page-break"></div>
+
+
+    @*****************|* TRAINING & RECORD KEEPING SECTION *|*******************@
+    <div class="col-lg-12 row">
+        @if (Model.AuditAreas.Count() > 4 && Model.AuditAreas.ElementAt(4) != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+                <h3 class="section-sub-header-class">VI. @Model.AuditAreas.ElementAt(4).AreaOfAudit.ToUpper() </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForHygieneRating/_TrainingAndRecordKeepingView.cshtml", Model.AuditAreas.ElementAt(4))
+        }
+    </div>
+    @***************************************************************************@
+
+</div>

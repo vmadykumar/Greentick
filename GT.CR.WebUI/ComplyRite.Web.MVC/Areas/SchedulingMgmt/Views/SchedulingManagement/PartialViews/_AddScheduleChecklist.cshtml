@@ -1,0 +1,114 @@
+﻿@*<div class="add-view-tab" style="text-align:center">
+    <div class="add-tab schedule-tab">ADD</div>
+    <div class="view-tab schedule-tab">VIEW</div>
+</div>*@
+<div class="schedule-date">
+    Date goes here
+</div>
+<div style="display:flex; flex-direction:column" class="add-schedule-checklist-wrapper">
+    <div>Checklist</div>
+    <div style="margin-bottom:10px;">
+        <select class="checklist-select form-control js-states">
+            <option></option>
+            <option>option1</option>
+            <option>ooption2</option>
+            <option>ption3</option>
+            <option>tian4</option>
+            <option>ption5</option>
+        </select>
+    </div>
+
+    Frequency
+    <div class="schedule-occurence" style="margin-bottom:10px;">
+        <div>
+            <label>
+                <input type="radio" name="checklistFrequency" value="OneTime" class="schedule-occurence-option with-gap" />
+                <span class="schedule-occurence-text">One Time</span>
+            </label>
+            <span></span>
+        </div>
+        <div style="padding-left:20px;">
+            <label>
+                <input type="radio" name="checklistFrequency" value="Repeat" class="schedule-occurence-option with-gap" />
+                <span class="schedule-occurence-text with-gap">Repeat</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="repeat-times" style="margin-bottom:10px; display:none">
+        <div>
+            <select class="occurence-select form-control js-states">
+                <option></option>
+                <option>Daily</option>
+                <option>Monthly on 3rd</option>
+                <option>Annualy on Dec. 3rd</option>
+                <option>Mon - Fri</option>
+            </select>
+        </div>
+        <div>
+            Ends At : <input name="from" value="" class="schedule-end-time time-box" style="width:200px" />
+        </div>
+    </div>
+
+    Supervisor
+    <div style="margin-bottom:10px;">
+        <select class="user-select form-control js-states">
+            <option></option>
+            <option>Sharda</option>
+            <option>Akila</option>
+            <option>Sarkar</option>
+            <option>Anshu</option>
+        </select>
+    </div>
+    <div class="time-selection" style="margin-bottom:10px; width:300px;">
+        <div class="time-box">
+            Starts at: <input name="from" value="" class="start-time time-box" />
+        </div>
+        <div class="time-box">
+            Ends at : <input name="to" value="" class="end-time time-box" />
+        </div>
+        <div class="time-box">
+            Expires at: <input name="to" value="" class="expiry-time time-box" />
+        </div>
+    </div>
+
+    <div class="schedule-buttons" style="margin-bottom:10px; width:300px;">
+        @*<input type="reset" name="cancelBtn" value="CANCEL" class="waves-effect waves-light btn" style="background-color:lightsalmon" />*@
+        <input class="btn waves-effect waves-red" type="submit" name="action" value="cancel">
+        <input class="btn waves-effect waves-orange" type="submit" name="action" value="draft">
+        @*<input type="submit" name="draftBtn" value="DRAFT" class="draft-btn" style="background-color:lightcoral" />
+            <input type="submit" name="publishBtn" value="PUBLISH" class="publish-btn" style="background-color:cornflowerblue" />*@
+        <input class="btn waves-effect waves-light" type="submit" name="action" value="publish">
+
+        @*<button class="draft-btn" style="background-color:lightcoral">DRAFT</button>
+            <button class="publish-btn" style="background-color:cornflowerblue">PUBLISH</button>*@
+    </div>
+</div>
+
+
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, options);
+    });
+
+    // Or with jQuery
+
+    $(document).ready(function () {
+        $('.fixed-action-btn').floatingActionButton({ direction: 'left'});
+    });
+
+
+</script>

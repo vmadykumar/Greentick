@@ -1,0 +1,154 @@
+﻿@model ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.Checklist_Mgmt.ChecklistModel_New
+
+<!-- STYLES -->
+<link href="~/Areas/MasterDataMgmt/Content/CSS/CheckManagement.css" rel="stylesheet" />
+
+<!-- Select2 Library-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+@using (Html.BeginForm("CreateNewChecklist", "ChecklistManagement", FormMethod.Post, new { enctype = "multipart/form-data", @id = "createNewChecklistForm" }))
+{
+    <div class="form-horizontal">
+        <h5>CREATE CHECKLIST</h5>
+        <hr />
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" id="UUID" value="@(ViewBag.UUID ?? "")" />
+        <input type="hidden" id="ViewBag_Feedback" value="@(ViewBag.Feedback)" />
+        <input type="hidden" id="ViewBag_Color" value="@(ViewBag.Color)" />
+
+        <!-- LOCATION -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.LocationCode, new SelectList(ViewBag.Locations, "LocationCode", "LocationName"), "Select Location", new { @class = "browser-default", @id = "locationSelectDropdown" })
+                @Html.ValidationMessageFor(model => model.LocationCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- AREA -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.AreaName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.AreaCode, new SelectList(new string[] { }), new { @class = "browser-default", @id = "areaSelectDropdown", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.AreaCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- SUB AREA -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubAreaName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SubAreaCode, new SelectList(new string[] { }), new { @class = "browser-default", @id = "subAreaSelectDropdown", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.SubAreaCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- NAME -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChecklistName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ChecklistName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ChecklistName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChecklistDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="row description-row">
+                    <div class="input-field col s12">
+                        @Html.TextAreaFor(model => model.ChecklistDescription, new { @class = "materialize-textarea" })
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(model => model.ChecklistDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChecklistIconFile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="file-field input-field d-flex">
+                    <div class="btn">
+                        <span>Choose File</span>
+                        @Html.TextBoxFor(m => m.ChecklistIconFile, new { @type = "file", @accept = "image/*", @id = "createNewChecklistIcon" })
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                    <div class="preview-image-container">
+                        <i class="material-icons preview-image-not-available">image</i>
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(model => model.ChecklistIconFile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- CHECKS -->
+        <div class="form-group">
+            <div>
+                <div>
+                    @Html.LabelFor(model => model.SelectedChecks, htmlAttributes: new { @class = "control-label" })
+                    @*<select name="SelectedChecks" class="browser-default" id="checksSelectDropdown" multiple>
+                            @if (ViewBag.Checks != null)
+                            {
+                                foreach (var Check in ViewBag.Checks)
+                                {
+                                    <option value="@Check.CheckID" data-check-type="@Check.CheckType">@Check.CheckTitle</option>
+                                }
+                            }
+                        </select>*@
+                    @Html.DropDownListFor(model => model.SelectedChecks, new MultiSelectList(ViewBag.Checks, "CheckID", "CheckTitle"), new { @id = "checksSelectDropdown", @multiple = "multiple", @class = "browser-default" })
+                    @Html.ValidationMessageFor(model => model.SelectedChecks, "", new { @class = "text-danger" })
+                </div>
+                @*<div><label class="control-label" for="CheckTypes">Check Type</label>@Html.DropDownList("CheckTypes", new SelectList(ViewBag.CheckTypes), "All", new { @class = "browser-default" })</div>*@
+            </div>
+        </div>
+
+        <!-- CATEGORY -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChecklistCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ChecklistCategory, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ChecklistCategory, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- TYPE -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChecklistType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ChecklistType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ChecklistType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="form-group actions-panel">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default action-button" style="margin-right:10px;" />
+                @Html.ActionLink("Back to List", "ViewChecklists", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+<!-- SCRIPTS -->
+<script src="~/Areas/MasterDataMgmt/Scripts/ChecklistManagement.js"></script>
+<script type="text/javascript">$(function () { $('#locationSelectDropdown').find('option').first().attr('disabled', true); });</script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#checksSelectDropdown').select2({
+            placeholder: 'Select Checks...'
+        });
+       
+
+        //$('#checksSelectDropdown').on('select2:select', function () {
+        //    $("#createNewChecklistForm").validate().element("#checksSelectDropdown");
+        //});
+    });
+</script>

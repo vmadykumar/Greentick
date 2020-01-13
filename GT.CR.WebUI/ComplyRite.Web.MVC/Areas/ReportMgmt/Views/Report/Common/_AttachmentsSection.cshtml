@@ -1,0 +1,40 @@
+﻿@model ComplyRite.Web.MVC.Areas.ReportMgmt.Models.AuditArea
+
+@*************************** Attachments **************************@
+<div class="col-lg-12 row attachments-mainDiv-id">
+    <h3 class="col-lg-8 col-lg-offset-1">
+        <i class="fa fa-paperclip"></i> <u>Attachments</u> :
+    </h3>
+    <div class="col-lg-10 col-lg-offset-1">
+        @if (Model.Attachments.Count() == 0)
+        {
+            <p class="no-attachments-class">No Attachments</p>
+        }
+        else
+        {
+            foreach (var imagePath in Model.Attachments)
+            {
+                <div class="col-lg-4">
+                    @if (imagePath != "")
+                    {
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-sm-6">
+                        @*<img src=@ComplyRite.Web.MVC.Helpers.ImageHelper.LoadImage(imagePath) class="responsive" style="width:200px;margin-top:2%" />*@
+
+                        @*<img src=@ComplyRite.Web.MVC.Helpers.ImageHelper.ImageData(imagePath) class="responsive" style="width:200px;margin-top:2%" />*@
+                        
+                        <img src=@imagePath class="responsive" style="width:200px;margin-top:2%" />
+                        <br />
+                    </div>
+                    }
+                    else
+                    {
+                        <p>-</p>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>
+<hr class="hr-attachment-css-class" />
+@******************************************************************@
+

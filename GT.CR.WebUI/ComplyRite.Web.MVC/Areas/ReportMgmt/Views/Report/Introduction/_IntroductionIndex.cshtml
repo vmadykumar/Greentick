@@ -1,0 +1,20 @@
+﻿@model ComplyRite.Web.MVC.Areas.ReportMgmt.Models.AuditReport
+@using System.Configuration;
+<div class="col-lg-12 row introduction-div-class">
+    <div class="col-lg-offset-2">
+        <img src=@ConfigurationManager.AppSettings["IntroductionPageLogo"] class="responsive introduction-Mcd-css" />
+    </div>
+    <br />
+    <br />
+    <div class="col-lg-offset-2">
+        <h2><b>FOOD SAFETY AUDIT REPORT</b></h2>
+    </div>
+    <br />
+    <br />
+    <div class="col-lg-offset-2">
+        <h2>LOCATION: <b>@Model.Location, @Model.City</b></h2>
+    </div>
+    <div class="col-lg-offset-2">
+        <h2>AUDIT DATE: <b id="introIndexAuditDateId">@Model.AuditDate.ToString("d MMMM yyyy")</b></h2>
+    </div>
+</div>

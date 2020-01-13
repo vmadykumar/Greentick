@@ -1,0 +1,147 @@
+﻿@model ComplyRite.Web.MVC.Areas.ReportMgmt.Models.AuditReport
+@using System.Configuration;
+<meta name="viewport" content="width=500, initial-scale=1.0">
+<div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+    <h3 class="section-header-css">SECTION - HYGIENE RATING</h3>
+</div>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-sm-10 col-xs-12 hygiene-rating-subSec">
+    @{
+        int numberOfYellowSmileys;
+        int numberOfGraySmileys;
+        var showSmileys = true;
+        if (Model.Sections.Where(x => x.SectionName.ToLower() == "mandatory").Count() > 0)
+        {
+            var total = Model.Sections.ElementAt(1).AuditAreas.Sum(x => x.AuditDetails.Sum(y => y.Score));
+            var compliantPercentage = Model.Sections.ElementAt(1).Round((Model.Sections.ElementAt(1).AuditAreas.Sum(x => x.AuditDetails.Where(y => y.AuditorsResponse.ToLower() == "yes").Sum(y => y.Score)) / (float)total) * 100);
+            numberOfYellowSmileys = compliantPercentage <= 20 ? 1 : compliantPercentage <= 40 ? 2 : compliantPercentage <= 60 ? 3 : compliantPercentage <= 80 ? 4 : 5;
+            numberOfGraySmileys = 5 - numberOfYellowSmileys;
+        }
+        else
+        {
+            numberOfYellowSmileys = 0;
+            numberOfGraySmileys = 5;
+            showSmileys = false;
+        }
+    }
+    <div class="water-mark"></div>
+    @if (showSmileys)
+    {
+        
+            var score = Model.Sections.ElementAt(1).AuditAreas.Sum(x => x.AuditDetails.Where(y => y.AuditorsResponse.ToLower() == "yes").Sum(y => y.Score));
+            var displayText = score < 82 ? "Non Compliance" : score <= 91 ? "Needs Improvement" : score <= 101 ? "Satisfactory" : "Exemplar";
+        
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-10 col-xs-11 hygieneRating-smiley-class">
+            @for (int i = 0; i < numberOfYellowSmileys; i++)
+            {
+                <img src="/Areas/ReportMgmt/Content/Images/YellowSmiley.jpg" alt="Image" class="responsive hygieneRating-smiley-css" />
+            }
+            @for (int i = 0; i < numberOfGraySmileys; i++)
+            {
+                <img src="/Areas/ReportMgmt/Content/Images/GraySmiley.jpg" alt="Image" class="responsive hygieneRating-smiley-css" />
+            }
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-10 col-xs-11 hygieneRating-needImprovement-class">
+            <h2>@displayText</h2>
+        </div>
+    }
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-10 col-xs-11 hygieneRating-city-class">
+        <h1><b>McDonald’s</b></h1>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-10 col-xs-11 hygieneRating-location-class">
+        <h2>
+            @Model.Location, @Model.City
+        </h2>
+    </div>
+    @if (Model.Sections.Where(x => x.SectionName.ToLower() == "voluntary").Count() > 0)
+    {
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-sm-10 col-xs-11 hygieneRating-isResponsible-class">
+            <p><b>“Is Responsible Place To Eat” </b></p>
+        </div>
+        <div class="col-lg-10 col-lg-offset-1 col-md-8 col-sm-10 col-xs-11 hygieneRating-valueText-class">
+            <p><b>This restaurant adds value to society by promoting: </b></p>
+        </div>
+
+
+        var percentageVal = float.Parse(ConfigurationManager.AppSettings["CompliantStickerPercentage"]);
+        var personalHygieneSticker = Model.Sections.FirstOrDefault().AuditAreas.FirstOrDefault().PassedCheckpointPercentage > percentageVal ? true : false;
+
+        var healthyEatingSticker = Model.Sections.FirstOrDefault().AuditAreas.Count() < 2 ? false : Model.Sections.FirstOrDefault().AuditAreas.ElementAt(1).PassedCheckpointPercentage > percentageVal ? true : false;
+        var safeWaterHandlingSticker = Model.Sections.FirstOrDefault().AuditAreas.Count() < 3 ? false : Model.Sections.FirstOrDefault().AuditAreas.ElementAt(2).PassedCheckpointPercentage > percentageVal ? true : false;
+        var effectiveComplaintHandlingSticker = Model.Sections.FirstOrDefault().AuditAreas.Count() < 4 ? false : Model.Sections.FirstOrDefault().AuditAreas.ElementAt(3).PassedCheckpointPercentage > percentageVal ? true : false;
+        //var openKitchenSticker = Model.Sections.FirstOrDefault().AuditAreas.ElementAt(4).PassedCheckpointPercentage > percentageVal ? true : false;
+
+        var openKitchenSticker = Model.Sections.FirstOrDefault().AuditAreas.Count() < 5 ? false : Model.Sections.FirstOrDefault().AuditAreas.ElementAt(4).PassedCheckpointPercentage > percentageVal ? true : false;
+
+        var donateFoodSticker = Model.Sections.FirstOrDefault().AuditAreas.Count() < 6 ? false : Model.Sections.FirstOrDefault().AuditAreas.ElementAt(5).PassedCheckpointPercentage > percentageVal ? true : false;
+
+
+        <div class="col-lg-11 col-lg-offset-2 col-md-8 col-sm-10 col-xs-12">
+
+            @if (personalHygieneSticker)
+            {<div class="square col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <div class="pic">
+                        <img src="/Areas/ReportMgmt/Content/Images/PersonalHygiene.png" />
+                    </div>
+                </div>}
+            @if (healthyEatingSticker)
+            {<div class="square col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <div class="pic">
+                        <img src="/Areas/ReportMgmt/Content/Images/HealthyEating.png" />
+                    </div>
+                </div>}
+            @if (effectiveComplaintHandlingSticker)
+            {<div class="square col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <div class="pic">
+                        <img src="/Areas/ReportMgmt/Content/Images/EffectiveComplaintHandling.png" />
+                    </div>
+                </div>}
+            @if (openKitchenSticker)
+            {<div class="square col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <div class="pic">
+                        <img src="/Areas/ReportMgmt/Content/Images/OpenKitchen.png" />
+                    </div>
+                </div>}
+            @if (donateFoodSticker)
+            {<div class="square col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <div class="pic">
+                        <img src="/Areas/ReportMgmt/Content/Images/DonateFood.png" />
+                    </div>
+                </div>}
+            @if (safeWaterHandlingSticker)
+            {<div class="square col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <div class="pic">
+                        <img src="/Areas/ReportMgmt/Content/Images/SafeWaterHandlingPractices.png" />
+                    </div>
+                </div>}
+        </div>
+    }
+</div>
+<br />
+<br />
+<hr class="hr-css-class" />
+<div class="col-lg-10 col-lg-offset-1 col-md-10 col-sm-10 col-xs-12">
+    <h5>
+        <b>Disclaimer:</b> <span class="disclaimer-text">
+            This certificate is for representational purpose only to give the viewer an idea about the Hygiene rating certificate issued by FSSAI.
+            This sample certificate must not be used for display at any restaurant.
+        </span>
+    </h5>
+</div>
+<style>
+    .square {
+        width: 72px;
+        height: 70px;
+        margin: 11px;
+        transform: rotate(-45deg);
+        overflow: hidden;
+        border: 2.5px solid black;
+        border-radius: 11px;
+    }
+
+    .pic {
+        width: 105px;
+        height: 101px;
+        margin: -31px;
+        transform: rotate(45deg);
+    }
+</style>

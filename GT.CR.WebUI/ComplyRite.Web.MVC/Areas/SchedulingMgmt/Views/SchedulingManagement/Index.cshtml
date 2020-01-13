@@ -1,0 +1,70 @@
+﻿<link href="~/Areas/SchedulingMgmt/Contents/CSS/SchedulingManagement.css" rel="stylesheet" />
+
+<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleAuditAndChecklist.js"></script>
+<style></style>
+
+<div class="checklist-schedule-wrapper" @*style="margin-top:41px;"*@>
+    <div class="schedule-container">
+
+        <div class="item item1">
+            <div class="location-selection">
+
+                <div>Location:</div>
+                <div class="location-item   ">
+                    <select id="ScheduleLocation" class="schedule-location form-control js-states">
+                        <option></option>
+                        <option>yo 1</option>
+                        <option>yo 2</option>
+                    </select>
+                </div>
+
+                <div>Area:</div>
+                <div class="location-item   ">
+                    <select id="ScheduleArea" class="schedule-area form-control js-states">
+                        <option></option>
+                    </select>
+                </div>
+
+                <div>Sub-Area:</div>
+                <div class="location-item  ">
+                    <select id="ScheduleSubArea" class="schedule-subarea form-control js-states">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="checklist-to-drag">
+                <div style="color:white;">Drag and Drop Checklists on a Date</div>
+                <div id='external-events'>
+                    <div class='fc-event'>HF/Café Closing </div>
+                    <div class='fc-event'>HF/Cleaning </div>
+                    <div class='fc-event'>HF/Personal Hygiene </div>
+                    <div class='fc-event'>My Event 4</div>
+                    <div class='fc-event'>My Event 5</div>
+                    <div class='fc-event'>HF/Café Closing </div>
+                    <div class='fc-event'>HF/Cleaning </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item item2 calendarArea">
+
+            <div id='calendar'></div>
+
+        </div>
+
+        <div class="item item3">
+            <div style="height:100%;">
+
+                <div id="AddViewScheduleChecklist" style="height:100%; overflow:auto;">
+                    <div style="height:100%; display:flex;align-items:center;justify-content:center;">
+                        <div style="border:0.5px solid rgba(0, 0, 0, 0.1);text-align:center;height:50px; display:flex; align-items:center;justify-content:center;padding:5px;">
+                            Please Click on a date to add schedule
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,234 @@
+﻿@model IEnumerable<ComplyRite.Web.MVC.Areas.SchedulingMgmt.Models.SchedulingAudit.AuditListModel>
+
+<style>
+    .scheduled-checklist, .scheduled-draft {
+        width: 270px;
+        /*height: 80px;*/
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+        display: flex;
+        background: white;
+        margin-left: 10px;
+        margin-bottom: 15px;
+        font-family: Tahoma
+    }
+
+    .schedule-details {
+        flex: 1;
+        flex: 1;
+    }
+
+    .scheduled-checklist .schedule-color-tag {
+        width: 5px;
+        background-color: dodgerblue;
+    }
+
+    .scheduled-draft .schedule-color-tag {
+        width: 5px;
+        background-color: coral;
+    }
+
+    .schedule-details {
+        display: flex;
+        flex-direction: column;
+        padding-left: 5px;
+    }
+
+    .schedule-checklist-name {
+        font-size: 1.1em;
+    }
+
+    .schedule-details-area, .schedule-supervisor-name {
+        font-size: 0.8em;
+    }
+
+    .schedule-datetime {
+        display: flex;
+        font-size: 0.9em;
+        justify-content: space-between;
+        padding-right: 10px;
+    }
+</style>
+<style>
+
+    /* Card Style of the Audit*/
+    .table-card-data {
+        font-size: 12px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .table-card-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        font-weight: 500;
+        color: #999;
+    }
+
+    .table-card-title {
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 15px;
+    }
+
+    .col-align-card {
+        padding: 0 !important;
+    }
+
+    /* Change the highlight color of today on calendar */
+    .ui-state-highlight {
+        /*background-color: rgba(0,0,0,0.12) !important;
+        color: #4a4a4a !important;
+        border-color: rgba(0, 0, 0, 0.18) !important*/
+    }
+
+    .text-wrap {
+        overflow-wrap: break-word;
+    }
+
+    /* Similar font-weight rendering in Firefox & Safari */
+    .firefox-safari {
+        font-weight: 400 !important;
+    }
+
+    .jconfirm-holder {
+        margin: auto;
+        width: 500px
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+<link href="~/Areas/SchedulingMgmt/Content/CSS/ScheduleAudit/ScheduleAudit.css" rel="stylesheet" />
+@{
+    int i = 0;
+}
+<script>
+    testDate = {
+        datePassed: '@ViewBag.DatePassed',
+        dateAfterUTC: '@ViewBag.DateAfterUTC',
+        dateFormatCheck: '@ViewBag.DateFormat'
+    };
+
+</script>
+@*<div class="row center-align white-text" style="background-color: #737373; margin-bottom: 0; font-size: 1.5em; padding:10px;">Scheduled Audits</div>*@
+
+@*<div class="row" style="padding:10px; background-color: #414141;  color: white; font-size:1.5em; position:relative; margin-bottom:30px">
+        <div class="audit-schedule-date col s12 center-align"></div>
+        <div class="audit-schedule-day col s12 center-align"></div>
+        <a class="btn-floating waves-effect waves-light red add-schedule-rightview" style="position:absolute; left:15px; bottom: -20px;"><i class="material-icons">add</i></a>
+    </div>*@
+
+<div class="row" style="color: #4a4a4a; font-size: 1.7em;    position: relative;    margin-bottom: 0px;    margin-top: -41px;margin-left: -3px;">
+    @*<div class="audit-schedule-date col s12 center-align"></div>
+        <div class="audit-schedule-day col s12 center-align"></div>*@
+    <div class="col l10 s10 m10 form-header">
+        <span class="audit-schedule-date"></span>, <span class="audit-schedule-day"></span>
+    </div>
+    <div class="col l2 s2 m2 right-align">
+        <a class="btn-floating waves-effect waves-light red add-schedule-rightview tooltipped" @*data-position="top" data-tooltip="View all the schedules for the day"*@ title="Create audit for the selected date" @*style="position:absolute; left:15px; bottom: -20px;"*@><i class="material-icons">add</i></a>
+    </div>
+</div>
+<div style="height: calc(100vh - 160px);overflow-y: auto;overflow-x: hidden;">
+
+
+    @if (Model.Count() > 0)
+    {
+        int count = 0;
+        foreach (var audit in Model)
+        {
+            <div class="col s12 m12 l6" style="padding: 0 20px;">
+                <div class="row card" @*style="height:202px;"*@>
+                    @*<a href="@Url.Action("GetAuditDetailsByAuditId", "Audit" , new RouteValueDictionary(new {AuditID= audit.auditInfoID}), Request.Url.Scheme)" style="display: block;color:unset">*@
+                    <div class="col s7 l12">
+                        <div class="table-card-title text-wrap">
+                            @audit.auditName
+
+                            <!-- MORE OPTIONS -->
+                            <div style="position:absolute; right:0; display:inline-block;">
+                                <i class="material-icons dropdown-trigger" data-target="@("more_dropdown_" + count)" style="cursor:pointer;">more_vert</i>
+                                <ul id="@("more_dropdown_" + count++)" class="dropdown-content">
+                                    <li><a href="@Url.Action("GetAuditDetailsByAuditId", "Audit", new RouteValueDictionary(new { AuditID = audit.auditInfoID }), Request.Url.Scheme)" style="color:black">View</a></li>
+                                    @{
+                                        var a = 0;
+                                        if (DateTime.Parse(audit.auditStartDate + " " + audit.auditStartTime) <= DateTime.Now)
+                                        {
+                                            a = 1;
+                                        }
+
+                                    }
+                                    @*@if (DateTime.Parse(audit.auditStartDate + " " + audit.auditStartTime) > DateTime.Now)
+        {*@
+                                    <li class="edit_option" id="@audit.auditInfoID" value="@a" style="color:black"><a style="color:black" on>Edit</a></li>
+                                    @*}*@
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="table-card-data">@audit.auditLocation</div>
+                    </div>
+                    <div class="col s5 m5 l12">
+                        <div class="">ID: @audit.auditCode</div>
+                    </div>
+                    <div class="col s12 m12 l12" style="margin-bottom:1em">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col s6 m6 l6">
+                        <div class="table-card-label">Assigned To</div>
+                        <div class="table-card-data">@audit.assignedToUserName</div>
+                    </div>
+                    <div class="col s6 m6 l6">
+                        <div class="table-card-label">Created By</div>
+                        <div class="col s12 m12 l12 table-card-data col-align-card ">@audit.createdBy</div>
+                    </div>
+                    <div class="col s6 m6 l6">
+                        <div class="table-card-label">Start Date</div>
+                        <div class="col s12 m12 l12 table-card-data col-align-card">@audit.auditStartDate, <small>@audit.auditStartTime</small></div>
+                        @*<div class="col s12 m12 l6 table-card-data">@audit.auditStartTime</div>*@
+                    </div>
+                    <div class="col s6 m6 l6">
+                        <div class="table-card-label">End Date</div>
+                        <div class="col s12 m12 l12 table-card-data col-align-card">@audit.auditEndDate, <small>@audit.auditEndTime</small></div>
+                        @*<div class="col s12 m12 l6 table-card-data">@audit.auditEndTime</div>*@
+                    </div>
+                    <div class="col s6 m6 l6">
+                        <div class="table-card-label">Created Date</div>
+                        <div class="col s12 m12 l12 table-card-data col-align-card">@audit.createdDate, <small>@audit.createdTime</small></div>
+                        @*<div class="col s12 m12 l6 table-card-data ">@audit.createdTime</div>*@
+                    </div>
+
+                    <div class="col s6 m6 l6">
+                        <div class="table-card-label">Expiry Date</div>
+                        <div class="col s12 m12 l12 table-card-data col-align-card">@audit.auditExpiryDate, <small>@audit.auditExpiryTime</small></div>
+                        @*<div class="col s12 m12 l6 table-card-data">@audit.auditExpiryTime</div>*@
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="row card" style="margin:0;padding: 8px 0; margin-bottom: 0.5em; position: relative">
+
+            <div class="col s12 m12 l12">
+                <div class="table-card-title">No Published Audits Avaialble</div>
+                @*<div class="table-card-data"><span>Please schedule an audit</span></div>*@
+            </div>
+        </div>
+    }
+
+</div>
+<script>
+    if (navigator.userAgent.search("Firefox") >= 0 || navigator.vendor.match(/apple/i)) {
+        $('.table-card-title').addClass('firefox-safari');
+    }
+
+    $(function () {
+        $('.dropdown-trigger').dropdown({
+            alignment: 'right',
+            inDuration: 300,
+            outDuration: 225
+        });
+    });
+</script>

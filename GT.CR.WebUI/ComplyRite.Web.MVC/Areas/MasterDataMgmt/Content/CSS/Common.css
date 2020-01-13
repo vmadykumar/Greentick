@@ -1,0 +1,333 @@
+﻿/**************************/
+/** Author : Sharath K M **/
+/**************************/
+
+
+body {
+    font-family: Avenir Next, Avenir, SegoeUI, sans-serif;
+}
+
+form {
+    margin: 2em 0;
+}
+
+.btn-css {
+    padding: 5px 18px !important;
+    color: white !important;
+    margin-left: 0.6% !important;
+}
+
+.whiteColor {
+    color: white !important;
+}
+
+/**** CSS TO TRANSFORM THE PLACEHOLDER TO LABEL IN INPUT BOX (FLOATING LABEL) *****/
+/**
+* Make the field a flex-container, reverse the order so label is on top.
+*/
+.field {
+    display: flex;
+    flex-flow: column-reverse;
+    margin-bottom: 1.5em;
+}
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+label, input, select {
+    transition: all 0.2s;
+    /*color: blue;*/
+    touch-action: manipulation;
+}
+
+input, select {
+    font-size: 1em;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-family: inherit;
+    -webkit-appearance: none;
+    border-radius: 0;
+    padding: 0;
+    cursor: text;
+}
+
+    input:focus {
+        outline: 0;
+        border-bottom: 1px solid #666;
+    }
+
+label {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    font-size: 11px;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+input:placeholder-shown + label, select:placeholder-shown + label {
+    cursor: text;
+    max-width: 66.66%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: left bottom;
+    transform: translate(0, 2.125rem) scale(1.5);
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+    opacity: 0;
+    transition: inherit;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+input:focus::-webkit-input-placeholder {
+    opacity: 1;
+}
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is not shown, i.e. when there's something in the input.
+**/
+input:not(:placeholder-shown) + label,
+input:focus + label, select:not(:placeholder-shown) + label, select:focus {
+    transform: translate(0, 0) scale(1);
+    cursor: pointer;
+}
+
+
+/**** CSS TO SHOW THE BUTTONS ON HOVERING OVER THE TABLE ROW *****/
+.table-hovered > tbody > tr > td.table-hover-icons {
+    padding: 0;
+    padding-left: -12px;
+    position: absolute;
+    width: 200px;
+    display: none;
+    border: none !important;
+}
+
+.table-hovered > tbody > tr:hover .table-hover-icons {
+    display: block;
+    margin-left: -9.2% !important;
+    width: 10.2%;
+    font-size:large !important;
+    /*background:inherit;*/
+}
+
+.table-hovered > tbody > tr:hover {
+    background-color: #4e494929;
+}
+/*transition-timing-function: ease-in;
+        transition-delay:3s;
+        transition-duration:4s;*/
+/*transition:1s ease-in;
+        animation:1s ease-in;*/
+/*.table-hovered > tbody > tr > td:hover > span.HoverAction:hover {
+    display: block;
+    margin-left: -5.5% !important;
+    width: 10%;
+}*/
+.table-hover-icons .icon-round:not(:last-child) {
+    /*margin-right: 3px;*/
+    margin-top: 3px;
+}
+
+/* Icon Round */
+
+.icon-round {
+    padding: 3px;
+    /*color: #e3000b;*/
+    color: #3a00e3;
+    border-radius: 50%;
+    /*border: 1px solid #e3000b;*/
+    cursor: pointer;
+    margin-top: 8px !important;
+    margin-left: -1px !important;
+}
+
+    .icon-round:hover {
+        /*background-color: #e3000b;*/
+        background-color: #2610a5d1;
+        color: #fff;
+    }
+
+
+/* CSS for Filter */
+.tableCss > thead > tr:first-child > th {
+    border-bottom: none;
+}
+
+/* Check box CSS*/
+
+table.text-center,
+table.text-center td,
+table.text-center th {
+    text-align: center;
+}
+
+.table.align th {
+    text-align: left;
+}
+
+.table.align td {
+    text-align: right;
+}
+
+.regular-checkbox {
+    display: none;
+}
+
+    .regular-checkbox + label {
+        background-color: #fafafa;
+        border: 1px solid #cacece;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+        padding: 9px;
+        border-radius: 3px;
+        display: inline-block;
+        position: relative;
+    }
+
+        .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+        }
+
+    .regular-checkbox:checked + label {
+        background-color: #e9ecee;
+        border: 1px solid #adb8c0;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+        color: #99a1a7;
+    }
+
+        .regular-checkbox:checked + label:after {
+            content: '\2714';
+            font-size: 14px;
+            position: absolute;
+            top: 0px;
+            left: 3px;
+            color: #99a1a7;
+        }
+
+
+.big-checkbox + label {
+    padding: 18px;
+}
+
+.big-checkbox:checked + label:after {
+    font-size: 28px;
+    left: 6px;
+}
+
+
+.tableCss > thead > tr:nth-child(2) > th {
+    border-top: none;
+}
+
+.filterToggleClass {
+    font-size: large;
+    /*margin-top: 1%;*/
+    margin-right: 1%;
+    cursor: pointer;
+    padding: 3px 3px 3px 4px;
+    box-shadow: 0px 0px 1px 0px;
+}
+
+.SelectAllCheckBoxLabel {
+    margin-bottom: 0px !important;
+}
+
+.modal-header-danger {
+    color: #fff;
+    padding: 9px 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #d9534f;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.modal-footer-css {
+    padding: 11px 15px;
+}
+
+#SummaryModalBody > .popover > .popover-title {
+    background: #49bfa9;
+    color: white;
+}
+
+.summaryText {
+    font-size: large;
+    letter-spacing: 2px;
+    margin-left: 4px;
+}
+
+#SummaryModalBody {
+    padding-left: 8%;
+}
+
+
+
+.table-hovered > tbody > tr.multiselectRow:hover, tr.multiSelectInactiveRow:hover > td {
+    background: #4e5496;
+}
+
+multiselectRow:hover td {
+    background: #4e5496;
+    color: white;
+    line-height: 3;
+    box-shadow: 1px 1px 1px 1px #1e245f;
+}
+
+.margin-top-1 {
+    margin-top: 1% !important;
+}
+
+
+.width-30 {
+    width: 30% !important;
+}
+
+.width-10 {
+    width: 10% !important;
+}
+
+.width-15 {
+    width: 15% !important;
+}
+
+.width-8 {
+    width: 8% !important;
+}
+
+.width-5{
+    width:5% !important;
+}
+
+.width-12{
+width:12% !important;
+}
+
+/*CSS of highlighted table row*/
+.highlightRow {
+    background: #B9D9EC !important;
+    box-shadow: inset 0px 0px 1px 1px #d7deec;
+    /*pointer-events: none;*/
+}
+
+.multiselectRow, .multiSelectInactiveRow {
+    background: #4e5496;
+    color: white;
+    line-height: 3;
+    box-shadow: 1px 1px 1px 1px #1e245f;
+    display: none;
+}

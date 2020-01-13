@@ -1,0 +1,251 @@
+﻿@media only screen and (min-width: 582px) {
+    .form-header {
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 466px) {
+    .form-header {
+        font-size: 0.7em;
+    }
+}
+
+@media only screen and (max-width: 1025px) {
+    .row .col.m12 {
+        width: 100%;
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+}
+
+.ajax-loader {
+    visibility: hidden;
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+    z-index: +100 !important;
+    /*width: 100%;
+        height: 100%;*/
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ajax-loader-new {
+    visibility: hidden;
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+    z-index: +100 !important;
+    /*width: 100%;
+        height: 100%;*/
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+    .ajax-loader img {
+        /*position: relative;
+    top: 50%;
+    left: 50%;*/
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+    }
+
+.ajax-load-wait {
+    position: relative;
+    /*top: 50%;
+    left: 50%;*/
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#areas_and_checklists, #RepeatModal {
+    width: 70%;
+}
+
+/* Repeat Modal Styles*/
+
+/*.schedule-recurrence {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 56px);
+}
+    */
+.schedule-recurrence fieldset {
+    /*width: 100%;
+    border-color:white;*/
+    border: solid 0.1px #ddd
+}
+.areas_and_checklists fieldset {
+    border: solid 0.1px #ddd
+}
+.schedule-recurrence tr, .schedule-recurrence td, .schedule-recurrence th {
+    border-bottom: none;
+    padding: 0 25px;
+}
+
+.recurrence-time-container, .recurrence-pattern-container, .recurrence-range-container {
+    margin-bottom: 15px;
+}
+
+.recurrence-pattern-container .recurrence-options {
+    border-right: solid 0.1px #ddd;
+}
+    /*.recurrence-time-container, .recurrence-pattern-container, .recurrence-range-container {
+    display: flex;
+    padding:10px;
+}*/
+    /*.recurrence-time-container, .recurrence-range-container {
+    background-color: #ccc;
+}*/
+    /*.recurrence-time-container{
+    flex: 1;
+}*/
+    /*.schedule-time {
+    display: flex;
+}*/
+    /*.schedule-time > .time-field, .schedule-time > .duration-field {
+    flex: 1;*/
+    /*max-width: 30%;*/
+    /*width: 25%;*/
+    /*padding: 0 25px;
+}*/
+    /*.recurrence-pattern-container {
+    background-color: white;
+    flex: 2;
+}
+
+.recurrence-pattern{
+    display: flex;
+}
+
+.recurrence-pattern .recurrence-options {
+    width: 150px;
+}
+
+.recurrence-pattern  .recurrence-values {
+    flex: 1;
+    border-left: 0.5px solid #aaa;
+}
+
+.recurrence-range-container {
+    flex: 1;
+}
+
+.recurrence-range{
+    display: flex;
+}
+
+.recurrence-range .recurrence-start, .recurrence-range .recurrence-end {
+    flex: 1;
+    padding: 0 25px;
+}*/
+    .recurrence-pattern ul {
+        margin: 0
+    }
+
+
+
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+    .lds-ellipsis div {
+        position: absolute;
+        top: 27px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #fff;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+        .lds-ellipsis div:nth-child(1) {
+            left: 6px;
+            animation: lds-ellipsis1 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(2) {
+            left: 6px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(3) {
+            left: 26px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(4) {
+            left: 45px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(19px, 0);
+    }
+}
+

@@ -1,0 +1,218 @@
+﻿ #external-events {
+        /*float: left;*/
+        width: 250px;
+        /*padding: 0 10px;*/
+        /*border: 1px solid #ccc;*/
+        /*background: #eee;*/
+        text-align: left;
+        margin: auto;
+        
+    }
+
+    #external-events h4 {
+        font-size: 16px;
+        margin-top: 0;
+        padding-top: 1em;
+        color: #eee;
+    }
+
+    #external-events .fc-event {
+        margin: 10px 0;
+        cursor: pointer;
+        padding: 10px;
+        box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.1);
+        background-color: white;
+        color: black;
+    }
+
+    #external-events p {
+        margin: 1.5em 0;
+        font-size: 11px;
+        color: #666;
+    }
+
+    #external-events p input {
+        margin: 0;
+        vertical-align: middle;
+    }
+
+    .checklist-schedule-wrapper {
+        /*width: 100vw;*/
+        display: flex;
+        flex-direction: column;
+        /*position: absolute;*/
+        top: 0;
+        bottom: 0;
+        left: 0;
+        background: seagreen;
+        height: calc(100vh - 64px);
+    }
+
+    .schedule-container {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row;
+        min-height: 0;
+    }
+
+    .item {
+    }
+
+.item1 {
+    background: #414141;
+    /*width: 250px;*/
+    flex: 2;
+    flex-shrink: 0;
+    padding: 10px;
+}
+
+    .item2 {
+        background: #fff;
+        width: 500px;
+        flex-grow: 3;
+        flex-shrink: 0;
+        box-sizing: border-box;
+        padding: 20px;
+    }
+
+    .item3 {
+        background: white;
+        /*width: 300px;*/
+        flex: 3;
+        flex-shrink: 0;
+    }
+
+    .location-selection{
+        display:flex;
+        flex-wrap: wrap;
+        flex-direction:column;
+        color:white;
+        width: 250px;
+        margin: auto;
+        margin-bottom:30px;
+
+    }
+
+    .location-item{
+        flex: 1;
+        margin-bottom:10px;
+        padding: 0 10px;
+    }
+    .checklist-to-drag {
+        width: 250px;
+        margin: 0 auto
+    }
+
+    /* For AddScheduleChecklistPartialView*/
+    .add-schedule-checklist-wrapper {
+        padding: 10px;
+    }
+
+.schedule-date {
+    background: #414141;
+    height: 120px;
+    color: white;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .schedule-occurence{
+        display: flex;
+    }
+    .schedule-occurence > div{
+        display:flex;
+        align-items: center;
+        
+    }
+    .schedule-occurence input[type=radio] {
+        margin: 0;
+    }
+.schedule-occurence-text{
+    margin-left:5px;
+}
+
+.repeat-times ul {
+    list-style-type: none;
+}
+
+    .time-selection{
+        display: flex;
+        justify-content:space-between
+    }
+
+    .time-box{
+        width: 71px;
+    }
+    .schedule-buttons{
+        display:flex;
+        justify-content: flex-end;
+        margin-top:10px;
+    }
+
+        .schedule-buttons input{
+            /*border:none;
+            padding:4px 8px;*/
+            margin-left:10px;
+            color:white;
+            /*box-shadow:1px 1px 1px 1px rgba(0, 0, 0, 0.1);*/
+            
+        }
+
+        .add-view-tab {
+            display: flex;
+            cursor: pointer;
+        }
+    .add-view-tab > div {
+        flex: 1;
+        padding: 10px;
+    }
+
+/* For View Tiles ScheduleChecklistPartialView*/
+.scheduled-checklist, .scheduled-draft {
+    width: 270px;
+    /*height: 80px;*/
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    display: flex;
+    background: white;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    font-family: Tahoma
+}
+.schedule-details{
+    flex:1;
+}
+.scheduled-checklist .schedule-color-tag {
+    width: 5px;
+    background-color: dodgerblue;
+}
+
+.scheduled-draft .schedule-color-tag {
+    width: 5px;
+    background-color: coral;
+}
+.schedule-details {
+    display: flex;
+    flex-direction: column;
+    padding-left:5px;
+}
+
+.schedule-checklist-name {
+    font-size: 1.1em;
+}
+.schedule-area, .schedule-supervisor-name {
+    font-size: 0.8em;
+}
+.schedule-datetime {
+    display: flex;
+    font-size: 0.9em;
+    justify-content: space-between;
+    padding-right:10px;
+}
+
+.add-schedule-rightview{
+    position:relative;
+    left:10px;
+    bottom: 20px;
+}

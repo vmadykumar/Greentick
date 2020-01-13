@@ -1,0 +1,901 @@
+﻿<style>
+    #ms-my-select {
+        width: 100%;
+        padding-top: 10px;
+    }
+
+    .ms-container .ms-list {
+        height: 150px !important;
+    }
+
+
+    input:focus {
+        box-shadow: none !important;
+        border-bottom: 2px solid rgba(0,0,0,.7) !important;
+    }
+
+    .input-field {
+        margin-bottom: 0;
+    }
+
+    /* Select2 Dropdowns custom CSS*/
+    .select2-selection:focus {
+        box-shadow: none !important;
+        border-bottom: 2px solid rgba(0,0,0,.7) !important;
+    }
+
+    .select2-selection, input {
+        border: none !important;
+        border-radius: unset !important;
+        box-shadow: none !important;
+        border-bottom: 2px solid rgba(0,0,0,.2) !important;
+        border-bottom-width: 2px !important;
+        border-bottom-style: solid !important;
+        border-bottom-color: rgba(0, 0, 0, 0.2) !important;
+        color: #555 !important;
+    }
+
+    #DayCount {
+        width: 30px;
+        height: 20px;
+    }
+
+    #DayOfMonth {
+        width: 40px;
+        height: 20px;
+    }
+
+    #MonthCount {
+        width: 40px;
+        height: 20px;
+    }
+
+    #WeekCount {
+        width: 40PX;
+        height: 20px;
+    }
+
+    .select2-results__option--highlighted[aria-selected] {
+        background-color: #414960 !important;
+        color: white !important;
+    }
+
+    /*.select2 select2-container select2-container--default select2-container--focus {
+        width: 50px;
+        background-color: #414960 !important;
+        color: white !important;
+    }*/
+    /* Select2 Dropdowns custom CSS ends here*/
+    .audit-title-div, .form-buttons-div {
+        margin-bottom: 0 !important;
+    }
+
+    .ms-hover {
+        background-color: #414960 !important;
+        color: white !important;
+    }
+
+    .highlight {
+        /*border: 2px solid black;*/
+        background-color: #fffa90;
+    }
+
+    /* Style of the validation text that appear under the fields*/
+    .validation-text {
+        font-size: 75%;
+        color: red;
+    }
+
+    .modal-content {
+        background: white;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .expiry-time.flatpickr-input {
+        background: #ddd !important;
+    }
+
+    /* Aligment fix for the Repeat Monthly dropdowns*/
+    #RepeatModal .recur-monthly .monthly-week .select2-selection__rendered {
+        padding-left: 0;
+        line-height: 1.9;
+        font-size: 16px;
+    }
+
+    #RepeatModal .recur-monthly .monthly-week .input-field {
+        width: 150px;
+    }
+
+    #RepeatModal .recur-monthly label,
+    #RepeatModal .recur-daily label {
+        font-size: 16px;
+    }
+
+    #RepeatModal .recur-weekly-day-options label span {
+        padding-right: 30px;
+    }
+
+    #RepeatModal .schedule-time table tbody tr input {
+        /*padding: 10px 25px;*/
+        height: 30px;
+    }
+
+    .clear-sub-area {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        z-index: 1;
+    }
+
+        .clear-sub-area i {
+            cursor: pointer;
+            background-color: rgba(0,0,0,0.87);
+            border-radius: 50%;
+            color: white;
+        }
+
+    .parent-recurrence-start-time {
+        position: relative;
+    }
+
+    .parent_startTime {
+        position: relative;
+    }
+
+    .parent-recurrence-end-time {
+        position: relative;
+    }
+
+    .parent_endTime, .parent_startTime {
+        position: relative;
+    }
+
+    .parent-recurrence-start-time .flatpickr-calendar {
+        top: 37px !important;
+        left: 0 !important;
+        width: 140px !important;
+    }
+
+    .parent-recurrence-end-time .flatpickr-calendar {
+        top: 37px !important;
+        left: 0 !important;
+        width: 140px !important;
+    }
+
+    .parent_startTime .flatpickr-calendar {
+        top: -300px !important;
+        left: 0px !important;
+        right: auto;
+    }
+
+    .parent_endTime .flatpickr-calendar {
+        top: -300px !important;
+        left: 0px !important;
+        right: auto;
+    }
+    .flatpickr-months .flatpickr-month {
+        height: 33px;
+        font-size: 13px;
+    }
+   
+    
+    .jconfirm-holder {
+        margin: auto;
+        width: 500px
+    }
+    /* Card Style of the Audit*/
+    .table-card-data {
+        font-size: 12px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .table-card-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        font-weight: 500;
+        color: #999;
+    }
+
+    .table-card-title {
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 15px;
+    }
+
+    .col-align-card {
+        padding: 0 !important;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+<link href="~/Areas/SchedulingMgmt/Content/CSS/ScheduleAudit/ScheduleAudit.css" rel="stylesheet" />
+
+
+<div class="row" style="color: #4a4a4a; font-size:1.7em; position:relative;margin-bottom: 0px;margin-top: -40px">
+    <div class="col l10 s10 m10 form-header">
+        <span class="audit-schedule-date"></span>, <span class="audit-schedule-day"></span>
+    </div>
+    <div class="col l2 s2 m2 right-align">
+        <a class="btn-floating waves-effect waves-light red view-schedule-rightview tooltipped" @*data-position="top" data-tooltip="Create audit for the selected date"*@ title="View all the schedules for the day" @*style="position:absolute; left:15px; bottom: -20px;"*@><i class="material-icons">schedule</i></a>
+    </div>
+</div>
+
+<div style="height: calc(100vh - 160px);overflow-y: auto;overflow-x: hidden;">
+    <div class="card" style="padding: 10px 0;">
+        <div class="row audit-title-div">
+            <div class="row schedule-location-row">
+                <div class="col s10 offset-s1">
+                    <div class="input-field">
+                        <input id="AuditTitle" data-required validation-msg="Please enter the Audit Title" placeholder="Title" type="text" class="validate audit-name" name="AuditName" style="border-bottom: 2px solid rgba(0,0,0,.2);border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: rgba(0, 0, 0, 0.2);">
+                        <label for="AuditTitle" class="active" style=" font-weight: 400; line-height: 1.8; color: #0a0a0a;">Title</label>
+                        <span class="audit-name-validation-msg validation-text hidden"></span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row schedule-select-auditor-div">
+            <div class="row schedule-city-row">
+                <div class="col s10 offset-s1">
+                    City
+                    <select id="ScheduleCity" data-required validation-msg="Please select the city" class="schedule-city js-states" style="width:100%; border:none" name="AuditCity"></select>
+                    <span class="city-validation-msg validation-text hidden"></span>
+                </div>
+            </div>
+            <div class="row schedule-location-row">
+                <div class="col s10 offset-s1">
+                    Location
+                    <select disabled id="ScheduleLocation" data-required validation-msg="Please select the location" class="schedule-location js-states" style="width:100%; border:none" name="AuditLocationCode">
+                        <option></option>
+
+                    </select>
+
+                    <span class="location-validation-msg validation-text hidden"></span>
+                    <input type="hidden" id="PreSelectedScheduleLocation" />
+                </div>
+            </div>
+            <div class="row schedule-auditor-row">
+                <div class="col s10 offset-s1">
+                    @*Auditor*@User
+                    <select disabled id="ScheduleAuditorDropdown" data-required validation-msg="Please select the Auditor" name="AssignedToUserUUID" class="schedule-select-auditor js-states" style="width:100%;border:none">
+                        <option></option>
+
+                    </select>
+                    <span class="auditor-validation-msg validation-text hidden"></span>
+                </div>
+            </div>
+
+            <!-- -->
+            <div class="row area-checklist-select-div">
+                <div class="col s10 offset-s1">
+                    <a class="waves-effect waves-light btn modal-trigger" href="#areas_and_checklists" style="color: #4b7ab1;">Add Area and Checklist</a>
+                    <div class="area-modal-validation-msg validation-text hidden">Please add atleast one checklist</div>
+                    <div class="secondary-content" style="color:#4b7ab1"><span class="selected-area-count">0</span> AREA(S) ADDED</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="HiddenFormFields" hidden>
+        <input name="AuditFBO" style="visibility:hidden" />
+        <input name="AuditImage" style="visibility:hidden" />
+        <input name="AuditCity" style="visibility:hidden" />
+        <input name="CreatedDateTime" style="visibility:hidden" value="@DateTime.Now" />
+        <input name="AuditStatus" style="visibility:hidden" value="Active" />
+        <input name="AuditType" style="visibility:hidden" value="Internal" />
+        <input name="AuditCategory" style="visibility:hidden" value="Internal" />
+        <input name="AuditLocation" style="visibility:hidden" />
+        <input name="AssignedToUserName" style="visibility:hidden" />
+        <input name="CreatedBy" style="visibility:hidden" />
+    </div>
+
+    <div class="card" style="padding: 10px 0;">
+        <!--
+            <div class="row time-frequency-radio-div">
+                <div class="col s10 offset-s1">
+                    Frequency
+                    <div class="schedule-occurence row" style="margin-bottom: 0;">
+                        <div class="col s6">
+                            <label>
+                                <input type="radio" name="auditFrequency" value="once" class="schedule-occurence-option with-gap" checked />
+                                <span class="schedule-occurence-text">Once</span>
+                            </label>
+                            <span></span>
+                        </div>
+                        <div class="col s6">
+                            <label>
+                                <input type="radio" name="auditFrequency" value="repeat" class="schedule-occurence-option with-gap" />
+                                <span class="schedule-occurence-text with-gap" @*style="cursor: not-allowed;"*@>Repeat</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        -->
+        <div class="audit-repeat-time row" style="display:none">
+            <div class="">
+                <div class="col s10 offset-s1" style="margin-bottom:20px;">
+                    <select class="occurence-select" style="width:100%">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col s10 offset-s1" style="padding: 0">
+                <div class="col s3">Ends On :</div>
+                <div class="col s9">
+                    <input name="repeatEnd" value="" class="repeat-end-time time-box" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="time-selection row ">
+            <div class="col s12 m10 offset-m1 l10 offset-l1 " style="padding: 0">
+                <div class="time-dropdown-container">
+                    <div class="time-box col s10 offset-s1 m12 l4 ">
+                        <div class="parent_startTime">
+                            Starts at: <input data-required validation-msg="Please enter the Audit Start Time" name="AuditScheduledStartDateTime" value="" class="start-time" placeholder="Pick Date & Time" />
+                        </div>
+                        @*<input type="hidden" name="AuditScheduledStartDateTime" value="" />*@
+                        <div class="col s12 l12">
+                            <div class="audit-start-time-validation-msg" style=" color:red; font-size: 75%"></div>
+                            <div class="start-time-validation-msg validation-text hidden"></div>
+                        </div>
+                    </div>
+                    <div class="time-box col s10 offset-s1 m12 l4">
+                        @*<div class="col s12 l12">*@
+                        <div class="parent_endTime">
+                            Ends at : <input data-required validation-msg="Please enter the Audit End Time" name="AuditScheduledEndDateTime" value="" class="end-time " placeholder="Pick Date & Time" />
+                        </div>
+                        @*</div>
+                            <div class="col s12 l12">*@
+                        <div class="audit-time-validation-msg" style=" color:red; font-size: 75%"></div>
+                        <div class="end-time-validation-msg validation-text hidden"></div>
+                        @*</div>*@
+                    </div>
+                    <div class="time-box col s10 offset-s1 m12 l4">
+
+                        @*<div class="col s12 l12">*@
+                        Expires at: <input data-required validation-msg="Please enter the Audit Expiry Time" name="AuditExpiryDateTime" value="" class="expiry-time " placeholder="Pick Date & Time" disabled />
+                        @*</div>
+
+                            <div class="col s12 l12">*@
+                        @*<div class="col s12 l12" style="padding: 0 ;">*@
+                        <div class="audit-expiry-time-validation-msg" style=" color:red; font-size: 75%"></div>
+                        <div class="expiry-time-validation-msg validation-text hidden"></div>
+                        @*</div>*@
+                        @*</div>*@
+                    </div>
+                </div>
+                <div class="recurrence-msg hidden">
+
+                </div>
+            </div>
+            <div class="col s10 offset-s1" style="padding: 0 ; color:red; font-size: 75%">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m10 offset-m1 l10 offset-l1 " style="padding: 0">
+                <a class="waves-effect waves-light btn modal-trigger repeat-modal-btn" href="#RepeatModal" style="color: #4b7ab1;">Make Reccuring</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal To Select Areas and the Checklists -->
+    <div id="areas_and_checklists" class="modal modal-fixed-footer" style="max-height:200%;height:80%">
+        <div class="modal-content" style="overflow:hidden">
+            <h5 style="margin-top:0;margin-bottom:9px">Add Area and Checklists</h5>
+            <div class="row areas_and_checklists" style="height:calc(100% - 25px)">
+
+                <div class="col l8" style="margin-left:-15px">
+                    <fieldset style="height:380px;width:630px">
+                        <legend> Select Area and Checklists</legend>
+                        <div class="row">
+
+                            <div class="col s12 l6">
+                                Area
+                                <select disabled id="ScheduleArea" data-required validation-msg="Please select the Area" class="schedule-area js-states" style="width:100%">
+
+                                    @*<option>yo yo</option>
+                                        <option>bo bo</option>*@
+                                </select>
+                                <span class="area-validation-msg validation-text hidden"></span>
+                            </div>
+
+                            <div class="col s12 l6">
+                                Sub Area
+                                <select disabled id="ScheduleSubArea" data-required validation-msg="Please select the Sub Area" class="schedule-subarea js-states" style="width:100%">
+
+                                    @*<option>yo yo</option>
+                                        <option>bo bo</option>*@
+                                </select>
+                                <span class="subarea-validation-msg validation-text hidden"></span>
+                            </div>
+
+                            <div class="col s12 l6" style="color:red; font-size: 75%">
+                                <div class="audit-area-validation-msg"></div>
+                            </div>
+                            <div class="col s12 l6" style="color:red; font-size: 75%">
+                                <div class="audit-subarea-validation-msg"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <select multiple="multiple" data-required validation-msg="Please Select the Checklists" id="my-select" style="">
+                                    @*<option>yo yo</option>
+                                        <option>bo bo</option>*@
+                                </select>
+                            </div>
+                            <div class="col s12 l6" style="color:red; font-size: 75%">
+                                <div class="audit-checklists-validation-msg"></div>
+                            </div>
+                        </div>
+                        <div class="row right-align">
+                            <div class="col l12">
+                                <a href="#" class="btn btn-small area-checklist-add-btn" style="color: #4b7ab1;">Add</a>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+
+                <div class="col l4 " style="height: 100%;margin-right:-10px;margin-left:25px">
+                    <fieldset style="height:380px">
+                        <legend>Selected Area and Checklists</legend>
+                        <div class="row" style="height: calc(100% - 30px);overflow: auto;">
+                            <div class="added-area-checklist"></div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+
+            <a href="#!" class="modal-close waves-effect waves-light btn select-repeat-cancel" style="color:#b92727">Cancel</a>
+            @*<a href="#!" class="waves-effect waves-green btn-flat select-checklists-clear">Clear</a>*@
+            <a href="#!" class="modal-close waves-effect waves-light btn select-checklists-done" style="color: #4b7ab1">Done</a>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="RepeatModal" class="modal modal-fixed-footer" style="width: 58%; max-height: 200%; height: 85%;">
+        <div class="modal-content" style="overflow:hidden">
+            <h5 style="margin-top:0;margin-bottom:9px">Make Reccuring</h5>
+            <div class="row schedule-recurrence">
+                <div class="recurrence-time-container">
+
+                    <fieldset style="height: 120px;">
+                        <legend>Schedule Time</legend>
+                        <div class="row schedule-time">
+                            <div class="col l6 m12 m12 time-field">
+
+                                <table>
+                                    <tr>
+                                        <td style="color: gray">Start</td>
+                                        <td>:</td>
+                                        <td>
+                                            <!--<select class="recurrence-start-time" key-identifier="startTime" style="width:100%">
+                                              @*<option></option>*@
+                                            </select>
+                                                -->
+                                            <div class="parent-recurrence-start-time">
+                                                <input type="text" key-identifier="startTime" value="" class="recurrence-start-time" />
+                                            </div>
+                                        </td>
+                                        @*<td><input type="text" name="name" value="" id="" class="recurrence-start-time" key-identifier="startTime"/></td>*@
+                                    </tr>
+
+                                    <tr>
+                                        <td style="color: gray">Expiry</td>
+                                        <td>:</td>
+                                        <td>
+                                            @*<select class="recurrence-expiry-time" key-identifier="expiryTime" style="width:100%" disabled>
+                                                    <option></option>
+                                                </select>*@
+                                            <input disabled type="text" key-identifier="expiryTime" value="" class="recurrence-expiry-time" style="background-color:gainsboro" />
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col l6 m12 m12 duration-field">
+                                <table>
+                                    <tr>
+                                        <td style="color: gray">End</td>
+                                        <td>:</td>
+                                        <td>
+                                            <!--<select class="recurrence-end-time" key-identifier="endTime" style="width:100%">
+                                                @*<option></option>*@
+                                            </select>
+                                                -->
+
+                                            <div class="parent-recurrence-end-time">
+                                                <input type="text" key-identifier="endTime" value="" class="recurrence-end-time" />
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    @*<tr><td><br /><br /></td></tr>*@
+                                    <tr>
+                                        <td style="color: gray">Duration</td>
+                                        <td>:</td>
+                                        <td>
+                                            <select class="recurrence-schedule-duration" key-identifier="startTime" style="width:100%">
+                                                @*<option></option>*@
+                                            </select>
+                                            <input type="hidden" id="userSelectedDurationValue" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        @*<div id="duration" title="set valid duration">
+                                <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+                            </div>*@
+
+                    </fieldset>
+
+
+                </div>
+
+                <div class="recurrence-pattern-container">
+                    <fieldset style="height: 190px;">
+                        <legend>Recurrence Pattern</legend>
+                        <div class="row recurrence-pattern">
+                            <div class="col l3 m6 m6 recurrence-options">
+                                <div class="row">
+                                    <div class="col l1 m3 m3">
+
+                                    </div>
+                                    <div class="col l2 m3 m3">
+                                        <div class="row">
+                                            <label>
+                                                <input type="radio" name="RepeatType" value="daily" class="with-gap" checked />
+                                                <span>Daily</span>
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <label>
+                                                <input type="radio" name="RepeatType" value="weekly" class="with-gap" />
+                                                <span>Weekly</span>
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <label>
+                                                <input type="radio" name="RepeatType" value="monthly" class="with-gap" />
+                                                <span>Monthly</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                @*<li>
+                                        <label>
+                                            <input type="radio" name="RepeatType" value="yearly" class="with-gap" disabled style="cursor: not-allowed;"/>
+                                            <span style="cursor: not-allowed;">Yearly</span>
+                                        </label>
+                                    </li>*@
+
+                            </div>
+
+                            <div class="col l9 m6 m6 recurrence-values">
+                                <div class="recurrence-value-item recur-daily">
+
+                                    <div class="row">
+                                        <div class="col s12 l12 m12">
+
+                                            <label>
+                                                <input type="radio" name="DailyRecur" value="daily" class=" with-gap" checked />
+                                                <span>
+                                                    Every
+                                                </span>
+                                                <span class="input-field inline">
+                                                    <input id="DayCount" type="number" class="validate day-interval-count" value="1" min="1" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                                                </span>
+                                                day
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l12 m12 s12">
+                                            <label>
+                                                <input type="radio" name="DailyRecur" value="weekday" class=" with-gap" />
+                                                <span>Weekday</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="recurrence-value-item recur-weekly hidden">
+                                    <div class="row">
+                                        <div class="col s12" style="color:#9e9e9e;">
+                                            Every
+                                            <div class="input-field inline">
+                                                <input id="WeekCount" type="number" class="validate week-interval-count" value="1" min="1" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                                            </div>
+                                            week(s) on
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col s12 recur-weekly-day-options">
+                                            <div class="row">
+                                                <div class="col s3">
+                                                    <label>
+                                                        <input type="checkbox" name='WeeklyDays' class="filled-in day-of-week" value="Sunday" data-required />
+                                                        <span>Sunday</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s3">
+                                                    <label>
+                                                        <input type="checkbox" name='WeeklyDays' class="filled-in day-of-week" value="Monday" data-required />
+                                                        <span>Monday</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s3">
+                                                    <label>
+                                                        <input type="checkbox" name='WeeklyDays' class="filled-in day-of-week" value="Tuesday" data-required />
+                                                        <span>Tuesday</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s3">
+                                                    <label>
+                                                        <input type="checkbox" name='WeeklyDays' class="filled-in day-of-week" value="Wednesday" data-required />
+                                                        <span>Wednesday</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s3">
+                                                    <label>
+                                                        <input type="checkbox" name='WeeklyDays' class="filled-in day-of-week" value="Thursday" data-required />
+                                                        <span>Thursday</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s3">
+                                                    <label>
+                                                        <input type="checkbox" name='WeeklyDays' class="filled-in day-of-week" value="Friday" data-required />
+                                                        <span>Friday</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s3">
+                                                    <label>
+                                                        <input type="checkbox" name='WeeklyDays' class="filled-in day-of-week" value="Saturday" data-required />
+                                                        <span>Saturday</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col s3">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 recurrence-weekly-days validation-text hidden" @*style="padding-left: 25px;*@ ">
+                                            Please check at least one day
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="recurrence-value-item recur-monthly hidden">
+                                    @*<div class="row">
+                                            <div class="col s12">
+                                                Day
+                                                <div class="input-field inline">
+                                                    <input id="DayOfMonth" type="number" class="validate month-schedule-date" value="1" min="1" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                                                </div>
+                                                of every
+                                                <div class="input-field inline">
+                                                    <input id="MonthCount" type="number" class="validate month-interval-count" value="1" min="1" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                                                </div>
+                                                month
+                                            </div>
+                                        </div>*@
+                                    <div class="row monthly-day">
+                                        <div class="col s12 l12 m12">
+
+                                            <label>
+                                                <input type="radio" name="MonthlyRecur" value="monthly-date" class=" with-gap" checked />
+                                                <span>
+                                                    Day
+                                                </span>
+                                                <span class="input-field inline">
+                                                    <input id="DayOfMonth" type="number" class="validate month-schedule-date" value="1" min="1" max="31" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+
+                                                </span>
+                                                of every
+                                                <span class="input-field inline">
+                                                    <input id="MonthCount" type="number" class="validate month-interval-count" value="1" min="1" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+
+                                                </span>
+                                                month
+
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row monthly-week">
+                                        <div class="col l12 m12 s12">
+                                            <label>
+                                                <input type="radio" name="MonthlyRecur" value="monthly-day" class=" with-gap" />
+                                                <span>The</span>
+                                                @*</label>*@
+                                                <span class="input-field inline" style="width:120px; height: 45px">
+                                                    <select class="month-select-day-interval" style="width:100%">
+                                                        <option value="1">First</option>
+                                                        <option value="2">Second</option>
+                                                        <option value="3">Third</option>
+                                                        <option value="4">Fourth</option>
+                                                        <option value="5">Last</option>
+                                                    </select>
+                                                </span>
+                                                <span class="input-field inline" style="width: 120px;height:45px">
+                                                    <select class="month-select-day" style="width:100%">
+                                                        <option value="Monday">Monday</option>
+                                                        <option value="Tuesday">Tuesday</option>
+                                                        <option value="Wednesday">Wednesday</option>
+                                                        <option value="Thursday">Thursday</option>
+                                                        <option value="Friday">Friday</option>
+                                                        <option value="Saturday">Saturday</option>
+                                                        <option value="Sunday">Sunday</option>
+                                                    </select>
+                                                </span>
+                                                of every
+                                                <span class="input-field inline" style="width: auto">
+                                                    <input id="MonthCount" type="number" class="validate month-custom-interval-count" value="1" min="1" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+
+                                                </span>
+                                                month
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="recurrence-value-item recur-yearly hidden">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            Recur every year
+                                            <div class="input-field inline">
+                                                <input id="YearCount" type="number" class="validate">
+                                            </div>
+                                            on
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+
+                <div class="recurrence-range-container" style="height:60px">
+                    <fieldset>
+                        <legend>Range of Recurrence</legend>
+                        <div class="row recurrence-range" style="margin-bottom: 0;">
+                            <div class="col l6 m12 s12 recurrence-start">
+                                <table>
+                                    <tr>
+                                        <td style="color: gray">Start</td>
+                                        <td>:</td>
+                                        <td><input type="text" data-required validation-msg="Please enter the Recurrence Start Date" name="name" value="" class="recurrence-start-date" key-identifier="recurrenceStartDate" /></td>
+                                    </tr>
+                                </table>
+                                <div class="recurrence-start-date-validation-msg validation-text" style="padding-left: 25px;"></div>
+                                <div class="recurrence-date-validation-msg validation-text" style="padding-left: 25px;"></div>
+                            </div>
+                            <div class="col l6 m12 s12 recurrence-end">
+                                <table>
+                                    <tr>
+                                        <td style="color: gray;white-space: nowrap">End By</td>
+                                        <td>:</td>
+                                        <td><input data-required validation-msg="Please enter the Recurrence End Date" type="text" name="name" value="" class="recurrence-end-date" key-identifier="recurrenceEndDate" /></td>
+
+                                    </tr>
+                                    @*<input type="text" data-required validation-msg="Please enter the Recurrence End Date" value="" class="recurrence-end-date" placeholder="Pick Recurrence End Date" key-identifier="recurrenceEndDate" />
+                                        <div class="recurrence-end-date-validation-msg validation-text hidden"></div>*@
+                                    <!--<tr>
+                                        <td>End After</td>
+                                        <td>
+                                            <div class="col s12">
+
+                                                <div class="input-field inline">
+                                                    <input id="RecurrenceCount" type="number" class="validate recurrence-count">
+                                                </div>
+                                                Occurences
+                                            </div>
+                                        </td>
+                                        @*<td><input type="text" name="name" value="" />occurences</td>*@
+                                    </tr>
+                                        -->
+                                </table>
+
+                                @*</table>*@
+                                <div class="recurrence-end-date-validation-msg validation-text" style="padding-left: 25px;"></div>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-light btn cancel-repeat-dialog" style="color:#b92727">Cancel</a>
+            <a href="#!" class="waves-effect waves-light btn clear-repeat" style="color:black">Reset</a>
+            <a href="#!" class="waves-effect waves-light btn set-repeat" style="color:#4b7ab1">Done</a>
+        </div>
+    </div>
+
+
+
+    <!-- Submit and Cancel Buttons -->
+    <div class="" style="padding: 10px 0;">
+        @*@Html.DropDownList("FromJson", new SelectList(Enumerable.Empty<SelectListItem>()), new { @name = "loc" })*@
+
+        <div class="row right-align form-buttons-div">
+            <div class="col s11 l11 offset-s1">
+                @*<input type="submit" class="btn btn-waves btn-light red" name="name" value="Cancel" />
+                    <input type="submit" class="btn btn-waves btn-light " name="name" value="Draft" style="background-color:#2980b9" />
+                    <a href="#" class="btn btn-waves btn-light waves-effect waves-light btn-small" name="name" value="Publish" style="background-color:white;" />Publish</a>*@
+                @*<a class=" waves-effect waves-red btn-medium" href="#" style="background-color:white;">Wave</a>*@
+                <button class="audit-form-reset-btn btn waves-effect waves-light waves-red" type="reset" name="action" style="color: #b92727;">
+                    CANCEL
+                    <i class="material-icons right">cancel</i>
+                </button>
+                @*<button class="btn waves-effect waves-light orange" type="submit" name="action">
+                        DRAFT
+                        <i class="material-icons right">save</i>
+                    </button>*@
+                <button class="audit-form-submit-btn btn waves-effect waves-light waves-teal" type="submit" name="action" style="color: #4b7ab1;">
+                    PUBLISH
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hidden Fields-->
+@*<div class="audit-hidden-fields">
+        <input type="hidden" value="" id="start_date" />
+        <input type="hidden" name="CreatedDate" value="" id="created_date" />
+    </div>*@
+<!-- Hidden Fields End-->
+
+<script>   
+    $(function () {
+        $('.modal').modal();
+
+            //$('.tooltipped').tooltip();
+        @*$("#ScheduleAuditSideDiv").on('change', '.schedule-location', function () {
+            let locationName = $(this).children('option:selected').text();
+
+            let cityValue = '@System.Configuration.ConfigurationManager.AppSettings["locationName"].ToString()';
+            $('[name=AuditCity]').val(cityValue);
+
+        }*@
+
+    })
+
+</script>
+
+
+

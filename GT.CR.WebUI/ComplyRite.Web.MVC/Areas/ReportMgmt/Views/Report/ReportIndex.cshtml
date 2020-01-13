@@ -1,0 +1,72 @@
+﻿@model ComplyRite.Web.MVC.Areas.ReportMgmt.Models.AuditReport
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/Chart.bundle.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/chartjs-plugin-datalabels.js"></script>
+<script src="~/Areas/ReportMgmt/Scripts/ReportMgmtController.js"></script>
+@*<script src="~/Areas/ReportMgmt/Scripts/CommonServiceUtils.js"></script>*@
+<link href="~/Areas/ReportMgmt/Content/CSS/Report.css" rel="stylesheet" />
+<link href="~/Scripts/chartist.min.css" rel="stylesheet" />
+<script src="~/Scripts/chartist.min.js"></script>
+<script src="~/Scripts/chartist-bar-labels.js"></script>
+<script src="~/Common/Scripts/CommonServiceUtils.js"></script>
+@*<script src="~/Scripts/jspdf.min.js"></script>
+    <script src="~/Scripts/AddHTML.js"></script>*@
+<script src="~/Scripts/html2canvas.js"></script>
+
+<meta name="viewport" content="width=500, initial-scale=1.0">
+<div id="ReportIndexMainId" class="ReportIndexMainClass container">
+
+    @******************************/ SECTION – Introduction /****************************@
+    <div class="wrapper col-lg-12 introductionIndex" id="introductionIndex">
+        <div class="col-lg-12">
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/Introduction/_IntroductionIndex.cshtml", Model)
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    @***********************************************************************************@
+
+    @***************/ SECTION – AUDIT VERIFICATION FOR HYGIENE RATING /*****************@
+    <div class="wrapper col-lg-12 hygieneRatingIndex" id="hygieneRatingIndexId">
+        <div class="col-lg-12">
+            @*@if (Model.Sections.Count() > 1 && Model.Sections.ElementAt(1) != null)*@
+            @if (Model.Sections.Where(x => x.SectionName.ToLower() == "mandatory").Count() > 0)
+            {
+                @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForHygieneRating/_HygieneRatingIndex.cshtml", Model.Sections.ElementAt(1))
+            }
+        </div>
+    </div>
+    @***********************************************************************************@
+    <hr class="hr-css-class" />
+
+    @*********/ SECTION – AUDIT VERIFICATION FOR RESPONSIBLE PLACE TO EAT /*************@
+    <div class="wrapper col-lg-12">
+
+        @*@if (Model.Sections.Count() > 0 && Model.Sections.FirstOrDefault() != null)*@
+        @if (Model.Sections.Where(x => x.SectionName.ToLower() == "voluntary").Count() > 0)
+        {
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForRespPlaceToEat/_ResponsiblePlaceToEatIndex.cshtml", Model.Sections.FirstOrDefault())
+        }
+    </div>
+    @***********************************************************************************@
+    <hr class="hr-css-class" />
+
+
+    @**************************/ SECTION – HYGIENE RATING  /****************************@
+    <div class="wrapper col-lg-12 hidden">
+        @Html.Partial("~/Areas/ReportMgmt/Views/Report/HygieneRating/HygieneRatingIndex.cshtml", Model)
+    </div>
+    <br />
+    @***********************************************************************************@
+
+</div>
+
+<div id="hiddenPrintDiv1" style="display:none;">
+
+</div>
+
+

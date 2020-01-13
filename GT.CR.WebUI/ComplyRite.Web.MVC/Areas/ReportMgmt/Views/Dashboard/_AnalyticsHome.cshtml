@@ -1,0 +1,31 @@
+﻿@*@{
+        Layout = null;
+    }*@
+
+@{
+    string jsURL = System.Configuration.ConfigurationManager.AppSettings["TableauJSURL"];
+    string dashName = System.Configuration.ConfigurationManager.AppSettings["DashboardName"];
+    string reportEnv = System.Configuration.ConfigurationManager.AppSettings["ReportEnv"];
+   
+}
+
+<script>
+    Header = {
+        'UserName':'@ViewBag.UserName',
+        'UUID':'@ViewBag.UUID',
+        'UserId': '@ViewBag.UserId',
+        'LOBCode': '@ViewBag.LOBCode',
+        'ModuleCode':'@ViewBag.ModuleCode'
+    };
+    //userLocations =;
+    console.log(userLocations);
+</script>
+
+<script src="@jsURL"></script>
+<div class="wrapper home-page ng-scope" ng-controller="HomeController" style="padding-top: 0px;">
+    <div id="tableauViz" style="width:100%; height: calc(100vh - 63px); overflow:auto; " dash-name="@dashName" dash-env="@reportEnv" user-locations="@ViewBag.userLocations">
+    </div>
+</div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script src="~/Areas/ReportMgmt/Scripts/DashboardFetcher.js"></script>
+

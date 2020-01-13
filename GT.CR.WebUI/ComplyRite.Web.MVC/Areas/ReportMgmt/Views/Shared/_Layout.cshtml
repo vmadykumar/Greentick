@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greentick</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top navbar-custom-css">
+        <div class="container">
+            <img src="/Areas/ReportMgmt/Content/Images/WaterMarkLogo.png" class="responsive nav-bar-greentickLogo hidden" id="navbar-greentickLogoId" />
+            @*<span style="cursor: pointer;color: white;margin-top: 1%;font-size: large;" class="pull-right" onclick="printReportData()">Download <img class="responsive nav-bar-pdf" src="~/Areas/ReportMgmt/Content/Images/pdf.png" /></span>*@
+            <div class="navbar-header">                           
+                @Html.ActionLink("Report", "Index", "Home", new { area = "" }, new { @class = "navbar-brand hidden" })
+            </div>
+            <div class="navbar-collapse collapse">              
+            </div>
+        </div>
+    </div>
+    <div class="body-content">
+        @RenderBody()    
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+   @Scripts.Render("~/bundles/bootstrap")   
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

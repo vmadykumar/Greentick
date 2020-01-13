@@ -1,0 +1,108 @@
+﻿@model ComplyRite.Web.MVC.Areas.ReportMgmt.Models.Section
+
+@********* Compliance level for Responsible Place To Eat Graphs ********@
+<div class="col-lg-12 row">
+    <div class="col-lg-10 col-lg-offset-1 col-md-8 col-sm-10 col-xs-12">
+        <h3 class="section-header-css">SECTION - CAFETERIA</h3>
+    </div>
+    @{
+        var totalCheckpoints = Model.AuditAreas.Sum(x => x.TotalCheckpointsPassed) + Model.AuditAreas.Sum(x => x.TotalCheckpointsFailed);
+        //var responsiblePlaceToEatYesData = Model.Round((@Model.AuditAreas.Sum(x => (float)x.TotalCheckpointsPassed) * 100) / (float)totalCheckpoints);
+        //var responsiblePlaceToEatNoData = Model.Round((@Model.AuditAreas.Sum(x => x.TotalCheckpointsFailed) * 100) / totalCheckpoints);
+        var responsiblePlaceToEatYesData = Model.RoundDecimal((@Model.AuditAreas.Sum(x => (decimal)x.TotalCheckpointsPassed) * 100) / (decimal)totalCheckpoints);
+        var responsiblePlaceToEatNoData = 100 - responsiblePlaceToEatYesData;
+    }
+    <div class="col-lg-5 col-lg-offset-4">
+        <canvas id="responsiblePlaceToEat-piechart" responsiblePlaceToEat-yes-data="@responsiblePlaceToEatYesData" responsiblePlaceToEat-no-data="@responsiblePlaceToEatNoData" width="400" height="300" class="canvas-custom-css"></canvas>
+        <span><img id="responsiblePlaceToEat-piechart-img" class="canvasImg-custom-css" /></span>
+    </div>
+</div>
+<br />
+<br />
+<div class="col-lg-12">
+    <div class="col-lg-10 col-md-10 col-xs-11 col-sm-12 col-lg-offset-1">
+        <canvas id="responsiblePlaceToEat-barchart" width="400" height="200" class="canvas-custom-css"></canvas>
+        <span><img id="responsiblePlaceToEat-barchart-img" class="canvasImg-custom-css" /></span>
+
+    </div>
+</div>
+@***********************************************************************@
+
+<div id="responsiblePlaceToEatAuditAreas">
+    @**************** PROMOTE PERSONAL HYGIENE SECTION *****************@
+    <div class="col-lg-12 row">
+        @if (Model.AuditAreas.Count > 0 && Model.AuditAreas.FirstOrDefault() != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-11" id="personalHygiene-header-divId">
+                <h3 class="section-sub-header-class">I. @Model.AuditAreas.FirstOrDefault().AreaOfAudit.ToUpper() </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForRespPlaceToEat/_PromotePersonalHygieneView.cshtml", Model.AuditAreas.FirstOrDefault())
+        }
+    </div>
+    @*******************************************************************@
+
+
+    @***************** PROMOTE HEALTHY EATING SECTION ******************@
+    <div class="col-lg-12 row">
+        @if (Model.AuditAreas.Count > 1 && Model.AuditAreas.ElementAt(1) != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+                <h3 class="section-sub-header-class">II. @Model.AuditAreas.ElementAt(1).AreaOfAudit.ToUpper() </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForRespPlaceToEat/_PromoteHealthyEatingView.cshtml", Model.AuditAreas.ElementAt(1))
+        }
+    </div>
+    @*******************************************************************@
+
+
+    @************** PROMOTE SAFE WATER HANDLING SECTION ****************@
+    <div class="col-lg-12 row">
+        @if (Model.AuditAreas.Count > 2 && Model.AuditAreas.ElementAt(2) != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+                <h3 class="section-sub-header-class">III. @Model.AuditAreas.ElementAt(2).AreaOfAudit.ToUpper()  </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForRespPlaceToEat/_PromoteSafeWaterHandling.cshtml", Model.AuditAreas.ElementAt(2))
+        }
+    </div>
+    @*******************************************************************@
+
+
+    @************** EFFECTIVE COMPLAINT HANDLING SECTION ***************@
+    <div class="col-lg-12 row">
+        @if (Model.AuditAreas.Count > 3 && Model.AuditAreas.ElementAt(3) != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+                <h3 class="section-sub-header-class">IV. @Model.AuditAreas.ElementAt(3).AreaOfAudit.ToUpper() </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForRespPlaceToEat/_EffectiveComplaintHandling.cshtml", Model.AuditAreas.ElementAt(3))
+        }
+    </div>
+    @*******************************************************************@
+
+
+    @************** OPEN KITCHEN OR KITCHEN VISITS SECTION *************@
+    <div class="col-lg-12 row">
+        @if (Model.AuditAreas.Count > 4 && Model.AuditAreas.ElementAt(4) != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+                <h3 class="section-sub-header-class">V. @Model.AuditAreas.ElementAt(4).AreaOfAudit.ToUpper() </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForRespPlaceToEat/_OpenKitchenOrKitchenVisits.cshtml", Model.AuditAreas.ElementAt(4))
+        }
+    </div>
+    @*******************************************************************@
+
+
+    @*********************** DONATE FOOD SECTION ***********************@
+    <div class="col-lg-12 row">
+        @if (Model.AuditAreas.Count > 5 && Model.AuditAreas.ElementAt(5) != null)
+        {
+            <div class="col-lg-10 col-lg-offset-1 col-md-6 col-sm-10 col-xs-12">
+                <h3 class="section-sub-header-class">VI. @Model.AuditAreas.ElementAt(5).AreaOfAudit.ToUpper() </h3>
+            </div>
+            @Html.Partial("~/Areas/ReportMgmt/Views/Report/AuditVerificationForRespPlaceToEat/_DonateFoodView.cshtml", Model.AuditAreas.ElementAt(5))
+        }
+    </div>
+    @*******************************************************************@
+</div>

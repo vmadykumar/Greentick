@@ -1,0 +1,170 @@
+﻿@*@using MVCBreadCrump.Models*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @*<link href="~/Content/Site.css" rel="stylesheet" />*@
+    @*<link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />*@
+    @*<link href="~/Areas/SchedulingMgmt/Content/CSS/Common.css" rel="stylesheet" />*@
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/Content/Materialize/materialize.css" rel="stylesheet" />
+
+    @*<link href="~/Content/Theme/Theme.css" rel="stylesheet" />*@
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+    <style>
+
+
+        /*----for sidenav materialize-------*/
+        .sidenav .collapsible .collapsible-body li {
+            padding-left: 56px;
+        }
+        .sidenav .collapsible .collapsible-header {
+            color: rgba(0, 0, 0, 0.87);
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            height: 48px;
+            line-height: 48px;
+            padding: 0 32px;
+        }
+
+
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css"></script>*@
+            .sidenav .collapsible .collapsible-header > i.material-icons {
+                float: left;
+                height: 48px;
+                line-height: 48px;
+                margin: 0 32px 0 0;
+                width: 24px;
+                color: rgba(0, 0, 0, 0.54);
+            }
+
+    </style>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- FullCalendar library-->
+    <link href="~/Scripts/ScheduleMgmt/fullcalendar.min.css" rel="stylesheet" />
+    <script src="~/Scripts/ScheduleMgmt/jquery.min.js"></script>
+    <script src="~/Scripts/ScheduleMgmt/jquery-ui.min.js"></script>
+
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        .theme-color {
+            background-color: #4b7ab1;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+    @*<div class="">*@
+
+    @* Material Nav bar *@
+    <!--Header-->
+    <!--Primary colour : light-blue darken-4 / Mobile: #4b7ab1-->
+    @*<div class="navbar-fixed ">
+            <nav class="" style="background-color: #4b7ab1">
+                <div class="nav-wrapper">
+                    <span>
+                        <a href="#!" class="brand-logo center">
+                            <img src="~/Areas/SchedulingMgmt/Content/Images/GT_Icon_White.png" style="width:5rem" />ComplyRite
+                        </a>
+                    </span>
+                </div>
+            </nav>
+        </div>*@
+    <header>
+        <nav>
+            <div class="nav-wrapper theme-color">
+                <span>
+                    <img src="~/Areas/SchedulingMgmt/Content/Images/GT_Icon_White.png" style="width:5rem; margin-top: 10px;" />
+                    <a href="#" class="brand-logo">ComplyRite</a>
+                </span>
+            </div>
+        </nav>
+    </header>
+    <!--End of header-->
+
+    <main>
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="page-content">
+                    @Html.MvcSiteMap().SiteMapPath()
+                    <!-- Note that "m8 l9" was added -->
+                    @RenderBody()
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="page-footer" style=" background-color: #4b7ab1;">
+        <div class="">
+            <div class="container">
+                © Copyright 2018 by
+                <a class="grey-text text-lighten-4 right" href="https://www.pratian.com/">Greentick Food Tech PVT India LTD.</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- page-wrapper -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Materialize/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $('.collapsible').collapsible();
+        });
+    </script>
+
+    <!-- MomentJS library-->
+    <script src="~/Scripts/ScheduleMgmt/moment.min.js"></script>
+
+    <script src="~/Scripts/ScheduleMgmt/fullcalendar.min.js"></script>
+
+    <!-- Select2 Library-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <!-- flatpickr library-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>*@
+
+    <!-- multi-select library-->
+    <link href="~/Content/multiSelect/css/multi-select.css" rel="stylesheet" />
+    <script src="~/Content/multiSelect/js/jquery.multi-select.js"></script>
+
+
+</body>
+
+</html>

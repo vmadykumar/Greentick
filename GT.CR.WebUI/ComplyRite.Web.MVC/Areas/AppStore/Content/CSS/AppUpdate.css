@@ -1,0 +1,32 @@
+﻿/*For Large Screen*/
+@media only screen and (min-width: 582px) {
+    .card-header-font {
+        font-size: 2em;
+    }
+}
+
+/*For Tablet-landscape*/
+@media screen and (max-width: 970px) {
+    .card-header-font {
+        font-size: 1.4em !important;
+    }
+}
+
+@media screen and (max-width: 885px) {
+    .card-header-font {
+        font-size: 1.2em !important;
+    }
+}
+
+@media screen and (max-width: 791px) {
+    .card-header-font {
+        font-size: 1.1em !important;
+    }
+}
+
+/*For Mobile*/
+@media screen and (max-width: 466px) {
+    .card-header-font {
+        font-size: 1.3em !important;
+    }
+}
