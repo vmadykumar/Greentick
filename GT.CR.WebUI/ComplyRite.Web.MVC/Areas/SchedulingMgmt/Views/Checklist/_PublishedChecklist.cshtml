@@ -1,0 +1,290 @@
+﻿
+@model IEnumerable<ComplyRite.Web.MVC.Areas.SchedulingMgmt.Models.SchedulingChecklist.ScheduleChecklistModel>
+<style>
+    .row-control > button {
+        margin-Left: 15px;
+    }
+
+    .filter-default {
+        background-color: white;
+    }
+
+    .filter-selected {
+        background-color: #b2dfdb;
+    }
+
+    /*-----------New Table Design--------------*/
+    .page-heading {
+        /*text-transform: uppercase;*/
+        margin-bottom: 0;
+        font-weight: 500;
+        color: #4a4a4a;
+        font-size: 30px;
+        margin-left: 0.2em;
+    }
+
+    .table-card-data {
+        font-size: 12px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .table-card-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        font-weight: 500;
+        color: #999;
+    }
+
+    .table-card-title {
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 15px;
+    }
+</style>
+
+
+<div style="margin-top:1%;padding: 20px;">
+
+    <!-- #region New UI -->
+    <div class="" style="padding: 10px;">
+        <div class="row">
+            <div class="col l10">
+                <div class="page-heading">Published Checklists</div>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="scheduleChecklistBtn" style="color:#4b7ab1">
+                    <i class="material-icons left" style="margin:0px">add</i>
+                </a>
+                <a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="filterBtn" style="color:#4b7ab1">
+                    <i class="material-icons left" style="margin:0px">filter_list</i>
+                </a>
+            </div>
+        </div>
+        @foreach (var item in Model)
+        {
+
+
+        <div class="row card" style="margin:0;padding: 8px 0; margin-bottom: 0.5em; position: relative">
+
+            <div class="col s12 l2">
+                <div class="table-card-title">@item.ChecklistName</div>
+                <div class="table-card-data">@item.Location</div>
+            </div>
+            <div class="col s6 l2">
+                <div class="table-card-label">Area/Subarea</div>
+                <div class="table-card-data">
+                    @item.Area
+                    <span>
+                        @if (item.SubArea != "")
+                        {@Html.Raw("/ " + item.SubArea)}
+                    else
+                    {@Html.Raw("")}
+                    </span>
+                </div>
+            </div>
+            <div class="col s6 l2">
+                <div class="table-card-label">Assigned To</div>
+                <div class="table-card-data">@item.AssignedTo</div>
+            </div>
+            <div class="col s6 l2">
+                <div class="table-card-label">Start Date</div>
+                <div class="table-card-data">@item.ScheduleStartDate <span style="font-size:80%">@item.ScheduleStartTime</span></div>
+            </div>
+            <div class="col s6 l2">
+                <div>
+                    <div class="table-card-label">End Date</div>
+                    <div class="table-card-data">@item.ScheduleEndDate <span style="font-size:80%">@item.ScheduleEndTime</span></div>
+                </div>
+
+            </div>
+
+            <div class="col s6 l2">
+                <div class="table-card-label">Created Date</div>
+                <div class="table-card-data">@item.CreatedDate <span style="font-size:80%">@item.CreatedTime</span></div>
+            </div>
+
+            
+            <a href="@Url.Action("GetChecksForChecklistById", "Checklist" , new RouteValueDictionary(new { }), Request.Url.Scheme)" style="position: absolute; right: 1em"><i class="material-icons" style="margin-top: 0.5em;">chevron_right</i></a>
+        </div>
+        }
+
+
+
+
+    </div>
+    <!-- #endregion -->
+    <!-- #region Old UI -Table -->
+    @*<!--------Checkbox to select multiple checklist and activate/deactivate-->
+        <span class="pull-right">
+                <a href="@Url.Action("AddNewCheck", null, new { area = "MasterDataMgmt", controller = "CheckManagement" }, Request.Url.Scheme)">
+                    <button class="btn btn-group" style="padding:3px 16px;color:white;background-color:#77f101">
+                        <span style="color:white">Add</span>
+                    </button>
+                </a>
+            </span>
+        <div class="card" style="padding: 10px;">
+            <div class="row">
+                <div class="col s12 m9 l10">
+                    <h6 class="left-align">PUBLISHED CHECKLIST</h6>
+                </div>
+                <div class="col s12 m3 l2 right-align">
+                    <a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="scheduleChecklistBtn" style="color:#4b7ab1">
+                        <i class="material-icons left" style="margin:0px">add</i>
+                    </a>
+                    <a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="filterBtn" style="color:#4b7ab1">
+                        <i class="material-icons left" style="margin:0px">filter_list</i>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12 l12" id="activeChecks">
+
+                    <table class=" responsive-table highlight">
+                        <thead style="color: #2980b9">
+                            <tr>
+                                <th class="">
+
+                                    <label>
+                                        <input name="selectAllPublishedSchedules" type="checkbox" class="filled-in selectAllPublishedSchedules" id="selectAllPublishedSchedules" value="@(Model.Count()+2)" />
+                                        <span></span>
+                                    </label>
+                                </th>
+                                <th>Location <span class="fa fa-sort"></span></th>
+                                <th>Area<span class="fa fa-sort"></span></th>
+                                <th>Checklist<span class="fa fa-sort"></span></th>
+                                <th>Assigned To<span class="fa fa-sort"></span></th>
+                                <th>Scheduled Start Date<span class="fa fa-sort"></span></th>
+                                <th>Scheduled End Date<span class="fa fa-sort"></span></th>
+                                <th>Created By<span class="fa fa-sort"></span></th>
+                                <th>Created Date<span class="fa fa-sort"></span></th>
+                                <th>Action</th>
+                            </tr>
+                            <tr class="filterRow" style="display:none">
+                                <th></th>
+                                <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Location" /></th>
+                                <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Area" /></th>
+                                <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Checklist" /></th>
+                                <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Assigned To" /></th>
+                                <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Scheduled Start Date" /></th>
+                                <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Scheduled End Date" /></th>
+                                <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Created By" /></th>
+                                <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Created Date" /></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--------For Activating/Deactivating multiple Checklist------>
+                            <tr class="multiselectRow" style="display:none">
+                                <td colspan="12">
+                                    <div class="row-control" style="display: flex; justify-content: flex-end;">
+                                        <div>
+                                            <span class="selectedCount">4</span> <span>Checklist Selected</span>
+                                        </div>
+
+                                        <button class="btn modal-trigger waves-effect red" data-target="deactivateModal">
+                                            <span style="color:white">Inactivate</span>
+                                        </button>
+                                        <button class="btn modal-trigger  waves-effect blue" data-target="activateModal">
+                                            <span style="color:white">Activate</span>
+                                        </button>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <!----------------------------------------------------->
+
+                            @{
+                                int count = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <td align="center">
+                                        <label>
+                                            <input name="scheduleChecks" type="checkbox" class="filled-in scheduleChecks" value="@count" id="checkbox-1-@count" />
+                                            <span></span>
+                                        </label>
+
+                                    </td>
+                                    <td style="word-break:break-all">@item.Location</td>
+                                    <td>@item.Area</td>
+                                    <td>@item.ChecklistName</td>
+                                    <td>@item.AssignedTo</td>
+                                    <td>@item.ScheduleStartDate</td>
+                                    <td>@item.ScheduleEndDate</td>
+                                    <td>@item.CreatedBy</td>
+                                    <td>@item.CreatedDate</td>
+                                    <td>
+                                        <div class="switch">
+                                                <label>
+                                                    <input type="checkbox">
+                                                    <span class="lever"></span>
+                                                </label>
+                                            </div>
+                                        <a href="@Url.Action("GetChecksForChecklistById", "Checklist", new RouteValueDictionary(new {  }), Request.Url.Scheme)"><i class="material-icons">chevron_right</i></a>
+
+                                        <!------------------Vertical Icon for More Option on Hover------------------------->
+                                        <i class="material-icons dropdown-trigger" data-target='dropdown1'>more_vert</i>
+
+                                        <!-- Dropdown Structure for list of items on hover of more items-->
+                                        <ul id='dropdown1' class='dropdown-content'>
+                                            <li><a href="@Url.Action("GetChecksForChecklistById", "Checklist", new RouteValueDictionary(new {  }), Request.Url.Scheme)"><i class="material-icons">arrow_forward</i>View</a></li>
+
+                                            <li class="divider" tabindex="-1"></li>
+                                            <li><a href="#!"><i class="material-icons">check</i>Deactivate</a></li>
+
+                                        </ul>
+                                    </td>
+
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>*@
+    <!-- #endregion -->
+
+
+</div>
+
+<!-- #region Modal for Active/Deactive -->
+@*
+    <!-------Modal to Activate/Deactivate Audits------->
+    <!-- Modal Structure -->
+    <div id="deactivateModal" class="modal bottom-sheet">
+        <div class="modal-content">
+            <div class="col s10">
+                <h5>Are you sure you want to de-activate this scheduled checklist?</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn blue">Yes</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn red">No</a>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="activateModal" class="modal bottom-sheet">
+        <div class="modal-content">
+            <div class="col s10">
+                <h5>Are you sure you want to activate this scheduled checklist?</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn blue">Yes</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn red">No</a>
+
+            </div>
+        </div>
+    </div>*@
+<!-- #endregion -->
+
+
+<script src="~/Areas/SchedulingMgmt/Scripts/PublishedChecklist.js"></script>

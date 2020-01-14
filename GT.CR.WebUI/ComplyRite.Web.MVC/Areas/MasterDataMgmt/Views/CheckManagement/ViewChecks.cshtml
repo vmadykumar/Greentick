@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.CheckMgmt.CheckModel_New>
+
+<!-- STYLES -->
+<link href="~/Areas/MasterDataMgmt/Content/CSS/CheckManagement.css" rel="stylesheet" />
+<style>
+    .page-content {
+        padding: 20px 10px !important;
+    }
+</style>
+
+<div class="d-flex" style="width:100%; align-items:center;">
+    <div style="flex:1;"><h5>CHECKS</h5></div>
+    <div style="flex:1;"></div>
+    <div style="flex:10;"><input type="text" id="search_check" placeholder="Search by Code, Title, Answer, Status" disabled /></div>
+    <div style="flex:1;"></div>
+    @Html.ActionLink("Create", "CreateNewCheck", null, new { @class = "btn btn-default action-button", @style = "flex:1;" })
+</div>
+<table class="table highlight responsive-table">
+    <thead>
+        <tr>
+            <th style="text-align:center;" width="10%">
+                @Html.DisplayNameFor(model => model.CheckImageFile)
+            </th>
+            <th width="10%">
+                @Html.DisplayNameFor(model => model.CheckCode)
+            </th>
+            <th width="55%">
+                @Html.DisplayNameFor(model => model.CheckTitle)
+            </th>
+            <th width="8%">
+                @Html.DisplayNameFor(model => model.CheckAnswer)
+            </th>
+            <th width="7%">
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            @*<th width="10%">
+                @Html.DisplayNameFor(model => model.CheckType)
+            </th>*@
+            <th width="25%">
+                Actions
+            </th>
+        </tr>
+    </thead>
+
+    <tbody id="result_body">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="center-align">
+                    @if (item.CheckImage == null)
+                    {
+                        <i class="material-icons preview-image-not-available">image</i>
+                    }
+                    else
+                    {
+                        <img src="@String.Concat(ViewBag.ThumbnailUrl, "Audit/DownloadResizedImage?filename=", @item.CheckImage, "&ImageType=check&width=67&Height=50")" style="border-radius:5px;" />
+                    }
+                </td>
+                <td class="search-this">
+                    @Html.DisplayFor(modelItem => item.CheckCode)
+                </td>
+                <td class="search-this">
+                    @Html.DisplayFor(modelItem => item.CheckTitle)
+                </td>
+                <td class="search-this" style="word-break:break-all;">
+                    @if (item.CheckAnswer == null)
+                    {
+                        <div class="not-available"></div>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.CheckAnswer)
+                    }
+                </td>
+                <td class="search-this">
+                    @if (item.Status == null)
+                    {
+                        <div class="not-available"></div>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Status)
+                    }
+                </td>
+                @*<td style="word-break:break-all;">
+                    @if (item.CheckType == null)
+                    {
+                        <div class="not-available"></div>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.CheckType)
+                    }
+                </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "EditCheck", new { item.CheckCode }, new { }) |
+                    @Html.ActionLink("Details", "CheckDetails", new { item.CheckCode }, new { })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- SCRIPTS -->
+<script src="~/Areas/MasterDataMgmt/Scripts/ViewChecks.js"></script>
+<script>
+    Header = {
+        'UserName':'@ViewBag.UserName',
+        'UUID':'@ViewBag.UUID',
+        'UserId': '@ViewBag.UserId',
+        'LOBCode': '@ViewBag.LOBCode',
+        'ModuleCode':'@ViewBag.ModuleCode'
+    };
+</script>

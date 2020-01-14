@@ -1,0 +1,320 @@
+﻿@model ComplyRite.Web.MVC.Areas.SchedulingMgmt.Models.Dashboard.DashboardModel
+
+@{
+    ViewBag.Title = "DashboardIndex";
+}
+
+<link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />
+
+<style>
+    .info-box {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        height: 80px;
+        display: flex;
+        cursor: default;
+        background-color: #fff;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 30px;
+    }
+
+        .info-box .content {
+            display: inline-block;
+            padding: 7px 10px;
+        }
+
+        .info-box .icon {
+            display: inline-block;
+            text-align: center;
+            width: 80px;
+        }
+
+
+    .icon i {
+        color: #fff;
+        font-size: 40px;
+        line-height: 80px;
+    }
+
+    .info-box .content {
+        display: inline-block;
+        padding: 7px 10px;
+    }
+
+        .info-box .content .text {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .info-box .content .number {
+            font-weight: normal;
+            font-size: 24px;
+            color: #555;
+        }
+
+    .card .card-content .card-number {
+        font-weight: normal;
+        font-size: 4em;
+        color: #555;
+    }
+
+
+    /*Icon colours---*/
+    .bg-cornflower {
+        background-color: cornflowerblue !important;
+        color: #fff;
+    }
+
+    .bg-red {
+        background-color: #F44336 !important;
+        color: #fff;
+    }
+
+    .bg-cyan {
+        background-color: #00BCD4 !important;
+        color: #fff;
+    }
+
+    .bg-cyan-deep {
+        background-color: #13717d;
+        color: #fff;
+    }
+
+    .bg-light-green {
+        background-color: #8BC34A !important;
+        color: #fff;
+    }
+
+    .bg-primary {
+        background-color: #4b7ab1 !important;
+        color: #fff;
+    }
+
+    .bg-brown {
+        background-color: #795548 !important;
+        color: #fff;
+    }
+
+    .row-gap {
+        margin-bottom: 20px;
+    }
+
+
+    /*--------New Home screen CSS-------------*/
+    .breadcrumb-dashboard{
+        display:none;
+    }
+    .row-content {
+        max-width: 80rem;
+        margin-right: auto !important;
+        margin-left: auto !important;
+        min-height: 100vh;
+        /*background-color: gainsboro;*/
+    }
+
+    .home-page {
+        background-image: url("/Areas/SchedulingMgmt/Content/Images/bg-79423eb509.jpg");
+        background-size: cover;
+        background-repeat: repeat;
+        background-attachment: fixed;
+        margin-bottom: 0;
+    }
+
+    h6 {
+        margin-top: 3px;
+        margin-bottom: 0px;
+        font-weight: 700;
+        color: rgba(66, 106, 152, 0.7);
+        font-size: 19px;
+    }
+
+    .card-data {
+        font-size: 42px;
+        color: #414960;
+        line-height: 42px;
+    }
+
+    .card-data-label {
+        text-transform: uppercase;
+        color: #999;
+        font-weight: 700 !important;
+        font-size: 11px;
+    }
+</style>
+@*<div class="row row-content bg-wallpaper" style="padding-left: 1.5em;padding-right: 1.5em;">*@
+<script>
+    Header = {
+        'UserName':'@ViewBag.UserName',
+        'UUID':'@ViewBag.UUID',
+        'UserId': '@ViewBag.UserId',
+        'LOBCode': '@ViewBag.LOBCode',
+        'ModuleCode':'@ViewBag.ModuleCode'
+    };
+</script>
+
+<div class="row home-page">
+    @*<img src="~/Areas/SchedulingMgmt/Content/Images/bg-79423eb509.jpg">*@
+    <div class="row row-content">
+
+        @if (@ViewBag.UUID != "UU0000036")
+        {
+        <div class="col s12 m6 l4">
+            <h3 style="color:#fff">Audits</h3>
+            <div class="col s12 m12 l8">
+                <div class="card" style="background-color:white;padding:10px;">
+                    <div style="margin-bottom:2.2em">
+                        <h6>Schedule</h6>
+                    </div>
+                    <div style="display:flex; margin-bottom: 5em;">
+                        @*<div class="center-align" style="flex-grow:1">
+                        <a href="~/schedulingMgmt/Audit/GetPublishedAuditScheduleList" style="display: block">
+                            <div class="card-data">
+                                @if (Model.publishedCount != null)
+                                {
+                                    @Model.publishedCount;
+                                }
+                                else
+                                {
+                                    <p>0</p>
+                                }
+
+                            </div>
+
+
+                            <div class="card-data-label">Published</div>
+                        </a>
+                    </div>*@
+                        <div class="center-align" style="flex-grow:1">
+                            <a href="~/schedulingMgmt/SchedulingManagement/ScheduleAudit">
+                                <div class="card-data"><i class="material-icons" style="font-size: 42px">add_circle</i></div>
+                                <div class="card-data-label">Add New</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class=" col s12 m6 l5">
+            <div class="card" style="background-color:white;padding:10px;">
+                <div style="margin-bottom:2.2em">
+                    <h6>Checklist</h6>
+                </div>
+                <div style="display:flex; margin-bottom: 5em;">
+                    <div class="center-align" style="flex-grow:1">
+                        <a href="~/schedulingMgmt/Checklist/GetPublishedChecklist" style="display: block">
+                            <div class="card-data">18</div>
+                            <div class="card-data-label">Published</div>
+                        </a>
+                    </div>
+                    <div class="center-align" style="flex-grow:1">
+                        <a href="~/schedulingMgmt/SchedulingManagement/ScheduleChecklist">
+                            <div class="card-data"><i class="material-icons">add_circle</i></div>
+                            <div class="card-data-label">Add New</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+           
+
+        </div>
+        }
+
+        <div class="col s12 m6 l4">
+            <h3 style="color:#fff">Dashboard</h3>
+
+            <div class=" col s12 m12 l8">
+                <div class="card" style="background-color:white;padding:10px;">
+                    <div style="margin-bottom:2.2em">
+                        <h6>Analytics</h6>
+                    </div>
+                    <div style="display:flex; margin-bottom: 5em;">
+                        <div class="center-align" style="flex-grow:1">
+                            <a href="~/ReportMgmt/Report/AnalyticsHome" style="display: block">
+                                <div class="card-data">05</div>
+                                <div class="card-data-label">Reports</div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--------------Old Card Style---------------------->
+    @*<div class="row-gap">
+            <div class="col s12">
+                <h3>Checklist</h3>
+            </div>
+            <!--New Design-->
+            <div class="col s12 m6 l2">
+                <div class="card">
+                    <a href="~/schedulingMgmt/Checklist/GetPublishedChecklist" style="display: block">
+                        <div class="card-content center-align">
+
+
+                            <div class="card-number">18</div>
+                            <div class="text">PUBLISHED</div>
+
+
+                        </div>
+                    </a>
+                    <div class="card-action green darken-1">
+                        <a href="~/schedulingMgmt/SchedulingManagement/ScheduleChecklist" style="color:white"><i class="material-icons" style="vertical-align:middle">add</i> Checklist</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l2">
+                <div class="card">
+                    <a href="~/schedulingMgmt/Audit/GetPublishedAuditScheduleList" style="display: block">
+                        <div class="card-content center-align">
+
+
+                            <div class="card-number">08</div>
+                            <div class="text">PUBLISHED</div>
+
+
+                        </div>
+                    </a>
+                    <div class="card-action green darken-1">
+                        <a href="~/schedulingMgmt/SchedulingManagement/ScheduleAudit" style="color:white"><i class="material-icons" style="vertical-align:middle">add</i> Audit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Report Management-->
+        <div class="row-gap">
+            <div class="col s12">
+                <h5>Reports</h5>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="info-box">
+                    <a href="~/ReportMgmt/Report/AnalyticsHome" style="display: block">
+                        <div class="icon bg-cyan">
+                            <i class="large material-icons">trending_up</i>
+                        </div>
+                        <div class="content">
+                            <div class="number">REPORTS</div>
+                            <div class="text">DASHBOARD</div>
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>*@
+    <!--------------Old Card Style---------------------->
+
+
+
+
+
+
+</div>
+
+
+
+

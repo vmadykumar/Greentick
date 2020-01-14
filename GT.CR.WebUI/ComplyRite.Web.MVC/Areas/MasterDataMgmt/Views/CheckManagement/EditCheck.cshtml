@@ -1,0 +1,147 @@
+﻿@model ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.CheckMgmt.CheckModel_New
+
+<!-- STYLES -->
+<link href="~/Areas/MasterDataMgmt/Content/CSS/CheckManagement.css" rel="stylesheet" />
+
+@using (Html.BeginForm("EditCheck", "CheckManagement", FormMethod.Post, new { enctype = "multipart/form-data", id = "editNewCheckForm" }))
+{
+    <div class="form-horizontal">
+        <h5>EDIT CHECK</h5>
+        <hr />
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CheckID)
+        @Html.HiddenFor(model => model.CheckCode)
+        <input type="hidden" id="ViewBag_Feedback" value="@(ViewBag.Feedback)" />
+        <input type="hidden" id="ViewBag_Color" value="@(ViewBag.Color)" />
+
+        <!-- TITLE -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CheckTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CheckTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="row description-row">
+                    <div class="input-field col s12">
+                        @Html.TextAreaFor(model => model.CheckDescription, new { @class = "materialize-textarea" })
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(model => model.CheckDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="form-group">
+            <div>
+                @Html.LabelFor(model => model.CheckImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-8">
+                    <div class="file-field input-field d-flex">
+                        <div class="btn">
+                            <span>Choose File</span>
+                            @if (Model.CheckImage == null)
+                            {
+                                @Html.TextBoxFor(m => m.CheckImageFile, new { @type = "file", @accept = "image/*", @id = "editCheckImage" })
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.CheckImageFile, new { @type = "file", @accept = "image/*", @id = "editCheckImage", @title = Model.CheckImage })
+                            }
+                        </div>
+                        <div class="file-path-wrapper">
+                            @if (Model.CheckImage == null)
+                            {
+                                <input class="file-path validate" type="text">
+                            }
+                            else
+                            {
+                                string value = Model.CheckImage;
+                                <input class="file-path validate valid" type="text" value="@value">
+                            }
+                        </div>
+                        <div class="preview-image-container">
+                            @if (Model.CheckImage == null)
+                            {
+                                <i class="material-icons preview-image-not-available">image</i>
+                            }
+                            else
+                            {
+                                <div class="preview-image-component">
+                                    <img src="@String.Concat(ViewBag.ImageUrl, "Audit/DownloadImage?filename=", Model.CheckImage, "&ImageType=check")" height="50" />
+                                    <div class="clear-image"><i class="material-icons">clear</i></div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <input type="hidden" name="CheckImage" id="oldImageName" value="@Model.CheckImage" />
+                    <input type="hidden" name="DeleteImage" id="deletedImage" value="false" />
+                    @Html.ValidationMessageFor(model => model.CheckImageFile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <!-- TYPE -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CheckType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CheckType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- SCORE -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Score, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Score, new { htmlAttributes = new { @class = "form-control", @type = "number", @step = "0.1", @min = "0", @max = "100" } })
+                @Html.ValidationMessageFor(model => model.Score, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- ANSWER -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckAnswer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CheckAnswer, new SelectList(new string[] { "Yes", "No" }), "Select Answer", new { @class = "browser-default" })
+                @Html.ValidationMessageFor(model => model.CheckAnswer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- STATUS -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="input-field">
+                    @Html.DropDownListFor(model => model.Status, new SelectList(new string[] { "Active", "Deactive" }), "Select Status", new { @class = "browser-default" })
+                </div>
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="form-group actions-panel">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-default action-button" style="margin-right:10px;" />
+                @Html.ActionLink("Back to List", "ViewChecks", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+<!-- SCRIPTS -->
+<script src="~/Areas/MasterDataMgmt/Scripts/CheckManagement.js"></script>
+<script>
+    Header = {
+        'UserName':'@ViewBag.UserName',
+        'UUID':'@ViewBag.UUID',
+        'UserId': '@ViewBag.UserId',
+        'LOBCode': '@ViewBag.LOBCode',
+        'ModuleCode':'@ViewBag.ModuleCode'
+    };
+</script>

@@ -1,0 +1,73 @@
+﻿
+<style>
+    #AuditCalendar tr {
+        border: none;
+    }
+
+    .fc-header-toolbar h2 {
+        font-size: 2em;
+    }
+</style>
+
+<div class="row schedule-audit-view" style="padding:20px;">
+    <div class="row">
+
+        <div class="col l5 s12" style="font-size: 30px;">Schedule Audit</div>
+    </div>
+    @using (Html.BeginForm("DummyAction", "DummyController", FormMethod.Post, new { id = "ScheduleAuditForm" }))
+    {
+        <div class="col l5 card s12 m5" style="padding:10px;">
+            <div id='AuditCalendar'></div>
+        </div>
+
+        <!-- Right Div-->
+        @*<div class="testDiv col l7 s12 m7" style="border: 2px black solid">*@
+        <div class="col l7 s12 m7" id="ScheduleAuditSideDiv" style="height: calc(100vh - 230px); overflow: auto">
+
+            <div class="row">
+                @*<div class="col s8 offset-s2 center-align" style="border: 0.5px solid rgba(0,0,0,0.2); line-height:2">Click on a Date to Schedule an Audit</div>*@
+            </div>
+        </div>
+        @*</div>*@
+        <!-- Right Div End-->
+    }
+</div>
+<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleUtilities.js"></script>
+<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleAudit.js"></script>
+<script>
+    $(function () {
+        //dates = {
+        //    clickedDate: ''
+        //};
+
+        //$(".schedule-location").select2({
+        //    placeholder: "Select a Location",
+        //    allowClear: true
+        //});
+        //$(".schedule-area").select2({
+        //    placeholder: "Select a Area",
+        //    allowClear: true
+        //});
+        //$(".schedule-subarea").select2({
+        //    placeholder: "Select a Sub Area",
+        //    allowClear: true
+        //});
+        //$(".schedule-select-auditor").select2({
+        //    placeholder: "Select an Auditor",
+        //    allowClear: true
+        //});
+        //$(".occurence-select").select2({
+        //    placeholder: "Select occurences",
+        //    allowClear: true
+        //});
+        $('.start-time, .end-time, .expiry-time, .schedule-end-time').flatpickr({
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "h:i K"
+        });
+
+    })
+
+
+</script>
+

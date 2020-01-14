@@ -1,0 +1,311 @@
+﻿
+@model IEnumerable<ComplyRite.Web.MVC.Areas.SchedulingMgmt.Models.SchedulingChecklist.ChecksModel>
+<style>
+    /*.fit-input {
+        width: 100%
+    }*/
+
+    .row-control > button {
+        margin-Left: 15px;
+    }
+
+    .filter-default {
+        background-color: white;
+    }
+
+    .filter-selected {
+        background-color: #b2dfdb;
+    }
+
+    /*-----------New Table Design--------------*/
+    .page-heading {
+        /*text-transform: uppercase;*/
+        margin-bottom: 0;
+        font-weight: 500;
+        color: #4a4a4a;
+        font-size: 30px;
+        margin-left: 0.2em;
+    }
+
+    .page-subheading {
+        margin-bottom: 0;
+        font-weight: 500;
+        color: #4a4a4a;
+        font-size: 20px;
+        margin-left: 0.2em;
+        margin-bottom: 0.5em
+    }
+
+    .table-card-data {
+        font-size: 12px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .table-card-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        font-weight: 500;
+        color: #999;
+    }
+
+    .table-card-title {
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 15px;
+    }
+
+    .col-align-card {
+        padding: 0 !important;
+    }
+</style>
+
+<div style="margin-top:1%;padding: 20px;">
+    <!--New Implementation-->
+    <div class="" style="padding: 10px;">
+        <div class="row" style="margin-bottom:0">
+            <div class="col l10">
+                <div class="page-heading">Checklist Details</div>
+            </div>
+            <div class="col s12 m3 l2 right-align">
+                <a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="scheduleChecklistBtn" style="color:#4b7ab1">
+                    <i class="material-icons left" style="margin:0px">add</i>
+                </a>
+                <a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="filterBtn" style="color:#4b7ab1">
+                    <i class="material-icons left" style="margin:0px">filter_list</i>
+                </a>
+            </div>
+        </div>
+
+        <!----------------Content-------------->
+        <div class="row">
+            <!------------Side Card--------->
+            <div class="col s12 m12 l2">
+                <div class="row card">
+                    <div class="col s7 l7">
+                        <div class="table-card-title">HF/ Cleaning</div>
+                        <div class="table-card-data">Whitefield, Bangalore</div>
+                    </div>
+                    <div class="col s5 m5 l5">
+                        <div class="table-card-title">ID: CHK0008</div>
+                    </div>
+                    <div class="col s12 m12 l12" style="margin-bottom:1em">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col s12 m12 l12">
+                        <div class="table-card-label">Assigned To</div>
+                        <div class="table-card-data">Abhi</div>
+                    </div>
+                    <div class="col s6 m4 l12">
+                        <div class="table-card-label">Start Date</div>
+                        <div class="col s12 m6 l6 table-card-data col-align-card">12/23/2018</div>
+                        <div class="col s12 m6 l6 table-card-data">10:30 AM</div>
+                    </div>
+                    <div class="col s6 m4 l12">
+                        <div class="table-card-label">End Date</div>
+                        <div class="col s12 m6 l6 table-card-data col-align-card">12/23/2018</div>
+                        <div class="col s12 m6 l6 table-card-data">10:30 AM</div>
+                    </div>
+                    <div class="col s6 m4 l12">
+                        <div class="table-card-label">Expiry Date</div>
+                        <div class="col s12 m6 l6 table-card-data col-align-card">12/23/2018</div>
+                        <div class="col s12 m6 l6 table-card-data">10:30 AM</div>
+                    </div>
+                    <div class="col s6 m4 l12">
+                        <div class="table-card-label">Created By</div>
+                        <div class="col s12 m6 l12 table-card-data col-align-card">Sharda Sharma</div>
+                    </div>
+                    <div class="col s12 m4 l12">
+                        <div class="table-card-label">Created Date</div>
+                        <div class="col s12 m6 l6 table-card-data col-align-card">12/23/2018</div>
+                        <div class="col s12 m6 l6 table-card-data">10:30 AM</div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <!-------------Table------------------>
+            <div class="col l10">
+                <div class="page-subheading">Checks</div>
+
+                @foreach (var item in Model)
+                {
+
+
+                    <div class="row card" style="margin:0;padding: 8px 0; margin-bottom: 0.5em">
+
+                        <div class="col s12 m6 l3">
+                            <div class="table-card-label">Title</div>
+                            <div class="table-card-data">@item.CheckTitle</div>
+                        </div>
+
+                        <div class="col s12 m6 l5">
+                            <div>
+                                <div class="table-card-label">Question</div>
+                                <div class="table-card-data">@item.checkDescription</div>
+                            </div>
+
+                        </div>
+                        <div class="col s8 m6 l2">
+                            <div>
+                                <div class="table-card-label">Expected Response</div>
+                                <div class="table-card-data">@item.checkAnswer</div>
+                            </div>
+
+                        </div>
+                        <div class="col s4 m6 l2">
+                            <div>
+                                <div class="table-card-label">Score</div>
+                                <div class="table-card-data">@item.score</div>
+                            </div>
+
+                        </div>
+
+
+                        @*<div class="col s12 l1 right-align">
+                            <div class="divider show-on-small hide-on-large-only"></div>
+                            <a href="@Url.Action("GetAuditDetailsByAuditId", "Audit" , new RouteValueDictionary(new { }), Request.Url.Scheme)"><i class="material-icons modal-trigger" data-target='checkModal' style="margin-top: 0.5em;">chevron_right</i></a>
+                        </div>*@
+                    </div>
+                }
+
+            </div>
+        </div>
+        <!---------------------------------------------------------------------------------->
+
+    </div>
+
+    <!-- #region Old Design -->
+    @*<div class="card">
+        <div class="row" style="margin: 0px;  background-color: #4b7ab13d;">
+
+            <!---------------Top panel of Card---------------->
+            <div class="col s12 m12 l4">
+                <div class="col s12 l12">
+                    <div style="font-size: 1.3em;">HF/ Cleaning</div>
+                </div>
+
+                <div class="col s12 l12">
+                    <div>Whitefield, Bangalore</div>
+                </div>
+                <div class="col s12 l12">
+                    <div>Kitchen/ Cleanliness</div>
+                </div>
+                <div class="col s12 l12">
+                    <div>ID: S00087</div>
+                </div>
+
+
+            </div>
+            <div class="col s12 l4 ">
+                <div class="col s12 m12 l12">
+                    <div class="col s5 l4">From:</div>
+                    <div class="col s7 l8 cardfont">12/26/2018, <span style="font-size:80%">10:00 AM</span></div>
+                </div>
+                <div class="col s12 m12 l12">
+                    <div class="col s5 l4">To:</div>
+                    <div class="col s7 l8 cardfont">12/27/2018, <small>10:00 AM</small></div>
+                </div>
+                <div class="col s12 m12 l12">
+                    <div class="col s5 l4">Expires On:</div>
+                    <div class="col s7 l8 cardfont">12/27/2018, <small>10:00 AM</small></div>
+                </div>
+
+            </div>
+
+            <div class="col s12 l4">
+                <div class="col s12 m12 l12">
+                    <div class="col s5 l4">Assigned to:</div>
+                    <div class="col s7 l8 cardfont">Yatin Arora</div>
+                </div>
+                <div class="col s12 m12 l12">
+                    <div class="col s5 l4">Created By:</div>
+                    <div class="col s7 l8 cardfont">Sharda Sharma</div>
+                </div>
+                <div class="col s12 m12 l12">
+                    <div class="col s5 l4">Created On:</div>
+                    <div class="col s7 l8 cardfont">12/27/2018, <small>10:00 AM</small></div>
+                </div>
+
+            </div>
+
+            <!---------------Top panel of Card---------------->
+
+        </div>
+        <div class="row" style="margin-top: 1%;">
+            <div class="col s12 ">
+                <div>
+                    <div class="col s9 m10 l10">
+                        <h6 class="left-align">Checks</h6>
+                    </div>
+                    <div class="col s3 m2 l2 right-align">
+                        <a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="filterBtn" style="color:#4b7ab1">
+                            <i class="material-icons left" style="margin:0px">filter_list</i>
+                        </a>
+                    </div>
+
+                    <div class="col s12 m12 l12" style="padding:10px">
+                        <table class=" responsive-table highlight">
+                            <thead style="color: #2980b9">
+                                <tr>
+                                    <th class="">
+
+                                        <label>
+                                            <input name="selectAllPublishedSchedules" type="checkbox" class="filled-in selectAllPublishedSchedules" id="selectAllPublishedSchedules" value="@(Model.Count()+2)" />
+                                            <span></span>
+                                        </label>
+                                    </th>
+                                    <th>Title <span class="fa fa-sort"></span></th>
+                                    <th>Question<span class="fa fa-sort"></span></th>
+                                    <th>Expected Response<span class="fa fa-sort"></span></th>
+
+                                    <th>Action</th>
+                                </tr>
+                                <tr class="filterRow" style="display:none">
+                                    <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Location" /></th>
+                                    <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Area" /></th>
+                                    <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Checklist" /></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @{
+                                    int count = 0;
+                                }
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+
+                                        <td style="word-break:break-all">@item.CheckTitle</td>
+                                        <td>@item.CheckQuestion</td>
+                                        <td>@item.ExpectedResponse</td>
+
+
+
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>*@
+    <!-- #endregion -->
+
+</div>
+
+
+
+
+@*<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleChecklist.js"></script>*@

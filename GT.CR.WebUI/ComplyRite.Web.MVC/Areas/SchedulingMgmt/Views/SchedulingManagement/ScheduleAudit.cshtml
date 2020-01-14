@@ -1,0 +1,137 @@
+﻿<link href="~/Areas/SchedulingMgmt/Content/CSS/ScheduleAudit/ScheduleAudit.css" rel="stylesheet" />
+<style>
+
+    #AuditCalendar tr {
+        border: none;
+    }
+
+    #AuditCalendar {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    /* The month title on the Calendar header*/
+    .fc-header-toolbar h2 {
+        font-size: 1.4em;
+        line-height: 1.5;
+    }
+    /* Give the higlight color on the clicked day on the fullcalendar.io plugin */
+    .clicked-day-highlight {
+        background: lightblue;
+    }
+
+    /* Hide all the events rendered on the calendar */
+    .fc-month-view .fc-event-container {
+        display: none;
+    }
+
+    /* Week's List */
+    .fc-list-item-marker, .fc-list-item-time, .fc-list-item-title, .fc-list-item-name {
+        white-space: pre-line;
+        width: 1px;
+    }
+
+    .fc-list-table td {
+        border-width: 1px 0 0;
+        padding: 0px 2px;
+    }
+
+    /* Sets the style of the selected button on the calendar*/
+    .ui-state-active {
+        border: 1px solid #003eff;
+        background: #007fff;
+        font-weight: normal;
+        color: #ffffff;
+    }
+
+    /* Highlight the button in the header toolbar of the calendar*/
+    .active-button {
+        border: 1px solid #003eff !important;
+        background: #007fff !important;
+        font-weight: normal !important;
+        color: #ffffff !important;
+    }
+
+    /* Success toast Style*/
+    .success-toast {
+        background-color: #2b7c2d ;/*#4bb543;*/
+        color: white;
+    }
+    .failed-toast{
+        background-color: indianred;
+        color:white;
+
+
+
+    }
+</style>
+<script>
+   Header = {
+        'UserName':'@ViewBag.UserName',
+        'UUID':'@ViewBag.UUID',
+       'UserId': '@ViewBag.UserId',
+       'UserFullName': '@ViewBag.UserFullName',
+       'LOBCode' : '@ViewBag.LobCode'
+
+    };
+</script>
+<div class="row schedule-audit-view" style="padding:20px;">
+    <div class="row" style="margin-bottom:0px">
+
+        <div class="col l5 s12" style="font-size: 30px;margin-bottom: 0px;">Audit</div>
+    </div>
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "ScheduleAuditForm", @novalidate = true }))
+    {
+        <div class="col l5 card s12 m5" style="padding:10px;">
+            <div id='AuditCalendar'></div>
+        </div>
+
+        <!-- Right Div-->
+        @*<div class="testDiv col l7 s12 m7" style="border: 2px black solid">*@
+        <div class="col l7 s12 m7" id="ScheduleAuditSideDiv" >
+
+            <div class="row">
+                @*<div class="col s8 offset-s2 center-align" style="border: 0.5px solid rgba(0,0,0,0.2); line-height:2">Click on a Date to Schedule an Audit</div>*@
+            </div>
+        </div>
+        @*</div>*@
+        <!-- Right Div End-->
+    }
+</div>
+
+
+
+@*<div class="ajax-loader">
+    <div class="ajax-load-wait">
+        <div>
+            <img src="~/Areas/SchedulingMgmt/Content/Images/spinner-circle.svg" class="img-responsive" style="width:80px;" alt="loading..." />
+        </div>
+        <div style="font-size: 1.5em; color:white;">
+            Please Wait ...
+        </div>
+    </div>
+</div>*@
+
+  <div class="ajax-loader">
+    <div class="lds-ellipsis ">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+        </div>
+  </div>
+  
+  <style>
+
+  </style>
+
+  <input type="hidden" id="OpenInEditMode" value="@(ViewBag.OpenInEditMode.ToString().ToLower())" />
+  <input type="hidden" id="EditModeAuditID" value="@ViewBag.AuditID" />
+
+<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleUtilities.js?v=0.2"></script>
+@*<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleAudit.js?v=0.5"></script>*@
+<script src="~/Areas/SchedulingMgmt/Scripts/Recurrence.js?v=1.3"></script>
+<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleAuditRefactor.js?v=1.9"></script>
+
+
+
+

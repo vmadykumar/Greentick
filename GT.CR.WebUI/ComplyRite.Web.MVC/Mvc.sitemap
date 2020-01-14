@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Home" area="schedulingMgmt" controller="Dashboard" action="GetDashboardData" visibility="false">
+    <mvcSiteMapNode title="App Updates" area="AppStore" controller="AppUp" action="GetAppUpdate"/>
+    <mvcSiteMapNode title="Published Checklist" area="schedulingMgmt" controller="Checklist" action="GetPublishedChecklist">
+      <mvcSiteMapNode title="Checklist Details" area="schedulingMgmt" controller="Checklist" action="GetChecksForChecklistById"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Schedule Checklist" area="schedulingMgmt" controller="SchedulingManagement" action="ScheduleChecklist"/>
+    <mvcSiteMapNode title="Schedule" area="schedulingMgmt" controller="SchedulingManagement" action="ScheduleAudit">
+      <mvcSiteMapNode title="Audit Details" area="schedulingMgmt" controller="Audit" action="GetAuditDetailsByAuditId"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Schedule" area="schedulingMgmt" controller="SchedulingManagement" action="EditScheduledAudit"/>
+    <!--<mvcSiteMapNode title="Audits" area="schedulingMgmt" controller="Audit" action="GetPublishedAuditScheduleList">
+      <mvcSiteMapNode title="Audit Details" area="schedulingMgmt" controller="Audit" action="GetAuditDetailsByAuditId"/>
+    </mvcSiteMapNode>-->
+    <mvcSiteMapNode title="Check Management" area="masterDataMgmt" controller="CheckManagement" action="ViewChecks">
+      <mvcSiteMapNode title="Create New Check" area="masterDataMgmt" controller="CheckManagement" action="CreateNewCheck"/>
+      <mvcSiteMapNode title="Check Details" area="masterDataMgmt" controller="CheckManagement" action="CheckDetails"/>
+      <mvcSiteMapNode title="Edit Check" area="masterDataMgmt" controller="CheckManagement" action="EditCheck"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Checklist Management" area="masterDataMgmt" controller="ChecklistManagement" action="ViewChecklists">
+      <mvcSiteMapNode title="Create New Checklist" area="masterDataMgmt" controller="ChecklistManagement" action="CreateNewChecklist"/>
+      <mvcSiteMapNode title="Checklist Details" area="masterDataMgmt" controller="ChecklistManagement" action="ChecklistDetails"/>
+    </mvcSiteMapNode>
+  </mvcSiteMapNode>
+</mvcSiteMap>

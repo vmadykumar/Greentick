@@ -1,0 +1,377 @@
+﻿@model IEnumerable<ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.CheckMgmt.CheckModel>
+<style>
+    /*.table-hover > tbody > tr > td.table-hover-icons {
+        padding: 0;
+        padding-left: -12px;
+        position: absolute;
+        width: 200px;
+        display: none;
+        border: none !important;
+    }
+
+    .table-hover > tbody > tr:hover .table-hover-icons {
+        display: block;
+        margin-left:-5% !important;
+    }
+
+    .table-hover-icons .icon-round:not(:last-child) {
+        margin-right: 10px;
+    }*/
+
+    /*.table-hover > tbody > tr > td.table-hover-icons {
+        padding: 0;
+        padding-left: -12px;
+        position: absolute;
+        width: 200px;
+        display: none;
+        border: none !important;
+    }*/
+
+    /*.table-hover > tbody > tr:hover .table-hover-icons {
+        display: block;
+        margin-left: -5% !important;
+        width: 5%;
+    }*/
+    /*transition-timing-function: ease-in;
+        transition-delay:3s;
+        transition-duration:4s;*/
+    /*transition:1s ease-in;
+        animation:1s ease-in;*/
+
+    /*.table-hover-icons .icon-round:not(:last-child) {
+        margin-top: 3px;
+    }*/
+
+    /* Icon Round */
+
+    /*.icon-round {
+        padding: 3px;
+        color: #e3000b;
+        border-radius: 50%;
+        border: 1px solid #e3000b;
+        cursor: pointer;
+        margin-top:8px !important;
+    }
+
+        .icon-round:hover {
+            background-color: #e3000b;
+            color: #fff;
+        }*/
+
+
+    /*table.text-center,
+    table.text-center td,
+    table.text-center th {
+        text-align: center;
+    }
+
+    .table.align th {
+        text-align: left;
+    }
+
+    .table.align td {
+        text-align: right;
+    }
+
+    .regular-checkbox {
+        display: none;
+    }
+
+        .regular-checkbox + label {
+            background-color: #fafafa;
+            border: 1px solid #cacece;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+            padding: 9px;
+            border-radius: 3px;
+            display: inline-block;
+            position: relative;
+        }
+
+            .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+            }
+
+        .regular-checkbox:checked + label {
+            background-color: #e9ecee;
+            border: 1px solid #adb8c0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+            color: #99a1a7;
+        }
+
+            .regular-checkbox:checked + label:after {
+                content: '\2714';
+                font-size: 14px;
+                position: absolute;
+                top: 0px;
+                left: 3px;
+                color: #99a1a7;
+            }
+
+
+    .big-checkbox + label {
+        padding: 18px;
+    }
+
+    .big-checkbox:checked + label:after {
+        font-size: 28px;
+        left: 6px;
+    }
+
+    .highlightRow {
+        background: #B9D9EC !important;
+        box-shadow: inset 0px 0px 1px 1px #d7deec;
+        pointer-events:none;
+    }*/
+
+
+
+</style>
+
+<script src="~/Areas/MasterDataMgmt/Scripts/CheckMgmtController.js"></script>
+<div class="panel panel-primary" style="margin-top:2%;height:550px">
+    <div class="panel panel-heading">
+        CHECKS
+        <span class="pull-right">
+            <a href="@Url.Action("AddNewCheck", null, new { area = "MasterDataMgmt", controller = "CheckManagement" }, Request.Url.Scheme)">
+                <button class="btn btn-group" style="padding:3px 16px;color:white;background-color:#77f101">
+                    @*@Url.Action("CreatePerson", "Person", new RouteValueDictionary(new { id = id }));*@
+                    <span style="color:white">Add</span>
+                </button>
+            </a>
+        </span>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-tabs" id="checksNavTabId" role="tablist">
+            <li class="nav-item active">
+                <a class="nav-link show active" id="active-tab-attr" data-toggle="tab" href="#activeChecks" role="tab" aria-controls="activeChecks" aria-selected="true">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="inactive-tab-attr" data-toggle="tab" href="#inactiveChecks" role="tab" aria-controls="inactiveChecks" aria-selected="false">Inactive</a>
+            </li>
+            <span class="pull-right fa fa-filter filterToggleClass margin-top-1"></span>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="activeChecks" role="tabpanel">
+                <table class="table table-hovered @*table-condensed*@ tableCss">
+                    <thead class="theadCss">
+                        <tr>
+                            <th class="text-center"><input type="checkbox" name="selectAll" id="SelectAllCheckBox" class="regular-checkbox SelectAllCheckBox" value="@(Model.Count()+2)" /><label for="SelectAllCheckBox" class="SelectAllCheckBoxLabel"></label></th>
+                            <th class="width-30">Title <span class="fa fa-sort"></span></th>
+                            <th class="width-15">Category <span class="fa fa-sort"></span></th>
+                            <th class="width-15">Check Type <span class="fa fa-sort"></span></th>
+                            <th class="width-10">Score <span class="fa fa-sort"></span></th>
+                            <th class="width-15">Correct Response <span class="fa fa-sort"></span></th>
+                            <th class="width-8">Action</th>
+                        </tr>
+                        <tr class="filterRow">
+                            <th></th>
+                            <th class="width-30"><input type="text" class="text-uppercase" id="titleFilter" placeholder="Filter Title" /></th>
+                            <th class="width-15"><input type="text" class="text-uppercase" id="titleFilter" placeholder="Filter Category" /></th>
+                            <th class="width-15"><input type="text" class="text-uppercase" id="titleFilter" placeholder="Filter Check Type" /></th>
+                            <th class="width-10"><input type="text" class="text-uppercase" id="titleFilter" placeholder="Filter Score" /></th>
+                            <th class="width-15"><input type="text" class="text-uppercase" id="titleFilter" placeholder="Filter Correct Response" /></th>
+                            <th class="width-8"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @*<div><span>4 Selected</span></div>*@
+                        @*<tr class="multiselectRow"><td colspan="1"></td><td class="selectedCount" colspan="1">4</td> <td colspan="2">Selected</td><td colspan="2"></td><td colspan="2" class="fa fa-trash"></td><td colspan="1"></td></tr>*@
+                        <tr class="multiselectRow">
+                            <td colspan="7">
+                                <span class="selectedCount">4</span> <span>Selected</span>
+                                <span>
+                                    <button class="btn btn-danger btn-css pull-right" data-toggle="modal" data-target="#inactivationConfirmationModal">
+                                        <span style="color:white">Inactivate</span>
+                                    </button>
+                                    <button class="btn btn-success btn-css pull-right" data-toggle="modal" data-target="#activationConfirmationModal">
+                                        <span style="color:white">Activate</span>
+                                    </button>
+                                </span>
+                            </td>
+                        </tr>
+
+                        @{
+                            int count = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td align="center"><input type="checkbox" name="name" class="regular-checkbox individualCheck name" value="@count" id="checkbox-1-@count" /><label for="checkbox-1-@count"></label></td>
+                                <td class="width-30">@item.Title</td>
+                                <td class="width-15">@item.Category</td>
+                                <td class="width-15">@item.CheckType</td>
+                                <td class="width-10">@item.Score</td>
+                                <td class="width-15">@item.CorrectResponse</td>
+                                <td class=" width-8"><span class="HoverAction">...</span></td>
+                                <td class="table-hover-icons">
+                                    <span>
+                                        <a href="@Url.Action("GetCheckEdit", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-pencil icon-round"></span></a>
+                                    </span>
+                                    <span>
+                                        <a href="@Url.Action("GetCheckView", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-eye icon-round"></span></a>
+                                        @*<span>*@
+                                        @*<a href="@Url.Action("AddNewCheck", null, new { area = "MasterDataMgmt", controller = "CheckManagement" }, Request.Url.Scheme)"></a>*@
+                                        @*<a href="@Url.Action("GetCheckView", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"></a>*@
+
+                                        @*</span>*@
+                                        <span>
+                                            <a href="@Url.Action("GetCheckHistory", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-history icon-round"></span></a>
+                                        </span>
+                                        @*<span>
+                                                <a href="@Url.Action("InactivateCheck", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-trash icon-round"></span></a>
+                                            </span>*@
+                                        <span>
+                                            @*<button class="open-inactivationConfirmation btn btn-success btn-css pull-right" data-toggle="modal" data-target="#inactivationConfirmationModal">*@
+                                            <span class="fa fa-trash icon-round" data-toggle="modal" data-target="#inactivationConfirmationModal"></span>
+                                            @*</button>*@
+                                        </span>
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                        @*<tr>
+                            <td>Food particles in the bain marie have been removed</td>
+                            <td>Cleaning</td>
+                            <td>Voluntary</td>
+                            <td>2</td>
+                            <td>Yes</td>
+                            <td class="HoverAction">...</td>
+                            <td class="table-hover-icons">
+                                <span >
+                                    <a href="@Url.Action("GetCheckEdit", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="glyphicon glyphicon-pencil icon-round"></span></a>
+                                </span>
+                                <span>
+                                    <a href="@Url.Action("GetCheckView", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-eye icon-round"></span></a>
+                                <span>*@
+                        @*<a href="@Url.Action("AddNewCheck", null, new { area = "MasterDataMgmt", controller = "CheckManagement" }, Request.Url.Scheme)"></a>*@
+                        @*<a href="@Url.Action("GetCheckView", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"></a>*@
+
+                        @*</span>
+                                    </span>
+                                </td>
+                            </tr>*@
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="inactiveChecks" role="tabpanel">
+                @{
+                    int inactiveCount = 0;
+                }
+                <table class="table table-hovered @*table-condensed*@">
+                    <thead>
+                        <tr>
+                            <th class="text-center"><input type="checkbox" name="selectAll" id="SelectAllInactiveCheckBox" class="regular-checkbox SelectAllCheckBox" value="@(Model.Count()+3)" /><label for="SelectAllInactiveCheckBox" class="SelectAllCheckBoxLabel"></label></th>
+                            <th>Title <span class="fa fa-sort"></span></th>
+                            <th>Category <span class="fa fa-sort"></span></th>
+                            <th>Check Type <span class="fa fa-sort"></span></th>
+                            <th>Score <span class="fa fa-sort"></span></th>
+                            <th>Correct Response <span class="fa fa-sort"></span></th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="multiSelectInactiveRow">
+                            <td colspan="7">
+                                <span class="selectedInactiveRowCount">1</span> <span>Selected</span>
+                                <span>
+                                    <button class="btn btn-danger btn-css pull-right" data-toggle="modal" data-target="#inactivationConfirmationModal">
+                                        <span style="color:white">Inactivate</span>
+                                    </button>
+                                    <button class="btn btn-success btn-css pull-right" data-toggle="modal" data-target="#myModal">
+                                        <span style="color:white">Activate</span>
+                                    </button>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center"><input type="checkbox" name="name" class="regular-checkbox individualInactiveCheck name" value="@(inactiveCount+5)" id="checkbox-1-@inactiveCount" /><label for="checkbox-2-@inactiveCount"></label></td>
+                            <td>Inactive title</td>
+                            <td>Cleaning</td>
+                            <td>Mandatory</td>
+                            <td>4</td>
+                            <td>No</td>
+                            <td class="HoverAction">...</td>
+                            <td class="table-hover-icons">
+                                <span>
+                                    <a href="@Url.Action("GetCheckView", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-eye icon-round"></span></a>
+                                    <span>
+                                        <a href="@Url.Action("GetCheckEdit", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-history icon-round"></span></a>
+                                    </span>
+
+                                </span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @*<div class="tab-pane" id="approvalRequests" role="tabpanel">...</div>
+            <div class="tab-pane" id="rejected" role="tabpanel">...</div>*@
+    </div>
+</div>
+
+<div class="modal fade" id="inactivationConfirmationModal" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:60% !important">
+        <div class="modal-content">
+            <div class="modal-header modal-header-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Inactivation Check Summary</h4>
+            </div>
+            <div class="modal-body" id="SummaryModalBody">
+                <div class="field" id="ReasonId" style="display:none;">
+                    @Html.TextBoxFor(e => e.FirstOrDefault().InactivationReason, new { @class = "text-uppercase", @id = "InactivationReason", @placeholder = "Reason" })
+                    <label for="InactivationReason">Reason</label>
+                </div>
+                <div id="summaryTextDivId">
+                    <span id="checkInChecklistCount" data-html="true" data-trigger="hover" data-toggle="popover" title="Checklists" data-placement="bottom" data-content="Checklist 1 <br/> Checklist 2<br/> Checklist 3<br/> Checklist 4">20</span>
+                    <span class="summaryText">Checklists are currently using this check</span>
+                </div>
+
+            </div>
+            <div class="modal-footer modal-footer-css">
+                @*<a href="@Url.Action("GetListOfChecks", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                        <button class="btn btn-success btn-css pull-right">
+                            <span class="whiteColor">Proceed Anyway</span>
+                        </button>
+                    </a>*@
+                <button class="btn btn-success btn-css pull-right proceedAnyway" id="proceedAnyway">
+                    <span class="whiteColor">Proceed Anyway</span>
+                </button>
+                <a class="hidden" id="SubmitReason" href="@Url.Action("GetListOfChecks", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                    <button class="btn btn-success btn-css pull-right">
+                        <span class="whiteColor">Submit</span>
+                    </button>
+                </a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelInactivation">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="activationConfirmationModal" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:60% !important">
+        <div class="modal-content">
+            <div class="modal-header modal-header-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Activation Check Summary</h4>
+            </div>
+            <div class="modal-body" id="SummaryModalBody">
+                <span id="checkInChecklistCount" data-html="true" data-trigger="hover" data-toggle="popover" title="Checklists" data-placement="bottom" data-content="Checklist 1 <br/> Checklist 2<br/> Checklist 3<br/> Checklist 4">20</span>
+                <span class="summaryText">Checklists contain this check</span>
+            </div>
+            <div class="modal-footer modal-footer-css">
+                <a href="@Url.Action("GetListOfChecks", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                    <button class="btn btn-success btn-css pull-right">
+                        <span class="whiteColor">Proceed Anyway</span>
+                    </button>
+                </a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

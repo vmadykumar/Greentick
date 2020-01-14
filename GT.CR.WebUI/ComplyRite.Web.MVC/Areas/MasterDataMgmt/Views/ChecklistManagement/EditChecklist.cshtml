@@ -1,0 +1,183 @@
+﻿@model ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.Checklist_Mgmt.ChecklistModel_New
+
+<!-- STYLES -->
+<link href="~/Areas/MasterDataMgmt/Content/CSS/CheckManagement.css" rel="stylesheet" />
+<!-- Select2 Library-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
+@using (Html.BeginForm("EditChecklist", "ChecklistManagement", FormMethod.Post, new { enctype = "multipart/form-data", @id = "editChecklistForm" }))
+{
+<div class="form-horizontal">
+    <h5>EDIT CHECKLIST</h5>
+    <hr />
+    <br />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ChecklistID)
+    @Html.HiddenFor(model => model.ChecklistCode)
+    @Html.HiddenFor(model => model.CreatedBy)
+    @Html.HiddenFor(model => model.CreatedDateTime)
+    <input type="hidden" id="UUID" value="@(ViewBag.UUID ?? "")" />
+    <input type="hidden" id="ViewBag_Feedback" value="@(ViewBag.Feedback)" />
+    <input type="hidden" id="ViewBag_Color" value="@(ViewBag.Color)" />
+
+    <!-- LOCATION -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.LocationName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.LocationCode, new SelectList(ViewBag.Locations, "LocationCode", "LocationName"), "Select Location", new { @class = "browser-default", @id = "locationSelectDropdown" })
+            @Html.ValidationMessageFor(model => model.LocationName, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.LocationCode, new { @id = "PreSelectedLocation", value = "model.LocationCode" })
+
+        </div>
+    </div>
+
+    <!-- AREA -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.AreaName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.AreaCode, new SelectList(new string[] { }), new { @class = "browser-default", @id = "areaSelectDropdown", @disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.AreaName, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.AreaCode, new { @id = "PreSelectedArea", value = "model.AreaCode" })
+
+        </div>
+    </div>
+
+    <!-- SUB AREA -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubAreaName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.SubAreaCode, new SelectList(new string[] { }), new { @class = "browser-default", @id = "subAreaSelectDropdown", @disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.SubAreaCode, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.SubAreaCode, new { @id = "PreSelectedSubArea", value = "model.SubAreaCode" })
+        </div>
+    </div>
+
+    <!-- NAME -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.ChecklistName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ChecklistName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ChecklistName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.ChecklistDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="row description-row">
+                <div class="input-field col s12">
+                    @Html.TextAreaFor(model => model.ChecklistDescription, new { @class = "materialize-textarea" })
+                </div>
+            </div>
+            @Html.ValidationMessageFor(model => model.ChecklistDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- IMAGE -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.ChecklistIconFile, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="file-field input-field d-flex">
+                <div class="btn">
+                    <span>Choose File</span>
+                    @if (Model.ChecklistIcon == null)
+                    {
+                        @Html.TextBoxFor(m => m.ChecklistIconFile, new { @type = "file", @accept = "image/*", @id = "editChecklistIcon" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(m => m.ChecklistIconFile, new { @type = "file", @accept = "image/*", @id = "editChecklistIcon", @title = Model.ChecklistIcon })
+                    }
+                </div>
+                <div class="file-path-wrapper">
+                    @if (Model.ChecklistIcon == null)
+                    {
+                        <input class="file-path validate" type="text">
+                    }
+                    else
+                    {
+                        string value = Model.ChecklistIcon;
+                        <input class="file-path validate valid" type="text" value="@value">
+                    }
+                </div>
+                <div class="preview-image-container">
+                    @if (Model.ChecklistIcon == null)
+                    {
+                        <i class="material-icons preview-image-not-available">image</i>
+                    }
+                    else
+                    {
+                        <div class="preview-image-component">
+                            <img src="@String.Concat(ViewBag.ImageUrl, "Audit/DownloadImage?filename=", Model.ChecklistIcon, "&ImageType=checklist")" height="50" />
+                            <div class="clear-image"><i class="material-icons">clear</i></div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <input type="hidden" name="ChecklistIcon" id="oldImageName" value="@Model.ChecklistIcon" />
+            <input type="hidden" name="DeleteImage" id="deletedImage" value="false" />
+            @Html.ValidationMessageFor(model => model.ChecklistIconFile, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- CHECKS -->
+    <div class="form-group">
+        @{ List<int> selectedChecks = new List<int>();
+            foreach (var value in @Model.SelectedChecks)
+            {
+                selectedChecks.Add(value);
+            }
+            string Checks = Newtonsoft.Json.JsonConvert.SerializeObject(selectedChecks);
+        }
+        <input type="hidden" id="selectedChecks" value="@Checks" />
+        @Html.LabelFor(model => model.SelectedChecks, htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.SelectedChecks, new MultiSelectList(ViewBag.Checks, "CheckID", "CheckTitle"), new { @id = "checksSelectDropdown", @multiple = "multiple", @class = "browser-default" })
+            @Html.ValidationMessageFor(model => model.SelectedChecks, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- CATEGORY -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.ChecklistCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ChecklistCategory, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ChecklistCategory, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- TYPE -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.ChecklistType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ChecklistType, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ChecklistType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="form-group actions-panel">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-default action-button" style="margin-right:10px;" />
+            @Html.ActionLink("Back to List", "ViewChecklists", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+</div>
+}
+
+<!-- SCRIPTS -->
+<script src="~/Areas/MasterDataMgmt/Scripts/ChecklistManagement.js"></script>
+<script type="text/javascript">$(function () { $('#locationSelectDropdown').find('option selected').first().attr('disabled', true); }).trigger('change');</script>
+<script type="text/javascript">
+    $(function () {
+       var s2= $('#checksSelectDropdown').select2({
+            placeholder: 'Select Checks...'
+        })
+       
+        s2.val(JSON.parse($('#selectedChecks').val())).trigger('change');
+    })
+</script>
+<script src="~/Areas/MasterDataMgmt/Scripts/EditChecklistRefactor.js"></script>

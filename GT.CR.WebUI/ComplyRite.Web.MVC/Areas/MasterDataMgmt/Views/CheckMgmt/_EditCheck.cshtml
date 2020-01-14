@@ -1,0 +1,150 @@
+﻿@model ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.CheckMgmt.CheckModel
+<script src="~/Areas/MasterDataMgmt/Scripts/CheckMgmtController.js"></script>
+<link href="~/Areas/MasterDataMgmt/Content/CSS/Common.css" rel="stylesheet" />
+
+<div class="panel panel-primary" style="margin-top:2%">
+    <div class="panel panel-heading">
+        EDIT CHECK
+    </div>
+    <div class="panel-body padding-top-0">
+        <div class="col-lg-12">
+            <div class="col-lg-3" id="CheckImgDivId">
+                <input id="CheckImgId" class="FileInputClass" type="image" src="~/Areas/MasterDataMgmt/Content/Images/BlankImage.png" width="170" height="160" style="margin-left:8%;margin-top:25%;cursor:pointer" />
+                <input type="file" id="Img_file" style="display: none;" onchange="readURL(this,'CheckImgId');" accept="image/*" />
+                <p>&nbsp;&nbsp; Click here to upload Image</p>
+            </div>
+            <div class="col-lg-9">
+                <form id="CreateNewCheckForm">
+                    <div class="field col-lg-12">
+                        @Html.TextBoxFor(e => e.Title, new { @class = "text-uppercase", @id = "title", @placeholder = "Title" })
+                        @*<input type="text" name="title" id="title" placeholder="Title">*@
+                        <label for="title">Title</label>
+                    </div>
+
+                    @*<div class="field col-lg-4">
+            @Html.DropDownList("Category",
+                new SelectList(Enum.GetValues(typeof(Gender))),
+                "Select Gender",
+                new { @class = "text-uppercase" })
+            <label for="sel1">Category </label>
+        </div>*@
+                    <div class="clearfix"></div>
+                    <div class="field col-lg-12">
+                        @Html.TextBoxFor(e => e.Description, new { @class = "text-uppercase", @id = "desc", @placeholder = "Description" })
+                        @*<input type="text" name="desc" id="desc" placeholder="Description">*@
+                        <label for="desc">Description</label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="field col-lg-4">
+                        @Html.TextBoxFor(e => e.Score, new { @type = "number", @class = "text-uppercase", @id = "score", @placeholder = "Score" })
+                        @*<input type="number" name="score" id="score" placeholder="Score">*@
+                        <label for="score">Score</label>
+                    </div>
+                    <div class="field col-lg-4">
+                        <select class="text-uppercase" id="sel1" placehloder="Category">
+                            <option disabled>Select Category</option>
+                            <option>Cleaning</option>
+                        </select>
+                        <label for="sel1">Category </label>
+                    </div>
+
+                    <div class="field col-lg-4">
+                        <select class="text-uppercase" id="checkTypeId" placehloder="Check Type">
+                            <option disabled>Select Check Type</option>
+                            <option>Voluntary</option>
+                            <option>Mandatory</option>
+                        </select>
+                        <label for="checkTypeId">Check Type</label>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="field col-lg-4">
+                        <select class="text-uppercase" id="correctResponseId" placehloder="Check Type">
+                            <option disabled>Select Correct Response</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <label for="correctResponseId">Correct Response</label>
+                    </div>
+                    <div class="field col-lg-4">
+                        @Html.TextBoxFor(e => e.ApplicableFrom, new { @class = "text-uppercase",@type="date", @id = "desc", @placeholder = "Description" })
+                        <label for="desc">Applicable From</label>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div><h3>&nbsp; Tutorial</h3></div>
+        @*<hr />*@
+        <div class="field col-lg-9">
+            @Html.TextBoxFor(e => e.TutorialDesc, new { @class = "text-uppercase", @id = "tutorialdesc", @placeholder = "Description" })
+            @*<textarea class="form-control rounded-0" id="tutorialDesc" rows="3"></textarea>*@
+            <label for="description">Description</label>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-4" id="ImgDivIdForCheck">
+            <input id="ImgIdForEditCheck" class="FileInputClass" type="image" src="~/Areas/MasterDataMgmt/Content/Images/BlankImage.png" width="100" height="100" style="margin-left:8%;cursor:pointer" />
+            <input type="file" id="Img_file" style="display: none;" onchange="readURL(this,'ImgIdForEditCheck');" accept="image/*" />
+            <p>Click here to upload Image</p>
+        </div>
+        <div class="col-lg-4" id="VideoDivIdForCheck">
+            <input id="VideoIdForEditCheck" class="FileInputClass" type="image" src="~/Areas/MasterDataMgmt/Content/Images/VideoImg.png" width="100" height="100" style="margin-left:8%;cursor:pointer" />
+            <input type="file" id="Video_file" style="display: none;" onchange="readURL(this,'VideoIdForEditCheck');" />
+            <p>Click here to upload Video</p>
+        </div>
+        <div class="col-lg-4" id="AudioDivIdForCheck">
+            <input id="AudioIdForEditCheck" class="FileInputClass" type="image" src="~/Areas/MasterDataMgmt/Content/Images/AudioImg.png" width="100" height="100" style="margin-left:8%;cursor:pointer" />
+            <input type="file" id="Audio_file" style="display: none;" onchange="readURL(this,'AudioIdForEditCheck');" />
+            <p>Click here to upload Audio</p>
+        </div>
+
+        <div class="col-lg-12" style="margin-top:15%">
+
+            <button class="open-previewTemplate btn btn-success btn-css pull-right" data-toggle="modal" data-target="#myModal">
+                <span style="color:white">Preview</span>
+            </button>
+
+            <a href="@Url.Action("SaveCheckToDraft", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                <button class="btn btn-primary btn-css pull-right">
+                    <span class="whiteColor">Save To Draft</span>
+                </button>
+            </a>
+
+            <a href="@Url.Action("GetListOfChecks", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                <button class="btn btn-danger btn-css pull-right">
+                    <span style="color:white">Cancel</span>
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:80% !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Preview</h4>
+            </div>
+            <div class="modal-body" id="PreviewModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("GetCheckPreview", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)">
+                    <button class="btn btn-success btn-css pull-right">
+                        <span class="whiteColor">Publish</span>
+                    </button>
+                </a>
+                <a href="@Url.Action("SaveCheckToDraft", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                    <button class="btn btn-primary btn-css pull-right">
+                        <span class="whiteColor">Save To Draft</span>
+                    </button>
+                </a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

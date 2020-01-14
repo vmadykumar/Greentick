@@ -1,0 +1,145 @@
+﻿@model IEnumerable<ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.Checklist_Mgmt.ChecklistModel_New>
+
+<!-- STYLES -->
+<link href="~/Areas/MasterDataMgmt/Content/CSS/CheckManagement.css" rel="stylesheet" />
+<style>
+    .page-content {
+        padding: 20px 10px !important;
+    }
+</style>
+
+<div class="d-flex" style="width:100%; align-items:center;">
+    <div style="flex:1;"><h5>CHECKLISTS</h5></div>
+    <div style="flex:1;"></div>
+    <div style="flex:10;"><input type="text" id="search_check" placeholder="Search by Code, Location, Area, Sub Area, Name, Status" disabled /></div>
+    <div style="flex:1;"></div>
+    @Html.ActionLink("Create", "CreateNewChecklist", null, new { @class = "btn btn-default action-button", @style = "flex:1;" })
+</div>
+
+<table class="table highlight responsive-table">
+    <thead>
+        <tr>
+            <th style="text-align:center;" width="5%">
+                @Html.DisplayNameFor(model => model.ChecklistIconFile)
+            </th>
+            <th width="5%">
+                @Html.DisplayNameFor(model => model.ChecklistCode)
+            </th>
+            <th width="10%">
+                @Html.DisplayNameFor(model => model.LocationName)
+            </th>
+            <th width="15%">
+                @Html.DisplayNameFor(model => model.AreaName)
+            </th>
+            <th width="10%">
+                @Html.DisplayNameFor(model => model.SubAreaName)
+            </th>
+            <th width="15%">
+                @Html.DisplayNameFor(model => model.ChecklistName)
+            </th>
+            <th width="8%">
+                @Html.DisplayNameFor(model => model.TotalNoOfChecks)
+            </th>
+            <th width="7%">
+                @Html.DisplayNameFor(model => model.MaxScore)
+            </th>
+            <th width="5%">
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            @*<th width="5%">
+                @Html.DisplayNameFor(model => model.ChecklistCategory)
+            </th>
+            <th width="5%">
+                @Html.DisplayNameFor(model => model.ChecklistType)
+            </th>*@
+            <th width="10%">
+                Actions
+            </th>
+        </tr>
+    </thead>
+
+    <tbody id="result_body">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="center-align">
+                    @if (item.ChecklistIcon == null)
+                    {
+                        <i class="material-icons preview-image-not-available">image</i>
+                    }
+                    else
+                    {
+                        <img src="@String.Concat(ViewBag.ThumbnailUrl, "Audit/DownloadResizedImage?filename=", @item.ChecklistIcon, "&ImageType=checklist&width=50&Height=50")" style="border-radius:5px;" />
+                    }
+                </td>
+                <td class="search-this">
+                    @Html.DisplayFor(modelItem => item.ChecklistCode)
+                </td>
+                <td class="search-this">
+                    @Html.DisplayFor(modelItem => item.LocationName)
+                </td>
+                <td class="search-this">
+                    @Html.DisplayFor(modelItem => item.AreaName)
+                </td>
+                <td class="search-this">
+                    @Html.DisplayFor(modelItem => item.SubAreaName)
+                </td>
+                <td class="search-this">
+                    @Html.DisplayFor(modelItem => item.ChecklistName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalNoOfChecks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxScore)
+                </td>
+                <td class="search-this">
+                    @if (item.Status == null)
+                    {
+                        <div class="not-available"></div>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Status)
+                    }
+                </td>
+                @*<td class="search-this">
+                    @if (item.ChecklistCategory == null)
+                    {
+                        <div class="not-available"></div>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.ChecklistCategory)
+                    }
+                </td>
+                <td class="search-this">
+                    @if (item.ChecklistType == null)
+                    {
+                        <div class="not-available"></div>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.ChecklistType)
+                    }
+                </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "EditChecklist", new { item.ChecklistCode ,item.SubAreaCode}) |
+                    @Html.ActionLink("Details", "ChecklistDetails", new { item.ChecklistCode, item.SubAreaCode })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- SCRIPTS -->
+<script src="~/Areas/MasterDataMgmt/Scripts/ViewChecklists.js"></script>
+<script>
+    Header = {
+        'UserName':'@ViewBag.UserName',
+        'UUID':'@ViewBag.UUID',
+        'UserId': '@ViewBag.UserId',
+        'LOBCode': '@ViewBag.LOBCode',
+        'ModuleCode':'@ViewBag.ModuleCode'
+    };
+</script>

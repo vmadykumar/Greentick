@@ -1,0 +1,19 @@
+﻿@model ComplyRite.Web.MVC.Areas.ReportMgmt.Models.AuditArea
+@using ComplyRite.Web.MVC.Areas.ReportMgmt.App_LocalResources
+
+@********** Compliance level for Donate Food Graph *********@
+<div class="col-lg-12 row">
+    <div class="col-lg-5 col-lg-offset-4">
+        <canvas id="donateFood-piechart" donateFood-yes-data="@Model.PassedCheckpointPercentage" donateFood-no-data="@Model.FailedCheckpointPercentage" label="@Model.AreaOfAudit" width="400" height="300" class="canvas-custom-css"></canvas>
+        <span><img id="donateFood-piechart-img" class="canvasImg-custom-css" /></span>
+
+    </div>
+</div>
+@***********************************************************@
+
+@******************* Timestamp Table & Attachments*********************@
+
+@Html.Partial(@PartialViewsPathInfo.TimestampTableAndAttachments, Model.AuditDetails)
+@Html.Partial(@PartialViewsPathInfo.AttachmentsSection, Model)
+
+@**********************************************************************@

@@ -1,0 +1,463 @@
+﻿@*@model IEnumerable<ComplyRite.Web.MVC.Areas.SchedulingMgmt.Models.AuditManagement.AuditChecklistModel>*@
+@model ComplyRite.Web.MVC.Areas.SchedulingMgmt.Models.SchedulingAudit.AuditListModel
+
+<style>
+
+    .filter-default {
+        background-color: white;
+    }
+
+    .filter-selected {
+        background-color: #b2dfdb;
+    }
+
+    /*To align the icon with text*/
+    i.material-icons {
+        font-size: 16px;
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
+    }
+
+
+    /*-----------New Table Design--------------*/
+    .page-heading {
+        /*text-transform: uppercase;*/
+        margin-bottom: 0;
+        font-weight: 500;
+        color: #4a4a4a;
+        font-size: 30px;
+        /*margin-left: 0.2em;*/
+    }
+
+    .page-subheading {
+        margin-bottom: 0;
+        font-weight: 500;
+        color: #4a4a4a;
+        font-size: 20px;
+        /*margin-left: 0.2em;*/
+        margin-bottom: 0.5em
+    }
+
+    .table-card-data {
+        font-size: 12px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .table-card-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        font-weight: 500;
+        color: #999;
+    }
+
+    .table-card-title {
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 15px;
+    }
+
+    .align-card-left {
+        padding: 0 !important;
+    }
+</style>
+<div id="myDiv" style="width: 25em;  background-color:cornflowerblue;position:absolute;top:20%;right:0;z-index:100; display:none;">
+    <h5>Check Question</h5>
+    <i class="material-icons">close</i>
+</div>
+<div style="margin-top: 1%;">
+
+    <!--New Implementation-->
+    <div class="" style="padding: 10px;">
+        <div class="row" style="margin-bottom:0">
+            <div class="col l10">
+                <div class="page-heading">Audit Details</div>
+            </div>
+
+            <!-- EDIT -->
+            @if (DateTime.Parse(Model.auditStartDate + " " + Model.auditStartTime) > DateTime.Now)
+            {
+                <div class="col l2" style="text-align:right;">
+                    <a id="@Model.auditInfoID" class="waves-effect waves-light btn edit_audit" style="background-color: white !important;color: #4b7ab1 !important;"><i class="material-icons right">edit</i>Edit</a>
+                </div>
+            }
+
+            @*<div class="col s12 m3 l2 right-align">
+                    <a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="scheduleChecklistBtn" style="color:#4b7ab1">
+                        <i class="material-icons left" style="margin:0px">add</i>
+                    </a>
+                    <a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="filterBtn" style="color:#4b7ab1">
+                            <i class="material-icons left" style="margin:0px">filter_list</i>
+                        </a>
+                </div>*@
+        </div>
+
+        <!----------------Content-------------->
+        <div class="">
+            <!------------Side Card--------->
+            <div class="col s12 m12 l12">
+                <div class="row card">
+                    <div class="col s12 m12 l4">
+                        <div class="col s12 l12">
+                            <div class="table-card-title">@Model.auditName</div>
+                        </div>
+                        <div class="col s12 l12">
+                            <div class="table-card-data">@Model.auditLocation</div>
+                        </div>
+                        <div class="col s12 m6 l12 align-card-left">
+                            <div class="col s5 m5 l1 table-card-label">ID</div>
+                            <div class="col s7 m7 l8 table-card-data">@Model.auditCode</div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 align-card-left">
+
+
+                        <div class="col s12 l12">
+                            <div class="col s5 l4 table-card-label">Starts On</div>
+                            <div class="col s7 l8 table-card-data">@Model.auditStartDate, <span style="font-size:80%">@Model.auditStartTime</span></div>
+                        </div>
+                        <div class="col s12 l12">
+                            <div class="col s5 l4 table-card-label">Ends On</div>
+                            <div class="col s7 l8 table-card-data">@Model.auditEndDate, <small>@Model.auditEndTime</small></div>
+                        </div>
+                        <div class="col s12 l12">
+                            <div class="col s5 l4 table-card-label">Expires On</div>
+                            <div class="col s7 l8 table-card-data">@Model.auditExpiryDate, <small>@Model.auditExpiryTime</small></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col s12 m6 l4 align-card-left">
+                        <div class="col s12 l12">
+                            <div class="col s5 l4 table-card-label">Assigned To</div>
+                            <div class="col s7 l8 table-card-data">@Model.assignedToUserName</div>
+                        </div>
+                        <div class="col s12 l12">
+                            <div class="col s5 l4 table-card-label">Created By</div>
+                            <div class="col s7 l8 table-card-data">@Model.createdBy</div>
+                        </div>
+                        <div class="col s12 l12">
+                            <div class="col s5 l4 table-card-label">Created On</div>
+                            <div class="col s7 l8 table-card-data">@Model.createdDate, <small>@Model.createdTime</small></div>
+                        </div>
+
+                    </div>
+                    @*<div class="col s7 l12">
+                            <div class="table-card-title">@Model.auditName</div>
+                            <div class="table-card-data">@Model.auditLocation</div>
+                        </div>
+                        <div class="col s5 m5 l12">
+                            <div class=""><b>ID:</b> @Model.auditCode</div>
+                        </div>
+                        <div class="col s12 m12 l12" style="margin-bottom:1em">
+                            <div class="divider"></div>
+                        </div>
+                        <div class="col s12 m12 l12">
+                            <div class="table-card-label">Assigned To</div>
+                            <div class="table-card-data">@Model.assignedToUserName</div>
+                        </div>
+                        <div class="col s6 m4 l12">
+                            <div class="table-card-label">Start Date</div>
+                            <div class="col s12 m6 l6 table-card-data col-align-card">@Model.auditStartDate</div>
+                            <div class="col s12 m6 l6 table-card-data">@Model.auditStartTime</div>
+                        </div>
+                        <div class="col s6 m4 l12">
+                            <div class="table-card-label">End Date</div>
+                            <div class="col s12 m6 l6 table-card-data col-align-card">@Model.auditEndDate</div>
+                            <div class="col s12 m6 l6 table-card-data">@Model.auditEndTime</div>
+                        </div>
+                        <div class="col s6 m4 l12">
+                            <div class="table-card-label">Expiry Date</div>
+                            <div class="col s12 m6 l6 table-card-data col-align-card">@Model.auditExpiryDate</div>
+                            <div class="col s12 m6 l6 table-card-data">@Model.auditExpiryTime</div>
+                        </div>
+                        <div class="col s12 m6 l12">
+                            <div class="table-card-label">Created By</div>
+                            <div class="col s12 m6 l12 table-card-data col-align-card">@Model.createdBy</div>
+                        </div>
+                        <div class="col s12 m4 l12">
+                            <div class="table-card-label">Created Date</div>
+                            <div class="col s12 m6 l6 table-card-data col-align-card">@Model.createdDate</div>
+                            <div class="col s12 m6 l6 table-card-data">@Model.createdTime</div>
+                        </div>*@
+
+
+
+                </div>
+            </div>
+
+            <!-------------Table------------------>
+            <div class="col s12 m12 l12" style="padding:0">
+                <div class="page-subheading">Checklists</div>
+                @if (Model.checklistDetails.Count > 0)
+                {
+                    foreach (var item in @Model.checklistDetails)
+                    {
+                        <a href="#" class="modalLink" check-id="@item.checklistID" subarea-code="@item.subAreaCode" style="display: block;color:unset">
+                            <div class="row card" style="margin:0;padding: 8px 0; margin-bottom: 0.5em;  position: relative">
+
+                                <div class="col s12 m6 l4">
+                                    <div class="table-card-label">Area</div>
+                                    <div class="table-card-data">@item.areaName</div>
+                                </div>
+
+                                <div class="col s12 m6 l4">
+                                    <div>
+                                        <div class="table-card-label">Sub Area</div>
+                                        <div class="table-card-data">@item.subAreaName</div>
+                                    </div>
+
+                                </div>
+                                <div class="col s8 m6 l3">
+                                    <div>
+                                        <div class="table-card-label">Checklist</div>
+                                        <div class="table-card-data">@item.checklistName</div>
+                                    </div>
+
+                                </div>
+                                @*<div class="col s4 m6 l2">
+                                        <div>
+                                            <div class="table-card-label">No. Of Check</div>
+                                            <div class="table-card-data">@item.totalNoOfChecks</div>
+                                        </div>
+
+                                    </div>*@
+
+                                <span><i class="material-icons" style="position:absolute; right: 1em; top:1em">chevron_right</i></span>
+
+                                @*<div class="col s12 l1 right-align">*@
+                                @*<div class="divider show-on-small hide-on-large-only"></div>*@
+                                @*<a href="@Url.Action("GetCheckData", "Audit" , new RouteValueDictionary(new {checklistID = item.checklistID }), Request.Url.Scheme)" id="modalLink"><i class="material-icons " data-target='checkModal' style="margin-top: 0.5em;">chevron_right</i></a>*@
+                                @*<span><i class="material-icons " data-target='checkModal' style="margin-top: 0.5em;">chevron_right</i></span>*@
+                                @*</div>*@
+                            </div>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <div class="row card" style="margin:0;padding: 8px 0; margin-bottom: 0.5em; position: relative">
+
+                        <div class="col s12 m12 l12">
+                            <div class="table-card-title">No Checklists Avaialble for this Audit</div>
+                            <div class="table-card-data">Kindly add checklist for an audit while scheduling an audit</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!---------------------------------------------------------------------------------->
+
+    </div>
+
+    @*<div class="card">
+
+            <!----------Card Header----------->
+            <div class="row" style="margin: 0px;  background-color: #4b7ab13d; padding: 5px;">
+
+
+                <!---------------Top panel of Card---------------->
+                <div class="col s12 l4">
+                    <div class="col s12">
+
+                        <div style="font-size: 1.3em;">Mc'D Annual Audit</div>
+                    </div>
+                    <div class="col s12">
+                        <div>Whitefield, Bangalore</div>
+                    </div>
+                    <div class="col s12">
+                        <div>ID: A00008</div>
+                    </div>
+
+
+                </div>
+                <div class="col s12 l4">
+                    <div class="col s12 l12">
+                        <div class="col s5 l4">From:</div>
+                        <div class="col s7 l8">12/26/2018, <span style="font-size:80%">10:00 AM</span></div>
+                    </div>
+                    <div class="col s12 l12">
+                        <div class="col s5 l4">To:</div>
+                        <div class="col s7 l8">12/27/2018, <small>10:00 AM</small></div>
+                    </div>
+                    <div class="col s12 l12">
+                        <div class="col s5 l4">Expires On:</div>
+                        <div class="col s7 l8">12/27/2018, <small>10:00 AM</small></div>
+                    </div>
+
+                </div>
+
+
+                <div class="col s12 l4">
+                    <div class="col s12 l12">
+                        <div class="col s5 l4">Assigned to:</div>
+                        <div class="col s7 l8">Yatin Arora</div>
+                    </div>
+                    <div class="col s12 l12">
+                        <div class="col s5 l4">Created By:</div>
+                        <div class="col s7 l8">Sharda Sharma</div>
+                    </div>
+                    <div class="col s12 l12">
+                        <div class="col s5 l4">Created On:</div>
+                        <div class="col s7 l8">12/27/2018, <small>10:00 AM</small></div>
+                    </div>
+
+                </div>
+
+                <!---------------Top panel of Card---------------->
+
+            </div>
+
+
+            <div class="row" style="margin-top: 1%;">
+                <div class="col s12 ">
+
+                    <div>
+                        <div class="col s9 m10 l10">
+                            <h6 class="left-align">Checklists</h6>
+                        </div>
+                        <div class="col s3 m2 l2 right-align">
+                            <a class="tableFilterBtn btn btn-medium waves-effect waves-green  filter-default" id="filterBtn" style="color:#4b7ab1">
+                                <i class="material-icons left" style="margin:0px">filter_list</i>
+                            </a>
+                        </div>
+                        <div class="col s12 l12">
+                            <table class=" responsive-table highlight">
+                                <thead style="color: #2980b9">
+                                    <tr>
+
+                                        <th>Area <span class="fa fa-sort"></span></th>
+                                        <th>Subarea<span class="fa fa-sort"></span></th>
+                                        <th>Checklist<span class="fa fa-sort"></span></th>
+                                        <th>#Checks<span class="fa fa-sort"></span></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr class="filterRow" style="display:none">
+                                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Area" /></th>
+                                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter SubArea" /></th>
+                                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Checklist" /></th>
+                                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter #Checks" /></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @{
+                                        int count = 0;
+                                    }
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+
+                                            <td style="word-break:break-all">@item.ChecklistArea</td>
+                                            <td>@item.ChecklistSubArea</td>
+                                            <td>@item.ChecklistName</td>
+                                            <td>@item.CountOfChecks</td>
+                                            <td>
+
+                                                <i class="material-icons modal-trigger" data-target='checkModal' id="myBtn">
+                                                    keyboard_arrow_right
+                                                </i>
+
+
+                                                <!-- Dropdown Structure -->
+                                                <ul id='dropdown1' class='dropdown-content'>
+                                                    <li><a href="@Url.Action("GetAuditDetailsByAuditId", "Audit", new RouteValueDictionary(new {  }), Request.Url.Scheme)"><i class="material-icons">arrow_forward</i>View</a></li>
+
+
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+        </div>*@
+
+</div>
+
+
+
+<!-------------------------------- Modal Structure for Check Deatils---------------------------->
+@*<div>
+        @Html.Partial("~/Areas/SchedulingMgmt/Views/Audit/_ViewChecksModal.cshtml")
+    </div>*@
+<div id="checkModalID" class="modal bottom-sheet" style="max-height: 80%;">
+    <div class="modal-content">
+
+
+    </div>
+
+</div>
+<script>
+    $(".myBtn").click(function () {
+
+        // Set the effect type
+        var effect = 'slide';
+
+        // Set the options for the effect type chosen
+        var options = { direction: 'right' };
+
+        // Set the duration (default: 400 milliseconds)
+        var duration = 500;
+
+        $('#myDiv').toggle(effect, options, duration);
+    });
+
+    //To initialize all models/ dropdown----------------------------------------
+    $(function () {
+
+        //initialize all modals
+        $('.modal').modal();
+
+        ////now you can open modal from code
+        //$('#modal1').modal('open');
+
+        //or by click on trigger
+        $('.trigger-modal').modal();
+        $('.dropdown-trigger').dropdown({ hover: true });
+    }); // end of document ready
+
+    $(document).ready(function() {
+        $('.modalLink').click(function (event) {
+            event.preventDefault();
+            let _checklistID = $(this).attr('check-id');
+            let _subareacode = $(this).attr('subarea-code');
+
+            $.ajax({
+                url: '@Url.Action("GetCheckData", "Audit")',
+                type: 'GET',
+                data: { checklistID: _checklistID, subAreaCode: _subareacode }, //you should build your data here as you need
+                success: function (response) {
+                    // Add response in Modal body
+                    $('.modal-content').html(response);
+                    $('#checkModalID').modal('open');
+
+
+                }
+            });
+
+        });
+
+        $('.edit_audit').on('click', function () {
+            window.location = '/schedulingMgmt/SchedulingManagement/EditScheduledAudit?AuditID=' + $(this).attr('id');
+        });
+});
+</script>
+
+
+@*<script src="~/Areas/SchedulingMgmt/Scripts/ScheduleChecklist.js"></script>*@
+

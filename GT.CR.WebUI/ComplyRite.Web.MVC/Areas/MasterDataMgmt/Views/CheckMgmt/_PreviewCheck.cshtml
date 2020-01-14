@@ -1,0 +1,219 @@
+﻿@model ComplyRite.Web.MVC.Areas.MasterDataMgmt.Models.CheckMgmt.CheckModel
+<script src="~/Areas/MasterDataMgmt/Scripts/CheckMgmtController.js"></script>
+@*<link href="~/Areas/MasterDataMgmt/Content/CSS/Common.css" rel="stylesheet" />*@
+
+@*<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:80% !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Preview</h4>
+            </div>
+            <div class="modal-body">*@
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-3" id="CheckImgDivId">
+                            <input id="CheckImgId" class="FileInputClass" type="image" src="~/Areas/MasterDataMgmt/Content/Images/BlankImage.png" width="170" height="160" style="margin-left:8%;margin-top:8%;cursor:pointer" />
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="col-lg-12">
+                                <label class="">@Html.DisplayNameFor(e => e.Title) </label>
+                                <div class="font text-uppercase">
+                                    @Html.DisplayFor(e => e.Title)
+                                </div>
+                            </div>
+
+                            <div class="clearfix margin-bottom-2"></div>
+                            <div class="col-lg-12">
+                                <label class="">@Html.DisplayNameFor(e => e.Description) </label>
+                                <div class="font text-uppercase">
+                                    @Html.DisplayFor(e => e.Description)
+                                </div>
+                            </div>
+                            <div class="clearfix margin-bottom-2"></div>
+                            <div class="col-lg-4">
+                                <label class="">@Html.DisplayNameFor(e => e.Score) </label>
+                                <div class="font text-uppercase">
+                                    @Html.DisplayFor(e => e.Score)
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="">@Html.DisplayNameFor(e => e.Category) </label>
+                                <div class="font text-uppercase">
+                                    @Html.DisplayFor(e => e.Category)
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="">@Html.DisplayNameFor(e => e.CheckType) </label>
+                                <div class="font text-uppercase">
+                                    @Html.DisplayFor(e => e.CheckType)
+                                </div>
+                            </div>
+                            <div class="clearfix margin-bottom-2"></div>
+                            <div class="col-lg-4">
+                                <label class="">@Html.DisplayNameFor(e => e.CorrectResponse) </label>
+                                <div class="font text-uppercase">
+                                    @Html.DisplayFor(e => e.CorrectResponse)
+                                </div>
+                            </div>
+                            @if (Model.ApplicableFrom != null) { 
+                            <div class="col-lg-4">
+                                <label class="">@Html.DisplayNameFor(e => e.ApplicableFrom) </label>
+                                <div class="font text-uppercase">
+                                    @Html.DisplayFor(e => e.ApplicableFrom)
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="clearfix margin-bottom-2"></div>
+                    <div><h3>&nbsp; Tutorial</h3></div>
+                    <div class="col-lg-8">
+                        <label class="">@Html.DisplayNameFor(e => e.TutorialDesc) </label>
+                        <div class="font text-uppercase">
+                            @Html.DisplayFor(e => e.TutorialDesc)
+                        </div>
+                    </div>
+                    <div class="clearfix margin-bottom-2"></div>
+                    <div class="col-lg-4" id="ImgDivIdForCheck">
+                        <img src="~/Areas/MasterDataMgmt/Content/Images/BlankImage.png" width="140" height="110">
+                    </div>
+                    <div class="col-lg-4" id="VideoDivIdForCheck">
+                        <video width="180" height="110" controls>
+                            <source src="http://127.0.0.1:8887/SampleVideo_1280x720_5mb.mp4" type="video/mp4">
+                            <source src="http://127.0.0.1:8887/SampleVideo_1280x720_5mb.mp4" type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="col-lg-4" id="AudioDivIdForCheck">
+                        <audio width="160" height="110" controls>
+                            <source src="http://127.0.0.1:8887/file_example_MP3_2MG.mp3" type="audio/ogg">
+                            <source src="http://127.0.0.1:8887/file_example_MP3_2MG.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+
+                    </div>
+                    @*<div class="col-lg-12 margin-top-15">
+                        <a href="@Url.Action("GetCheckPreview", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)">
+                            <button class="btn btn-primary btn-css pull-right">
+                                <span class="whiteColor">Publish</span>
+                            </button>
+                        </a>
+                        <a href="@Url.Action("SaveCheckToDraft", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                            <button class="btn btn-success btn-css pull-right">
+                                <span class="whiteColor">Save To Draft</span>
+                            </button>
+                        </a>
+                        <a href="@Url.Action("GetListOfChecks", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                            <button class="btn btn-danger btn-css pull-right">
+                                <span class="whiteColor">Cancel</span>
+                            </button>
+                        </a>
+                    </div>*@
+                </div>
+            @*</div>
+            <div class="modal-footer">
+                <a href="@Url.Action("GetCheckPreview", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)">
+                    <button class="btn btn-primary btn-css pull-right">
+                        <span class="whiteColor">Publish</span>
+                    </button>
+                </a>
+                <a href="@Url.Action("SaveCheckToDraft", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                    <button class="btn btn-success btn-css pull-right">
+                        <span class="whiteColor">Save To Draft</span>
+                    </button>
+                </a>              
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@*<div class="panel panel-primary" style="margin-top:2%">
+    <div class="panel panel-heading">
+        PREVIEW CHECK
+    </div>
+    <div class="panel-body">
+        <div class="col-lg-4">
+            <label class="">@Html.DisplayNameFor(e => e.Title) </label>
+            <div class="font text-uppercase">
+                @Html.DisplayFor(e => e.Title)
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <label class="">@Html.DisplayNameFor(e => e.Description) </label>
+            <div class="font text-uppercase">
+                @Html.DisplayFor(e => e.Description)
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <label class="">@Html.DisplayNameFor(e => e.Category) </label>
+            <div class="font text-uppercase">
+                @Html.DisplayFor(e => e.Category)
+            </div>
+        </div>
+        <div class="clearfix margin-bottom-2"></div>
+        <div class="col-lg-4">
+            <label class="">@Html.DisplayNameFor(e => e.Score) </label>
+            <div class="font text-uppercase">
+                @Html.DisplayFor(e => e.Score)
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <label class="">@Html.DisplayNameFor(e => e.CheckType) </label>
+            <div class="font text-uppercase">
+                @Html.DisplayFor(e => e.CheckType)
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <label class="">@Html.DisplayNameFor(e => e.CorrectResponse) </label>
+            <div class="font text-uppercase">
+                @Html.DisplayFor(e => e.CorrectResponse)
+            </div>
+        </div>
+        <div class="clearfix margin-bottom-2"></div>
+        <div><h3>&nbsp; Tutorial</h3></div>
+        <div class="col-lg-8">
+            <label class="">@Html.DisplayNameFor(e => e.TutorialDesc) </label>
+            <div class="font text-uppercase">
+                @Html.DisplayFor(e => e.TutorialDesc)
+            </div>
+        </div>
+        <div class="clearfix margin-bottom-2"></div>
+        <div class="col-lg-4" id="ImgDivIdForCheck">
+            <img src="~/Areas/MasterDataMgmt/Content/Images/BlankImage.png" width="140" height="100">
+        </div>
+        <div class="col-lg-4" id="VideoDivIdForCheck">
+            <video width="180" height="100" controls>
+                <source src="http://127.0.0.1:8887/SampleVideo_1280x720_5mb.mp4" type="video/mp4">
+                <source src="http://127.0.0.1:8887/SampleVideo_1280x720_5mb.mp4" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="col-lg-4" id="AudioDivIdForCheck">
+            <audio width="160" height="100" controls>
+                <source src="http://127.0.0.1:8887/file_example_MP3_2MG.mp3" type="audio/ogg">
+                <source src="http://127.0.0.1:8887/file_example_MP3_2MG.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+        </div>
+        <div class="col-lg-12 margin-top-15">
+            <a href="@Url.Action("GetCheckPreview", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)">
+                <button class="btn btn-primary btn-css pull-right">
+                    <span class="whiteColor">Publish</span>
+                </button>
+            </a>
+            <a href="@Url.Action("SaveCheckToDraft", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                <button class="btn btn-success btn-css pull-right">
+                    <span class="whiteColor">Save To Draft</span>
+                </button>
+            </a>
+            <a href="@Url.Action("GetListOfChecks", "CheckManagement", new RouteValueDictionary(new { status = "Active" }), Request.Url.Scheme)">
+                <button class="btn btn-danger btn-css pull-right">
+                    <span class="whiteColor">Cancel</span>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>*@

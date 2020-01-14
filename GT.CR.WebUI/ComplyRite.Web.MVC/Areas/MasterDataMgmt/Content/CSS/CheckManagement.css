@@ -1,0 +1,236 @@
+﻿.btn {
+    background-color: white !important;
+    color: #4b7ab1 !important;
+}
+
+.page-content {
+    padding: 20px 100px;
+}
+
+.breadcrumb-dashboard {
+    padding: 0 0 10px 0 !important;
+}
+
+.text-danger {
+    color: red;
+}
+
+.highlight-search-term {
+    background-color: #ff9632;
+}
+
+.actions-panel {
+    margin-top: 2rem;
+}
+
+.action-button {
+    background-color: white !important;
+    color: #4b7ab1 !important;
+}
+
+.toast-error {
+    background-color: #DB6058;
+}
+
+.toast-success {
+    background-color: #199564;
+}
+
+.not-available:before {
+    color: #cdcdcd;
+    content: 'N/A';
+}
+
+.preview-image-not-available {
+    font-size: 50px;
+    color: lightgrey;
+}
+
+.description-row {
+    margin-bottom: 0;
+}
+
+    .description-row .input-field {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+.d-flex {
+    display: flex;
+}
+
+.file-field {
+    margin-bottom: 0 !important;
+}
+
+    .file-field .file-path-wrapper {
+        flex: 8;
+    }
+
+    .file-field .btn {
+        flex: 1;
+    }
+
+    .file-field .preview-image-container {
+        text-align: center;
+        flex: 1;
+    }
+
+        .file-field .preview-image-container img {
+            text-align: center;
+            flex: 1;
+            border-radius: 5px;
+        }
+
+.preview-image-component {
+    position: relative;
+    display: inline-block;
+}
+
+.clear-image {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+    .clear-image i {
+        cursor: pointer;
+        background-color: rgba(0,0,0,0.87);
+        border-radius: 50%;
+        color: white;
+    }
+
+
+input#Score::-webkit-outer-spin-button,
+input#Score::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#createNewChecklistForm .select2-container,
+#editChecklistForm .select2-container {
+    width: 100% !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#createNewChecklistForm .select2-search__field,
+#editChecklistForm .select2-search__field {
+    border-bottom: none;
+    box-shadow: none;
+    height: 1rem;
+    margin-bottom: 0;
+}
+
+#createNewChecklistForm .select2-selection__choice,
+#editChecklistForm .select2-selection__choice {
+    white-space: normal;
+    width: 100%;
+}
+
+/*#createNewChecklistForm .select2-container .select2-selection--single {
+    height: 32px;
+}
+
+#createNewChecklistForm .select2-container--default .select2-results__option[aria-disabled=true] {
+    display: none;
+}*/
+
+/* IMAGE MODAL */
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    #myImg:hover {
+        opacity: 0.7;
+    }
+
+/* The Modal (background) */
+.my-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(0)
+    }
+
+    to {
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
+}

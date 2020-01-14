@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ComplyRite.Web.MVC.Areas.SchedulingMgmt.Models.SchedulingChecklist.ScheduleChecklistModel>
+<style>
+    .fit-input {
+        width: 100%
+    }
+</style>
+
+<div class="panel panel-primary" style="margin-top:0%;padding: 20px;">
+
+    <div class="card" style="padding: 10px;">
+
+        <div class="row">
+            <div class="col s11">
+                <h6 class="left-align">SAVED CHECKLIST</h6>
+            </div>
+            <div class="col s1 right-align" style="padding: 0px;">
+                <a class="tableFilterBtn btn btn-small waves-effect waves-green btn-flat filter-default" id="filterBtn">
+                    <i class="material-icons left" style="margin:0px">filter_list</i>
+                </a>
+            </div>
+        </div>
+
+        <div id="activeChecks">
+            <table>
+                <thead>
+                    <tr>
+                        @*<th class="text-center"><input type="checkbox" name="selectAll" id="SelectAllCheckBox" class="regular-checkbox SelectAllCheckBox" value="@(Model.Count()+2)" /><label for="SelectAllCheckBox" class="SelectAllCheckBoxLabel"></label></th>*@
+                        <th>Location <span class="fa fa-sort"></span></th>
+                        <th>Area<span class="fa fa-sort"></span></th>
+                        <th>Checklist<span class="fa fa-sort"></span></th>
+                        <th>Assigned To<span class="fa fa-sort"></span></th>
+                        <th>Scheduled Date<span class="fa fa-sort"></span></th>
+                        <th>Starts At<span class="fa fa-sort"></span></th>
+                        <th>Ends At<span class="fa fa-sort"></span></th>
+                        <th>Expires At<span class="fa fa-sort"></span></th>
+                        <th>Action</th>
+                    </tr>
+                    <tr class="filterRow" style="display:none">
+                        @*<th></th>*@
+                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Location" /></th>
+                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Area" /></th>
+                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Checklist" /></th>
+                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Assigned To" /></th>
+                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Scheduled Date" /></th>
+                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Starts At" /></th>
+                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Ends At" /></th>
+                        <th><input type="text" class="text-uppercase fit-input" id="titleFilter" placeholder="Filter Expires At" /></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int count = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            @*<td align="center"><input type="checkbox" name="name" class="regular-checkbox individualCheck name" value="@count" id="checkbox-1-@count" /><label for="checkbox-1-@count"></label></td>*@
+                            <td style="word-break:break-all">@item.Location</td>
+                            <td>@item.Area</td>
+                            <td>@item.ChecklistName</td>
+                            <td>@item.AssignedTo</td>
+                            <td>@item.ScheduledDate</td>
+                            <td>@item.StartTime</td>
+                            <td>@item.EndTime</td>
+                            <td>@item.ExpiryTime</td>
+                            
+                            <td>
+                                <i class="material-icons dropdown-trigger" data-target='dropdown1'>edit</i>
+                                @*<span>
+                                    <a href="@Url.Action("GetCheckEdit", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fas fa-edit"></span></a>
+                                </span>*@
+
+                            </td>
+
+                        </tr>
+                    }
+                    @*<tr>
+                        <td>Food particles in the bain marie have been removed</td>
+                        <td>Cleaning</td>
+                        <td>Voluntary</td>
+                        <td>2</td>
+                        <td>Yes</td>
+                        <td class="HoverAction">...</td>
+                        <td class="table-hover-icons">
+                            <span >
+                                <a href="@Url.Action("GetCheckEdit", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="glyphicon glyphicon-pencil icon-round"></span></a>
+                            </span>
+                            <span>
+                                <a href="@Url.Action("GetCheckView", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"><span class="fa fa-eye icon-round"></span></a>
+                            <span>*@
+                    @*<a href="@Url.Action("AddNewCheck", null, new { area = "MasterDataMgmt", controller = "CheckManagement" }, Request.Url.Scheme)"></a>*@
+                    @*<a href="@Url.Action("GetCheckView", "CheckManagement", new RouteValueDictionary(new { id = "2" }), Request.Url.Scheme)"></a>*@
+
+                    @*</span>
+                                </span>
+                            </td>
+                        </tr>*@
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<script src="~/Areas/SchedulingMgmt/Scripts/SavedChecklist.js"></script>

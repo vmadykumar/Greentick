@@ -1,0 +1,166 @@
+﻿body {
+}
+.canvas-custom-css {
+    border: 1px solid #c1bcbc;
+    padding: 20px;
+    margin-bottom: 2%;
+}
+
+.canvasImg-custom-css {
+    border: 1px solid #c1bcbc;
+    margin-bottom: 2%;
+}
+
+#PrerequisiteTheadId {
+    background-color: #0690d2;
+    color: white;
+}
+
+.section-header-css {
+    background-color: #7a0208;
+    font-size: inherit;
+    color: white;
+    margin-left: 1% !important;
+    padding: 4px;
+}
+
+.section-sub-header-class {
+    background-color: #7a0208;
+    font-size: inherit;
+    color: white;
+    margin-left: 1% !important;
+    padding: 4px;
+}
+
+.hygieneRating-smiley-css{
+    width:15% !important;
+}
+
+.no-attachments-class {
+    color: gray;
+    font-style: italic !important;  
+    margin-left:3%;
+}
+
+.hr-css-class {
+    width: 80%;
+    color: black !important;
+    border: none;
+    background-color: #635b5bcf !important;
+    height: 2px;
+}
+
+.hr-attachment-css-class {
+    width: 75%;
+    color: black;
+    border: none;
+    height: 1.5px;
+    background-color: lightgray;
+}
+
+.disclaimer-text {
+    color: gray;
+    font-style: italic !important;
+}
+
+.attachments-mainDiv-id{
+    margin-left:0.1%;
+}
+
+.hygieneRating-city-class, .hygieneRating-smiley-class {
+    margin-top: 5%;
+}
+.hygieneRating-needImprovement-class {
+    text-transform:uppercase;
+}
+.hygieneRating-location-class {
+    width: 100% !important;
+}
+.hygieneRating-isResponsible-class>p{
+    font-size:27px!important;
+    margin-top:10%;
+}
+.hygieneRating-valueText-class>p{
+    font-size:large !important;
+}
+.water-mark {
+    background: url(https://www.google.co.in/images/srpr/logo11w.png);
+    opacity: 0.2;
+}
+
+.ReportIndexMainClass {
+    box-shadow: 0px 1px 2px 1px #afa8a8;
+    margin-top:1%;
+    padding:0px !important;
+}
+
+.navbar-brand {
+color:white !important;
+}
+
+.navbar-custom-css {
+    background-color: #4b7ab1;
+    border-color: #326baf;
+}
+
+.introduction-Mcd-css{
+    width:30%;
+}
+
+.introduction-div-class {
+    text-align: center;
+    margin-left:-7% !important;
+    margin-top:3% !important;
+}
+
+.hygiene-rating-subSec {
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.nav-bar-greentickLogo {
+    width: 9% !important;
+    margin-left: -9% !important;
+    background-color:white;
+}
+
+.nav-bar-pdf {
+    width: 6% !important;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .nav-bar-greentickLogo {
+        width: 21% !important;
+        margin-left: -4% !important;
+    }
+
+    #prerequisite-header-divId, #personalHygiene-header-divId {
+        width: 100% !important;
+    }
+}
+
+.navbar-brand{
+    display:none;
+}
+
+.square {
+    width: 72px;
+    height: 70px;
+    margin: 11px;
+    transform: rotate(-45deg);
+    overflow: hidden;
+    border: 2.5px solid black;
+    border-radius: 11px;
+}
+
+.pic {
+    width: 105px;
+    height: 101px;
+    margin: -31px;
+    transform: rotate(45deg);
+}
+
+.hygieneCompliance-barchart-class .ct-bar {
+    stroke-width: 22px;
+}
+
