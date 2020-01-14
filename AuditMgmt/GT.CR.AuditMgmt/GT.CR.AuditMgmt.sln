@@ -1,0 +1,147 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceLayer", "ServiceLayer", "{4AE28CA5-50F1-438F-9E94-65760D648839}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditMgmt", "AuditMgmt\AuditMgmt.csproj", "{CD9F765C-35EB-42B7-9523-5A54EE9A63CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLayer", "BusinessLayer", "{DEC469BE-4ABF-42D3-86DD-D0B500A37AAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditMgmt.BusinessLayer", "AuditMgmt.BusinessLayer\AuditMgmt.BusinessLayer.csproj", "{43538947-BC2E-4E0F-BA13-59E23015D844}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonLayer", "CommonLayer", "{E12418B4-E467-4CD6-8048-4DC30B1B80FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataLayer", "DataLayer", "{0FB57CE3-4CED-4C55-A465-4C5B1238A67A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditMgmt.CommonLayer", "AuditMgmt.CommonLayer\AuditMgmt.CommonLayer.csproj", "{4C2CEAC3-4C10-44CB-8D1B-37EF45BDA6A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditMgmt.DataLayer", "AuditMgmt.DataLayer\AuditMgmt.DataLayer.csproj", "{AD890767-475A-4BBE-B21F-6F17A935100A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exceptions", "Exceptions", "{D8F9D631-46B3-463F-9B23-5A0C1CDC53AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{8C1F6A97-2D51-442C-90DC-EA82C81F81A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditMgmt.Excepetions", "..\AuditMgmt.Excepetions\AuditMgmt.Excepetions.csproj", "{6B3FCAF9-7DFA-4C84-A4E7-A5C2417BEBAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ControllerUnitTest", "ControllerUnitTest", "{BB847C3E-EE9C-485C-82F4-2CC7393ED0E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLayerUnitTest", "BusinessLayerUnitTest", "{8EB7C59E-AC15-43CC-95C6-20FE498E7D1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataLayerUnitTest", "DataLayerUnitTest", "{88BE2929-9210-44FE-BCF0-2601BD86F7ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditControllerLayerUnitTest", "AuditControllerLayerUnitTest\AuditControllerLayerUnitTest.csproj", "{B140671C-9D90-41D4-AEC5-71E9F936A834}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditDataLayerUnitTest", "AuditDataLayerUnitTest\AuditDataLayerUnitTest.csproj", "{488036C6-5D50-48D9-A79A-8AE92F39C6DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditBusinessLayerUnitTest", "AuditBusinessLayerUnitTest\AuditBusinessLayerUnitTest.csproj", "{49C0BA6B-773F-46EC-8899-9AB9394E1F3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScheduledJobs", "..\ScheduledJobs\ScheduledJobs.csproj", "{7CEC9907-960F-4700-B0DF-8FAC382BC9A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD9F765C-35EB-42B7-9523-5A54EE9A63CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD9F765C-35EB-42B7-9523-5A54EE9A63CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD9F765C-35EB-42B7-9523-5A54EE9A63CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD9F765C-35EB-42B7-9523-5A54EE9A63CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43538947-BC2E-4E0F-BA13-59E23015D844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43538947-BC2E-4E0F-BA13-59E23015D844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43538947-BC2E-4E0F-BA13-59E23015D844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43538947-BC2E-4E0F-BA13-59E23015D844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C2CEAC3-4C10-44CB-8D1B-37EF45BDA6A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C2CEAC3-4C10-44CB-8D1B-37EF45BDA6A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C2CEAC3-4C10-44CB-8D1B-37EF45BDA6A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C2CEAC3-4C10-44CB-8D1B-37EF45BDA6A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD890767-475A-4BBE-B21F-6F17A935100A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD890767-475A-4BBE-B21F-6F17A935100A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD890767-475A-4BBE-B21F-6F17A935100A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD890767-475A-4BBE-B21F-6F17A935100A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B3FCAF9-7DFA-4C84-A4E7-A5C2417BEBAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B3FCAF9-7DFA-4C84-A4E7-A5C2417BEBAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B3FCAF9-7DFA-4C84-A4E7-A5C2417BEBAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B3FCAF9-7DFA-4C84-A4E7-A5C2417BEBAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B140671C-9D90-41D4-AEC5-71E9F936A834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B140671C-9D90-41D4-AEC5-71E9F936A834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B140671C-9D90-41D4-AEC5-71E9F936A834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B140671C-9D90-41D4-AEC5-71E9F936A834}.Release|Any CPU.Build.0 = Release|Any CPU
+		{488036C6-5D50-48D9-A79A-8AE92F39C6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488036C6-5D50-48D9-A79A-8AE92F39C6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488036C6-5D50-48D9-A79A-8AE92F39C6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488036C6-5D50-48D9-A79A-8AE92F39C6DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49C0BA6B-773F-46EC-8899-9AB9394E1F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C0BA6B-773F-46EC-8899-9AB9394E1F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C0BA6B-773F-46EC-8899-9AB9394E1F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C0BA6B-773F-46EC-8899-9AB9394E1F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CEC9907-960F-4700-B0DF-8FAC382BC9A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CEC9907-960F-4700-B0DF-8FAC382BC9A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CEC9907-960F-4700-B0DF-8FAC382BC9A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CEC9907-960F-4700-B0DF-8FAC382BC9A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CD9F765C-35EB-42B7-9523-5A54EE9A63CC} = {4AE28CA5-50F1-438F-9E94-65760D648839}
+		{43538947-BC2E-4E0F-BA13-59E23015D844} = {DEC469BE-4ABF-42D3-86DD-D0B500A37AAE}
+		{4C2CEAC3-4C10-44CB-8D1B-37EF45BDA6A6} = {E12418B4-E467-4CD6-8048-4DC30B1B80FD}
+		{AD890767-475A-4BBE-B21F-6F17A935100A} = {0FB57CE3-4CED-4C55-A465-4C5B1238A67A}
+		{6B3FCAF9-7DFA-4C84-A4E7-A5C2417BEBAE} = {D8F9D631-46B3-463F-9B23-5A0C1CDC53AC}
+		{BB847C3E-EE9C-485C-82F4-2CC7393ED0E4} = {8C1F6A97-2D51-442C-90DC-EA82C81F81A5}
+		{8EB7C59E-AC15-43CC-95C6-20FE498E7D1A} = {8C1F6A97-2D51-442C-90DC-EA82C81F81A5}
+		{88BE2929-9210-44FE-BCF0-2601BD86F7ED} = {8C1F6A97-2D51-442C-90DC-EA82C81F81A5}
+		{B140671C-9D90-41D4-AEC5-71E9F936A834} = {BB847C3E-EE9C-485C-82F4-2CC7393ED0E4}
+		{488036C6-5D50-48D9-A79A-8AE92F39C6DA} = {88BE2929-9210-44FE-BCF0-2601BD86F7ED}
+		{49C0BA6B-773F-46EC-8899-9AB9394E1F3B} = {8EB7C59E-AC15-43CC-95C6-20FE498E7D1A}
+		{7CEC9907-960F-4700-B0DF-8FAC382BC9A0} = {E12418B4-E467-4CD6-8048-4DC30B1B80FD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {409AA0FA-B2B4-4030-BDCB-F3887837FC3A}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs.pratian.com/tfs/greentick
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AuditMgmt\\AuditMgmt.csproj
+		SccProjectTopLevelParentUniqueName1 = GT.CR.AuditMgmt.sln
+		SccProjectName1 = AuditMgmt
+		SccLocalPath1 = AuditMgmt
+		SccProjectUniqueName2 = AuditMgmt.BusinessLayer\\AuditMgmt.BusinessLayer.csproj
+		SccProjectTopLevelParentUniqueName2 = GT.CR.AuditMgmt.sln
+		SccProjectName2 = AuditMgmt.BusinessLayer
+		SccLocalPath2 = AuditMgmt.BusinessLayer
+		SccProjectUniqueName3 = AuditMgmt.CommonLayer\\AuditMgmt.CommonLayer.csproj
+		SccProjectTopLevelParentUniqueName3 = GT.CR.AuditMgmt.sln
+		SccProjectName3 = AuditMgmt.CommonLayer
+		SccLocalPath3 = AuditMgmt.CommonLayer
+		SccProjectUniqueName4 = AuditMgmt.DataLayer\\AuditMgmt.DataLayer.csproj
+		SccProjectTopLevelParentUniqueName4 = GT.CR.AuditMgmt.sln
+		SccProjectName4 = AuditMgmt.DataLayer
+		SccLocalPath4 = AuditMgmt.DataLayer
+		SccProjectUniqueName5 = ..\\AuditMgmt.Excepetions\\AuditMgmt.Excepetions.csproj
+		SccProjectTopLevelParentUniqueName5 = GT.CR.AuditMgmt.sln
+		SccProjectName5 = ../AuditMgmt.Excepetions
+		SccLocalPath5 = ..\\AuditMgmt.Excepetions
+		SccProjectUniqueName6 = AuditControllerLayerUnitTest\\AuditControllerLayerUnitTest.csproj
+		SccProjectTopLevelParentUniqueName6 = GT.CR.AuditMgmt.sln
+		SccProjectName6 = AuditControllerLayerUnitTest
+		SccLocalPath6 = AuditControllerLayerUnitTest
+		SccProjectUniqueName7 = AuditDataLayerUnitTest\\AuditDataLayerUnitTest.csproj
+		SccProjectTopLevelParentUniqueName7 = GT.CR.AuditMgmt.sln
+		SccProjectName7 = AuditDataLayerUnitTest
+		SccLocalPath7 = AuditDataLayerUnitTest
+		SccProjectUniqueName8 = AuditBusinessLayerUnitTest\\AuditBusinessLayerUnitTest.csproj
+		SccProjectTopLevelParentUniqueName8 = GT.CR.AuditMgmt.sln
+		SccProjectName8 = AuditBusinessLayerUnitTest
+		SccLocalPath8 = AuditBusinessLayerUnitTest
+		SccProjectUniqueName9 = ..\\ScheduledJobs\\ScheduledJobs.csproj
+		SccProjectTopLevelParentUniqueName9 = GT.CR.AuditMgmt.sln
+		SccProjectName9 = ../ScheduledJobs
+		SccLocalPath9 = ..\\ScheduledJobs
+	EndGlobalSection
+EndGlobal

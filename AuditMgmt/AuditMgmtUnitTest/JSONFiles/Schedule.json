@@ -1,0 +1,23 @@
+﻿[
+  {
+    "AssignedBy": "AAA",
+    "ScheduleID": "1",
+    "ScheduleStatus": "Open",
+    "UserID": "1",
+    "ChecklistCode": "AAA"
+  },
+  {
+    "AssignedBy": "BBB",
+    "ScheduleID": "2",
+    "ScheduleStatus": "Closed",
+    "UserID": "1",
+    "ChecklistCode": "BBB"
+  },
+  {
+    "AssignedBy": "CCC",
+    "ScheduleID": "3",
+    "ScheduleStatus": "Open",
+    "UserID": "1",
+    "ChecklistCode": "AAA"
+  }
+]

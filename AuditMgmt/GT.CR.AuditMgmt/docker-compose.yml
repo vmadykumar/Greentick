@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  auditmgmt:
+    image: auditmgmt
+    build:
+      context: .
+      dockerfile: AuditMgmt\Dockerfile

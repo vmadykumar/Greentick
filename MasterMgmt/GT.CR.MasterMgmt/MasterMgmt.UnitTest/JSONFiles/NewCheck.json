@@ -1,0 +1,12 @@
+﻿{
+  "CheckID": 0,
+  "CheckCode": "c1",
+  "CheckName": "check1",
+  "Score": 2,
+  "Status": "Active",
+  "CreatedBy": "Vinaya",
+  "CreatedDateTime": "2018-08-01 06:00:00.0000000",
+  "LastModifiedBy": "aa",
+  "LastModifiedDateTime": "2018-08-01 06:00:00.0000000",
+  "CheckTypeID": 1
+}

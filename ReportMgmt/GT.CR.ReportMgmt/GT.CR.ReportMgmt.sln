@@ -1,0 +1,92 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLayer", "BusinessLayer", "{B520764F-C522-40CB-8861-FDE589DAF0C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonLayer", "CommonLayer", "{B9E1FACD-2766-4151-9AEE-3DD6E3CEAF5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataLayer", "DataLayer", "{7C5BDD8E-C0F7-4882-91C8-8F7BBFD486D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exceptions", "Exceptions", "{FD98C493-6240-43F0-8A33-EF9DFBE94FB5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceLayer", "ServiceLayer", "{6211185C-CEE9-4AB2-86D0-AB4401F8712A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportMgmt.BusinessLayer", "ReportMgmt.BusinessLayer\ReportMgmt.BusinessLayer.csproj", "{04783BF1-22A0-4AE3-A456-E522EBE0EAAB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportMgmt.CommonLayer", "ReportMgmt.CommonLayer\ReportMgmt.CommonLayer.csproj", "{9A060396-AE85-46D4-A78A-B551FC5A3F2C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportMgmt.DataLayer", "ReportMgmt.DataLayer\ReportMgmt.DataLayer.csproj", "{1985EF8E-5594-4ACA-87BB-F9F30B5FC071}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportMgmt.Exceptions", "ReportMgmt.Exceptions\ReportMgmt.Exceptions.csproj", "{1EB27D2D-DDA8-491E-8210-EEBC6419C286}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportMgmt", "ReportMgmt\ReportMgmt.csproj", "{F94797E0-13DA-4B9B-84FD-D73D74A87B38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04783BF1-22A0-4AE3-A456-E522EBE0EAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04783BF1-22A0-4AE3-A456-E522EBE0EAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04783BF1-22A0-4AE3-A456-E522EBE0EAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04783BF1-22A0-4AE3-A456-E522EBE0EAAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A060396-AE85-46D4-A78A-B551FC5A3F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A060396-AE85-46D4-A78A-B551FC5A3F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A060396-AE85-46D4-A78A-B551FC5A3F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A060396-AE85-46D4-A78A-B551FC5A3F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1985EF8E-5594-4ACA-87BB-F9F30B5FC071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1985EF8E-5594-4ACA-87BB-F9F30B5FC071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1985EF8E-5594-4ACA-87BB-F9F30B5FC071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1985EF8E-5594-4ACA-87BB-F9F30B5FC071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EB27D2D-DDA8-491E-8210-EEBC6419C286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EB27D2D-DDA8-491E-8210-EEBC6419C286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EB27D2D-DDA8-491E-8210-EEBC6419C286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EB27D2D-DDA8-491E-8210-EEBC6419C286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F94797E0-13DA-4B9B-84FD-D73D74A87B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F94797E0-13DA-4B9B-84FD-D73D74A87B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F94797E0-13DA-4B9B-84FD-D73D74A87B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F94797E0-13DA-4B9B-84FD-D73D74A87B38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{04783BF1-22A0-4AE3-A456-E522EBE0EAAB} = {B520764F-C522-40CB-8861-FDE589DAF0C5}
+		{9A060396-AE85-46D4-A78A-B551FC5A3F2C} = {B9E1FACD-2766-4151-9AEE-3DD6E3CEAF5A}
+		{1985EF8E-5594-4ACA-87BB-F9F30B5FC071} = {7C5BDD8E-C0F7-4882-91C8-8F7BBFD486D1}
+		{1EB27D2D-DDA8-491E-8210-EEBC6419C286} = {FD98C493-6240-43F0-8A33-EF9DFBE94FB5}
+		{F94797E0-13DA-4B9B-84FD-D73D74A87B38} = {6211185C-CEE9-4AB2-86D0-AB4401F8712A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A01C3EF-1605-4548-B002-2E52FDDA0342}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs.pratian.com:8080/tfs/greentick
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ReportMgmt.BusinessLayer\\ReportMgmt.BusinessLayer.csproj
+		SccProjectTopLevelParentUniqueName1 = GT.CR.ReportMgmt.sln
+		SccProjectName1 = ReportMgmt.BusinessLayer
+		SccLocalPath1 = ReportMgmt.BusinessLayer
+		SccProjectUniqueName2 = ReportMgmt.CommonLayer\\ReportMgmt.CommonLayer.csproj
+		SccProjectTopLevelParentUniqueName2 = GT.CR.ReportMgmt.sln
+		SccProjectName2 = ReportMgmt.CommonLayer
+		SccLocalPath2 = ReportMgmt.CommonLayer
+		SccProjectUniqueName3 = ReportMgmt.DataLayer\\ReportMgmt.DataLayer.csproj
+		SccProjectTopLevelParentUniqueName3 = GT.CR.ReportMgmt.sln
+		SccProjectName3 = ReportMgmt.DataLayer
+		SccLocalPath3 = ReportMgmt.DataLayer
+		SccProjectUniqueName4 = ReportMgmt.Exceptions\\ReportMgmt.Exceptions.csproj
+		SccProjectTopLevelParentUniqueName4 = GT.CR.ReportMgmt.sln
+		SccProjectName4 = ReportMgmt.Exceptions
+		SccLocalPath4 = ReportMgmt.Exceptions
+		SccProjectUniqueName5 = ReportMgmt\\ReportMgmt.csproj
+		SccProjectTopLevelParentUniqueName5 = GT.CR.ReportMgmt.sln
+		SccProjectName5 = ReportMgmt
+		SccLocalPath5 = ReportMgmt
+	EndGlobalSection
+EndGlobal

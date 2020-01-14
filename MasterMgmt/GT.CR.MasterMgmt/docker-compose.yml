@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  mastermgmt:
+    image: ${DOCKER_REGISTRY}mastermgmt
+    build:
+      context: .
+      dockerfile: MasterMgmt\Dockerfile

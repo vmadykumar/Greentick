@@ -1,0 +1,50 @@
+﻿[
+  {
+    "ChecklistID": "1",
+    "ChecklistName": "c1",
+    "ChecklistDescription": "cc",
+    "TotalNoOfChecks": "2",
+    "CreatedBy": "cc",
+    "CreatedDateTime": "2018-08-01 06:00:00.0000000",
+    "ApprovedBy": "cc",
+    "ApprovedDateTime": "2018-08-01 06:00:00.0000000",
+    "ChecklistTypeID": "1",
+    "ChecklistCategoryID": "1",
+    "Status": "Active",
+    "ChecklistAreaID": "1",
+    "ChecklistChecks": [
+      {
+        "ChecklistID": "1",
+        "CheckID": "1"
+      },
+      {
+        "ChecklistID": "1",
+        "CheckID": "2"
+      }
+    ]
+  },
+  {
+    "ChecklistID": "2",
+    "ChecklistName": "c2",
+    "ChecklistDescription": "cc",
+    "TotalNoOfChecks": "2",
+    "CreatedBy": "cc",
+    "CreatedDateTime": "2018-08-01 06:00:00.0000000",
+    "ApprovedBy": "cc",
+    "ApprovedDateTime": "2018-08-01 06:00:00.0000000",
+    "ChecklistTypeID": "1",
+    "ChecklistCategoryID": "1",
+    "Status": "Active",
+    "ChecklistAreaID": "1",
+    "ChecklistChecks": [
+      {
+        "ChecklistID": "2",
+        "CheckID": "3"
+      },
+      {
+        "ChecklistID": "2",
+        "CheckID": "4"
+      }
+    ]
+  }
+]

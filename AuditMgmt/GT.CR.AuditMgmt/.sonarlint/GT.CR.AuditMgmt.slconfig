@@ -1,0 +1,11 @@
+{
+  "ServerUri": "http://code-quality.pratian.com",
+  "Organization": null,
+  "ProjectKey": "Greentickft.Pratian",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AWU0zEXcOf9bvGppWtk5",
+      "ProfileTimestamp": "2018-08-14T01:20:54+05:30"
+    }
+  }
+}

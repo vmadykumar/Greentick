@@ -1,0 +1,105 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterMgmt", "MasterMgmt\MasterMgmt.csproj", "{0D24F481-F711-48AA-A092-BA62B408EA52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceLayer", "ServiceLayer", "{9EF1B09B-8416-45C2-8595-74577DAD46A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLayer", "BusinessLayer", "{9CB7619D-C67B-490D-BC55-C3745038E556}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataLayer", "DataLayer", "{B4FD1899-00EB-47E5-A6A2-69243DAB1088}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonLayer", "CommonLayer", "{CEE363EC-A330-42D4-AB20-E4CCE105D61B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exceptions", "Exceptions", "{C7479D77-81F1-490A-8711-4B4DBBD3A15D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterMgmt.BusinessLayer", "MasterMgmt.BuisnessLayer\MasterMgmt.BusinessLayer.csproj", "{99AE7072-4509-4BC8-90DC-E6EC7AFE74FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterMgmt.CommonLayer", "MasterMgmt.CommonLayer\MasterMgmt.CommonLayer.csproj", "{F16B09DF-1505-43DD-B464-FBA41DDB30C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterMgmt.DataLayer", "MasterMgmt.DataLayer\MasterMgmt.DataLayer.csproj", "{2CE3894A-16B0-4D5A-99F2-1450985D3401}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterMgmt.Exceptions", "MasterMgmt.Exceptions\MasterMgmt.Exceptions.csproj", "{46F7ACE8-91C8-45D4-9836-972D398ECC4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{A93303FC-01D0-473E-9D11-845C51379AD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterMgmt.UnitTest", "MasterMgmt.UnitTest\MasterMgmt.UnitTest.csproj", "{30EEA1EF-08B2-4B1D-A447-67852FFD435F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D24F481-F711-48AA-A092-BA62B408EA52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D24F481-F711-48AA-A092-BA62B408EA52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D24F481-F711-48AA-A092-BA62B408EA52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D24F481-F711-48AA-A092-BA62B408EA52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99AE7072-4509-4BC8-90DC-E6EC7AFE74FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99AE7072-4509-4BC8-90DC-E6EC7AFE74FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99AE7072-4509-4BC8-90DC-E6EC7AFE74FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99AE7072-4509-4BC8-90DC-E6EC7AFE74FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F16B09DF-1505-43DD-B464-FBA41DDB30C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F16B09DF-1505-43DD-B464-FBA41DDB30C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F16B09DF-1505-43DD-B464-FBA41DDB30C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F16B09DF-1505-43DD-B464-FBA41DDB30C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CE3894A-16B0-4D5A-99F2-1450985D3401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CE3894A-16B0-4D5A-99F2-1450985D3401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CE3894A-16B0-4D5A-99F2-1450985D3401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CE3894A-16B0-4D5A-99F2-1450985D3401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46F7ACE8-91C8-45D4-9836-972D398ECC4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46F7ACE8-91C8-45D4-9836-972D398ECC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46F7ACE8-91C8-45D4-9836-972D398ECC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46F7ACE8-91C8-45D4-9836-972D398ECC4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30EEA1EF-08B2-4B1D-A447-67852FFD435F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30EEA1EF-08B2-4B1D-A447-67852FFD435F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30EEA1EF-08B2-4B1D-A447-67852FFD435F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30EEA1EF-08B2-4B1D-A447-67852FFD435F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0D24F481-F711-48AA-A092-BA62B408EA52} = {9EF1B09B-8416-45C2-8595-74577DAD46A5}
+		{99AE7072-4509-4BC8-90DC-E6EC7AFE74FF} = {9CB7619D-C67B-490D-BC55-C3745038E556}
+		{F16B09DF-1505-43DD-B464-FBA41DDB30C0} = {CEE363EC-A330-42D4-AB20-E4CCE105D61B}
+		{2CE3894A-16B0-4D5A-99F2-1450985D3401} = {B4FD1899-00EB-47E5-A6A2-69243DAB1088}
+		{46F7ACE8-91C8-45D4-9836-972D398ECC4E} = {C7479D77-81F1-490A-8711-4B4DBBD3A15D}
+		{30EEA1EF-08B2-4B1D-A447-67852FFD435F} = {A93303FC-01D0-473E-9D11-845C51379AD4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {71465E95-4555-45CE-8F29-96F417D050C2}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs.pratian.com/tfs/greentick
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MasterMgmt\\MasterMgmt.csproj
+		SccProjectTopLevelParentUniqueName1 = GT.CR.MasterMgmt.sln
+		SccProjectName1 = MasterMgmt
+		SccLocalPath1 = MasterMgmt
+		SccProjectUniqueName2 = MasterMgmt.CommonLayer\\MasterMgmt.CommonLayer.csproj
+		SccProjectTopLevelParentUniqueName2 = GT.CR.MasterMgmt.sln
+		SccProjectName2 = MasterMgmt.CommonLayer
+		SccLocalPath2 = MasterMgmt.CommonLayer
+		SccProjectUniqueName3 = MasterMgmt.DataLayer\\MasterMgmt.DataLayer.csproj
+		SccProjectTopLevelParentUniqueName3 = GT.CR.MasterMgmt.sln
+		SccProjectName3 = MasterMgmt.DataLayer
+		SccLocalPath3 = MasterMgmt.DataLayer
+		SccProjectUniqueName4 = MasterMgmt.Exceptions\\MasterMgmt.Exceptions.csproj
+		SccProjectTopLevelParentUniqueName4 = GT.CR.MasterMgmt.sln
+		SccProjectName4 = MasterMgmt.Exceptions
+		SccLocalPath4 = MasterMgmt.Exceptions
+		SccProjectUniqueName5 = MasterMgmt.BuisnessLayer\\MasterMgmt.BusinessLayer.csproj
+		SccProjectTopLevelParentUniqueName5 = GT.CR.MasterMgmt.sln
+		SccProjectName5 = MasterMgmt.BuisnessLayer
+		SccLocalPath5 = MasterMgmt.BuisnessLayer
+		SccProjectUniqueName6 = MasterMgmt.UnitTest\\MasterMgmt.UnitTest.csproj
+		SccProjectTopLevelParentUniqueName6 = GT.CR.MasterMgmt.sln
+		SccProjectName6 = MasterMgmt.UnitTest
+		SccLocalPath6 = MasterMgmt.UnitTest
+	EndGlobalSection
+EndGlobal

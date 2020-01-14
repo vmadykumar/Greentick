@@ -1,0 +1,14 @@
+version: 0.0
+os: windows
+files:
+  - source: \
+    destination: E:\UAT_GT\Services\Audit\Live
+hooks:
+  BeforeInstall:
+    - location: Deploymentscripts\backup.ps1
+      timeout: 300
+  AfterInstall:
+    - location: Deploymentscripts\Settings.ps1
+      timeout: 300
+    - location: Deploymentscripts\iisrestart.ps1
+      timeout: 300 
